@@ -4,7 +4,7 @@ import 'dart:math';
 import 'package:http/http.dart' as http;
 
 class AuthService {
-  static const String _baseUrl = "https://cfdptest-auth.<your-subdomain>.workers.dev/auth";
+  static const String _baseUrl = "https://cfdptest-auth.tejasbalkhande221.workers.dev";
 
   // Generate a unique user ID
   static String generateUserId() {
