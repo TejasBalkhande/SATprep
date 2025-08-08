@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:cfdptest/screens/login_screen.dart';
+import 'package:cfdptest/screens/signup_screen.dart';
 
-void main() {
-  runApp(const SATPrepApp());
-}
+void main() => runApp(const SATPrepApp());
 
 class SATPrepApp extends StatelessWidget {
   const SATPrepApp({super.key});
 
-  @override
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -41,19 +40,28 @@ class SATPrepApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const SATPrepHomePage(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const SATPrepHomePage(),
+        '/login': (context) => const LoginScreen(),
+        '/signup': (context) => const SignupScreen(),
+      },
     );
   }
-
 }
 
+// main.dart (partial update)
 class SATPrepHomePage extends StatelessWidget {
   const SATPrepHomePage({super.key});
 
-  final bool isLoggedIn = false; // Simulate login state
+  final bool isLoggedIn = false; // Will be replaced with real auth
 
   @override
   Widget build(BuildContext context) {
+    // Get user ID if passed from login
+    final userId = ModalRoute.of(context)?.settings.arguments as String?;
+    final loggedIn = userId != null;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('SAT Prep Pro', style: TextStyle(color: Colors.white)),
@@ -62,7 +70,9 @@ class SATPrepHomePage extends StatelessWidget {
         actions: [
           IconButton(
             icon: const Icon(Icons.account_circle),
-            onPressed: () {},
+            onPressed: () => loggedIn
+                ? Navigator.pushNamed(context, '/profile')
+                : Navigator.pushNamed(context, '/login'),
           )
         ],
       ),
@@ -75,7 +85,7 @@ class SATPrepHomePage extends StatelessWidget {
             const SizedBox(height: 40),
             const QuickNavigationSection(),
             const SizedBox(height: 40),
-            ProgressTrackerSection(isLoggedIn: isLoggedIn),
+            ProgressTrackerSection(isLoggedIn: loggedIn), // Use actual login state
             const SizedBox(height: 40),
             const TestimonialsSection(),
             const SizedBox(height: 40),
