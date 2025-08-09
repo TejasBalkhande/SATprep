@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:cfdptest/screens/login_screen.dart';
 import 'package:cfdptest/screens/signup_screen.dart';
+import 'package:cfdptest/screens/profile_screen.dart'; // <-- Add this line
+
 
 void main() => runApp(const SATPrepApp());
 
@@ -41,11 +43,16 @@ class SATPrepApp extends StatelessWidget {
         ),
       ),
       initialRoute: '/',
-      routes: {
-        '/': (context) => const SATPrepHomePage(),
-        '/login': (context) => const LoginScreen(),
-        '/signup': (context) => const SignupScreen(),
-      },
+        routes: {
+          '/': (context) => const SATPrepHomePage(),
+          '/login': (context) => const LoginScreen(),
+          '/signup': (context) => const SignupScreen(),
+          '/profile': (context) {
+            final userData = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
+            return ProfileScreen(userData: userData);
+          },
+        }
+
     );
   }
 }
@@ -54,13 +61,13 @@ class SATPrepApp extends StatelessWidget {
 class SATPrepHomePage extends StatelessWidget {
   const SATPrepHomePage({super.key});
 
-  final bool isLoggedIn = false; // Will be replaced with real auth
-
   @override
   Widget build(BuildContext context) {
-    // Get user ID if passed from login
-    final userId = ModalRoute.of(context)?.settings.arguments as String?;
-    final loggedIn = userId != null;
+    // Get user data if passed from login
+    final userData = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
+    final loggedIn = userData != null;
+
+
 
     return Scaffold(
       appBar: AppBar(
@@ -71,7 +78,11 @@ class SATPrepHomePage extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.account_circle),
             onPressed: () => loggedIn
-                ? Navigator.pushNamed(context, '/profile')
+                ? Navigator.pushNamed(
+              context,
+              '/profile',
+              arguments: userData, // Pass user data to profile
+            )
                 : Navigator.pushNamed(context, '/login'),
           )
         ],
