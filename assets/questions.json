@@ -1,0 +1,479 @@
+[
+  {
+    "question_id": "441e2b9e",
+    "assessment": "SAT",
+    "test": "Reading and Writing",
+    "domain": "Craft and Structure",
+    "skill": "Words in Context",
+    "difficulty": "Easy",
+    "question_text": "Researchers and conservationists stress that biodiversity loss due to invasive species is ______. For example, people can take simple steps such as washing their footwear after travel to avoid introducing potentially invasive organisms into new environments.\n\nWhich choice completes the text with the most logical and precise word or phrase?",
+    "options": [
+      "A. preventable",
+      "B. undeniable",
+      "C. common",
+      "D. concerning"
+    ],
+    "correct_option": "A",
+    "explanation": "Choice A is the best answer because it most logically completes the text's discussion of how biodiversity loss due to invasive species can be avoided. As used in this context, \"preventable\" means able to be stopped or kept from happening. The text indicates that \"people can take simple steps\" to avoid bringing possible invasive species into new environments. It presents these steps as an example of how biodiversity loss due to invasive species is preventable.\n\nChoice B is incorrect because it wouldn’t make sense to say that a simple step like washing your shoes after traveling is an example of biodiversity loss due to invasive species being \"undeniable,\" or something that can’t be proved to be wrong. Although the text may suggest that biodiversity loss due to invasive species is something that really happens, the word that completes the text must make the first sentence into an assertion that is illustrated by the second sentence, and the second sentence illustrates the idea that biodiversity loss due to invasive species is preventable, not undeniable. Choice C is incorrect because it wouldn’t make sense to say that a simple step like washing your shoes after traveling is an example of biodiversity loss due to invasive species being \"common,\" or something that happens regularly. Additionally, the text doesn’t provide any information about how frequently invasive species cause biodiversity loss. Choice D is incorrect because it wouldn’t make sense to say that a simple step like washing your shoes after traveling is an example of biodiversity loss due to invasive species being \"concerning,\" or something that is troubling or causes worry. Although the text implies that the phenomenon of biodiversity loss due to invasive species is itself a concerning phenomenon, the word that completes the text must make the first sentence into an assertion that is illustrated by the second sentence, and the second sentence illustrates the idea that biodiversity loss due to invasive species is preventable, not concerning."
+  },
+  {
+    "question_id": "e7d37666",
+    "assessment": "SAT",
+    "test": "Reading and Writing",
+    "domain": "Craft and Structure",
+    "skill": "Words in Context",
+    "difficulty": "Hard",
+    "question_text": "It is by no means ______ to recognize the influence of Dutch painter Hieronymus Bosch on Ali Banisadr’s paintings; indeed, Banisadr himself cites Bosch as an inspiration. However, some scholars have suggested that the ancient Mesopotamian poem *Epic of Gilgamesh* may have had a far greater impact on Banisadr’s work.\n\nWhich choice completes the text with the most logical and precise word or phrase?",
+    "options": [
+      "A. substantial",
+      "B. satisfying",
+      "C. unimportant",
+      "D. appropriate"
+    ],
+    "correct_option": "C",
+    "explanation": "Choice C is the best answer because it most logically completes the sentence about the influences on Banisadr’s work. In context, “It is by no means” followed by “unimportant” conveys how it is relevant to recognize Bosch’s influence on Banisadr. The text points out that the artist himself cites Bosch as an inspiration, and then goes on to claim that *The Epic of Gilgamesh* has had a more significant influence than Bosch.\n\nChoice A is incorrect because “substantial,” which means weighty or meaningful, incorrectly suggests that it wouldn’t be meaningful to acknowledge Bosch’s influence on Banisadr. The phrase “indeed, Banisadr himself cites Bosch as an inspiration” doesn’t support this suggestion. Choice B is incorrect because “satisfying,” which means pleasing, incorrectly suggests that it wouldn’t be pleasing to acknowledge Bosch’s influence on Banisadr. The phrase “indeed, Banisadr himself cites Bosch as an inspiration” doesn’t support this suggestion. Choice D is incorrect because “appropriate,” which means suitable, incorrectly suggests that it wouldn’t be proper to acknowledge Bosch’s influence on Banisadr. The phrase “indeed, Banisadr himself cites Bosch as an inspiration” doesn’t support this suggestion."
+  },
+  {
+    "question_id": "e818241b",
+    "assessment": "SAT",
+    "test": "Reading and Writing",
+    "domain": "Craft and Structure",
+    "skill": "Text Structure and Purpose",
+    "difficulty": "Hard",
+    "question_text": "Astronomers are confident that the star Betelgeuse will eventually consume all the helium in its core and explode in a supernova. They are much less confident, however, about when this will happen, since that depends on internal characteristics of Betelgeuse that are largely unknown. Astrophysicist Sarafina El-Badry Nance and colleagues recently investigated whether acoustic waves in the star could be used to determine internal stellar states but concluded that this method could not sufficiently reveal Betelgeuse’s internal characteristics to allow its evolutionary state to be firmly fixed.\n\nWhich choice best describes the function of the second sentence in the overall structure of the text?",
+    "options": [
+      "A. It describes a serious limitation of the method used by Nance and colleagues.",
+      "B. It presents the central finding reported by Nance and colleagues.",
+      "C. It identifies the problem that Nance and colleagues attempted to solve but did not.",
+      "D. It explains how the work of Nance and colleagues was received by others in the field."
+    ],
+    "correct_option": "C",
+    "explanation": "Choice C is the best answer because it best describes how the second sentence functions in the text as a whole. The first sentence establishes something astronomers believe with some certainty: that Betelgeuse will explode in a supernova. The second sentence then introduces a problem: astronomers aren’t certain *when* Betelgeuse will explode because they don’t have enough information about the star’s internal characteristics. Finally, the third sentence indicates that researcher Sarafina El-Badry Nance and colleagues investigated a possible method of obtaining the necessary information about Betelgeuse’s internal characteristics, though they found that the method wouldn’t be sufficient. Thus, the function of the second sentence is to identify the problem that Nance and colleagues attempted to solve but didn’t.\n\nChoice A is incorrect because the second sentence introduces the general problem Nance and colleagues hoped to solve, not a serious limitation of how Nance and colleagues tried to solve it. It is the third sentence that introduces Nance and colleagues, but no serious limitation of their approach to studying a method of determining internal stellar states is described. Choice B is incorrect because the second sentence introduces the general problem Nance and colleagues hoped to solve, not the central finding they ultimately reported. It is the third sentence that presents Nance and colleagues’ conclusion that a potential method for determining internal stellar states would be insufficient. Choice D is incorrect because the second sentence doesn’t indicate how other astronomers or astrophysicists responded to the work done by Nance and colleagues; the text doesn’t address this information at all."
+  },
+  {
+    "question_id": "6bc0ba75",
+    "assessment": "SAT",
+    "test": "Reading and Writing",
+    "domain": "Craft and Structure",
+    "skill": "Text Structure and Purpose",
+    "difficulty": "Hard",
+    "question_text": "The mimosa tree evolved in East Asia, where the beetle *Bruchidius terrenus* preys on its seeds. In 1785, mimosa trees were introduced to North America, far from any *B. terrenus*. But evolutionary links between predators and their prey can persist across centuries and continents. Around 2001, *B. terrenus* was introduced in southeastern North America near where botanist Shu-Mei Chang and colleagues had been monitoring mimosa trees. Within a year, 93 percent of the trees had been attacked by the beetles.\n\nWhich choice best describes the function of the third sentence in the overall structure of the text?",
+    "options": [
+      "A. It states the hypothesis that Chang and colleagues had set out to investigate using mimosa trees and *B. terrenus*.",
+      "B. It presents a generalization that is exemplified by the discussion of the mimosa trees and *B. terrenus*.",
+      "C. It provides context that clarifies why the species mentioned spread to new locations.",
+      "D. It offers an alternative explanation for the findings of Chang and colleagues."
+    ],
+    "correct_option": "B",
+    "explanation": "Choice B is the best answer because it most accurately describes the function of the third sentence within the overall structure of the text. The third sentence makes a generalization, asserting that evolutionary links between predators and prey can persist across great expanses of time and distance. This generalization is exemplified by the text's discussion of the relationship between mimosa trees and *B. terrenus* beetles. When mimosa trees were introduced to North America in 1785, no *B. terrenus* beetles were present, so the relationship between the trees and the beetles that exists in their native East Asia was disrupted. When the beetles were introduced to North America more than 200 years later, however, they quickly attacked mimosa trees, illustrating the generalization that links between predators and prey \"can persist across centuries and continents.\"\n\nChoice A is incorrect because the third sentence doesn't indicate that Chang and colleagues were investigating any hypothesis. According to the text, Chang and colleagues were simply monitoring mimosa trees when the beetles happened to be introduced to the area. Choice C is incorrect because the third sentence doesn't discuss any particular species, let alone the species mentioned elsewhere in the text, nor does the sentence explain why species spread to new locations. Choice D is incorrect because the third sentence offers a generalization about the relationship between predators and prey, not an explanation for the findings by Chang and colleagues that's an \"alternative\" to an explanation presented elsewhere in the text."
+  },
+  {
+    "question_id": "f0ae0da3",
+    "assessment": "SAT",
+    "test": "Reading and Writing",
+    "domain": "Craft and Structure",
+    "skill": "Cross-text Connections",
+    "difficulty": "Medium",
+    "question_text": "### Text 1\nWhen companies in the same industry propose merging with one another, they often claim that the merger will benefit consumers by increasing efficiency and therefore lowering prices. Economist Ying Fan investigated this notion in the context of the United States newspaper market. She modeled a hypothetical merger of Minneapolis-area newspapers and found that subscription prices would rise following a merger.\n\n### Text 2\nEconomists Dario Focarelli and Fabio Panetta have argued that research on the effect of mergers on prices has focused excessively on short-term effects, which tend to be adverse for consumers. Using the case of consumer banking in Italy, they show that over the long term (several years, in their study), the efficiency gains realized by merged companies do result in economic benefits for consumers.\n\nBased on the texts, how would Focarelli and Panetta (Text 2) most likely respond to Fan’s findings (Text 1)?",
+    "options": [
+      "A. They would recommend that Fan compare the near-term effect of a merger on subscription prices in the Minneapolis area with the effect of a merger in another newspaper market.",
+      "B. They would argue that over the long term the expenses incurred by the merged newspaper company will also increase.",
+      "C. They would encourage Fan to investigate whether the projected effect on subscription prices persists over an extended period.",
+      "D. They would claim that mergers have a different effect on consumer prices in the newspaper industry than in most other industries."
+    ],
+    "correct_option": "C",
+    "explanation": "Choice C is the best answer because, based on the information presented in the texts, it represents how Focarelli and Panetta would most likely respond to Fan’s findings. Text 1 indicates that Fan found that a newspaper merger would result in a rise in subscription prices. This rise wouldn’t benefit customers, who would have to pay more for news after a merger. Text 2 presents Focarelli and Panetta’s argument that merger research tends to focus too much on what happens immediately after the merger. Text 2 goes on to describe their finding that mergers can be economically beneficial for consumers over the long term. This suggests that Focarelli and Panetta would encourage Fan to investigate the long-term effect of the hypothetical newspaper merger on subscription prices.\n\nChoice A is incorrect because Text 2 doesn’t indicate that Focarelli and Panetta connect the effects of mergers to specific locations. Instead, Focarelli and Panetta focus on the length of time over which the effects of mergers should be evaluated. Choice B is incorrect because Text 2 indicates that Focarelli and Panetta found that merged companies experience \"efficiency gains\" over the long term, meaning that their expenses go down relative to their output, not that their expenses increase. Choice D is incorrect because there's no indication in Text 2 that Focarelli and Panetta believe that the newspaper industry is different from any other industry when it comes to the effects of mergers. Although their own research was about consumer banking, Text 2 suggests that they view their conclusions as applicable to mergers in general."
+  },
+  {
+    "question_id": "3543e6e2",
+    "assessment": "SAT",
+    "test": "Reading and Writing",
+    "domain": "Information and Ideas",
+    "skill": "Central Ideas and Details",
+    "difficulty": "Easy",
+    "question_text": "The following text is from Jane Austen's 1811 novel *Sense and Sensibility*. Elinor lives with her younger sisters and her mother, Mrs. Dashwood.\n\nElinor, this eldest daughter, whose advice was so effectual, possessed a strength of understanding, and coolness of judgment, which qualified her, though only nineteen, to be the counsellor of her mother, and enabled her frequently to counteract, to the advantage of them all, that eagerness of mind in Mrs. Dashwood which must generally have led to imprudence. She had an excellent heart;—her disposition was affectionate, and her feelings were strong; but she knew how to govern them: it was a knowledge which her mother had yet to learn; and which one of her sisters had resolved never to be taught.\n\nAccording to the text, what is true about Elinor?",
+    "options": [
+      "A. Elinor often argues with her mother but fails to change her mind.",
+      "B. Elinor can be overly sensitive with regard to family matters.",
+      "C. Elinor thinks her mother is a bad role model.",
+      "D. Elinor is remarkably mature for her age."
+    ],
+    "correct_option": "D",
+    "explanation": "Choice D is the best answer because it provides a detail about Elinor that is established in the text. The text indicates that although Elinor is \"only nineteen,\" she gives good advice and exhibits such a high level of understanding and judgment that she serves as \"the counsellor of her mother.\" Thus, Elinor is mature beyond her years.\n\nChoice A is incorrect because it isn't supported by the text: although the text says that Elinor advises her mother and often counteracts her mother's impulses, there's no mention of Elinor arguing with her mother or failing to change her mother's mind. Choice B is incorrect because it isn't supported by the text: although the text mentions that Elinor has strong feelings, it doesn't indicate that she's excessively sensitive when it comes to family issues. Choice C is incorrect because it isn't supported by the text: there's no mention of what Elinor thinks about her mother and no suggestion that she thinks her mother is a bad role model. Because she's described as having \"an excellent heart,\" Elinor likely doesn't think ill of her mother."
+  },
+  {
+    "question_id": "835545cd",
+    "assessment": "SAT",
+    "test": "Reading and Writing",
+    "domain": "Information and Ideas",
+    "skill": "Central Ideas and Details",
+    "difficulty": "Medium",
+    "question_text": "The following text is adapted from Charles W. Chesnutt’s 1901 novel *The Marrow of Tradition*.  \nMrs. Ochiltree was a woman of strong individuality, whose comments upon her acquaintance[s], present or absent, were marked by a frankness at times no less than startling. This characteristic caused her to be more or less avoided. Mrs. Ochiltree was aware of this sentiment on the part of her acquaintance[s], and rather exulted in it.\n\nBased on the text, what is true about Mrs. Ochiltree’s acquaintances?",
+    "options": [
+      "A. They try to refrain from discussing topics that would upset Mrs. Ochiltree.",
+      "B. They are unable to spend as much time with Mrs. Ochiltree as she would like.",
+      "C. They are too preoccupied with their own concerns to speak with Mrs. Ochiltree.",
+      "D. They are likely offended by what Mrs. Ochiltree has said about them."
+    ],
+    "correct_option": "D",
+    "explanation": "Choice D is the best answer because it presents a statement about Mrs. Ochiltree’s acquaintances that is supported by the text. The text indicates that Mrs. Ochiltree makes comments about her acquaintances that are frank, or direct and blunt, and sometimes startling. It also states that because of this behavior, the acquaintances tend to avoid Mrs. Ochiltree. Together, these details suggest that the acquaintances choose not to be around Mrs. Ochiltree because they are offended by the things she has said about them.\n\nChoice A is incorrect because the text doesn’t suggest that Mrs. Ochiltree’s acquaintances avoid discussing topics that would upset Mrs. Ochiltree; instead, it states that they avoid being around Mrs. Ochiltree at all. Choice B is incorrect because the text makes it clear that Mrs. Ochiltree knows her acquaintances often avoid her and is pleased about it (she “rather exulted in it”), not that she wants to spend more time with them. Choice C is incorrect because the text doesn’t suggest that Mrs. Ochiltree’s acquaintances don’t speak with Mrs. Ochiltree because they are too focused on their own concerns, but rather because they don’t like the frank comments she makes."
+  },
+  {
+    "question_id": "16025337",
+    "assessment": "SAT",
+    "test": "Reading and Writing",
+    "domain": "Information and Ideas",
+    "skill": "Central Ideas and Details",
+    "difficulty": "Hard",
+    "question_text": "The following text is adapted from William Shakespeare’s 1609 poem “Sonnet 27.” The poem is addressed to a close friend as if he were physically present.\n\n- Weary with toil, I [hurry] to my bed,\n- The dear repose for limbs with travel tired;\n- But then begins a journey in my head\n- To work my mind, when body’s work’s expired:\n- For then my thoughts—from far where I abide—\n- [Begin] a zealous pilgrimage to thee,\n- And keep my drooping eyelids open wide,\n\nWhat is the main idea of the text?",
+    "options": [
+      "A. The speaker is asleep and dreaming about traveling to see the friend.",
+      "B. The speaker is planning an upcoming trip to the friend’s house.",
+      "C. The speaker is too fatigued to continue a discussion with the friend.",
+      "D. The speaker is thinking about the friend instead of immediately falling asleep."
+    ],
+    "correct_option": "D",
+    "explanation": "Choice D is the best answer it most accurately states the main idea of the text. The speaker describes going to bed for “repose” (rest) but finding that his thoughts are focused on the friend the speaker is addressing, and the thoughts are keeping the speaker awake.\n\nChoice A is incorrect because the speaker isn’t asleep; the thoughts about the friend are keeping the speaker awake. Choice B is incorrect because the speaker isn’t talking about taking a literal trip; rather, the speaker uses the metaphor of a journey to describe internal thoughts. Choice C is incorrect because the speaker isn’t having a discussion with the friend."
+  },
+  {
+    "question_id": "8391a002",
+    "assessment": "SAT",
+    "test": "Reading and Writing",
+    "domain": "Information and Ideas",
+    "skill": "Command of Evidence",
+    "difficulty": "Hard",
+    "question_text": "Black beans (Phaseolus vulgaris) are a nutritionally dense food, but they are difficult to digest in part because of their high levels of soluble fiber and compounds like raffinose. They also contain antinutrients like tannins and trypsin inhibitors, which interfere with the body’s ability to extract nutrients from foods. In a research article, Marisela Granito and Glenda Álvarez from Simón Bolívar University in Venezuela claim that inducing fermentation of black beans using lactic acid bacteria improves the digestibility of the beans and makes them more nutritious.\n\nWhich finding from Granito and Álvarez’s research, if true, would most directly support their claim?",
+    "options": [
+      "A. When cooked, fermented beans contained significantly more trypsin inhibitors and tannins but significantly less soluble fiber and raffinose than nonfermented beans.",
+      "B. Fermented beans contained significantly less soluble fiber and raffinose than nonfermented beans, and when cooked, the fermented beans also displayed a significant reduction in trypsin inhibitors and tannins.",
+      "C. When the fermented beans were analyzed, they were found to contain two microorganisms, *Lactobacillus casei* and *Lactobacillus plantarum*, that are theorized to increase the amount of nitrogen absorbed by the gut after eating beans.",
+      "D. Both fermented and nonfermented black beans contained significantly fewer trypsin inhibitors and tannins after being cooked at high pressure."
+    ],
+    "correct_option": "B",
+    "explanation": "Choice B is the best answer because it presents a finding that would best support Granito and Álvarez’s claim that fermenting black beans makes them easier to digest and more nutritious. The text indicates that high levels of soluble fiber and raffinose in black beans make the beans hard to digest and that tannins and trypsin inhibitors make it harder for the body to extract nutrients from the beans. If it were found that fermenting the beans significantly reduces their levels of soluble fiber, raffinose, trypsin inhibitors, and tannins when cooked, this would directly support the claim that fermentation improves the digestibility of the beans and makes them more nutritious.\n\nChoice A is incorrect because the text indicates that trypsin inhibitors and tannins interfere with the body’s ability to extract nutrients from black beans; if fermentation and cooking were found to increase these antinutrients, fermented beans would likely be less nutritious than unfermented ones, not more nutritious (as Granito and Álvarez claim). Choice C is incorrect because the text doesn’t address the idea that greater nitrogen absorption in the gut has an effect on a food’s digestibility or level of nutrition, so the discovery of the presence of microorganisms that may increase nitrogen absorption wouldn’t provide relevant support for the claim that fermentation makes black beans easier to digest and more nutritious. Choice D is incorrect because Granito and Álvarez’s claim focuses on the effect of fermenting black beans, but the finding that nonfermented black beans also have fewer trypsin inhibitors and tannins when cooked at high pressure would suggest that the role of the cooking method could be significant when it comes to nutrition; further, the finding wouldn’t address the beans’ digestibility."
+  },
+  {
+    "question_id": "55df0275",
+    "assessment": "SAT",
+    "test": "Reading and Writing",
+    "domain": "Information and Ideas",
+    "skill": "Command of Evidence",
+    "difficulty": "Hard",
+    "question_text": "**Ablation Rates for Three Elements in Cosmic Dust, by Dust Source**\n\n| Element   | SPC | AST | HTC | OCC |\n|---|---|---|---|---|\n| iron    | 20%   | 28%   | 90%   | 98%   |\n| potassium   | 44%   | 74%   | 97%   | 100%   |\n| sodium    | 45%   | 75%   | 99%   | 100%   |\n\nEarth’s atmosphere is bombarded by cosmic dust originating from several sources: short-period comets (SPCs), particles from the asteroid belt (ASTs), Halley-type comets (HTCs), and Oort cloud comets (OCCs). Some of the dust’s material vaporizes in the atmosphere in a process called ablation, and the faster the particles move, the higher the rate of ablation. Astrophysicist Juan Diego Carrillo-Sánchez led a team that calculated average ablation rates for elements in the dust (such as iron and potassium) and showed that material in slower-moving SPC or AST dust has a lower rate than the same material in faster-moving HTC or OCC dust. For example, whereas the average ablation rate for iron from AST dust is 28%, the average rate for ______.\n\nWhich choice most effectively uses data from the table to complete the example?",
+    "options": [
+      "A. iron from SPC dust is 20%.",
+      "B. sodium from OCC dust is 100%.",
+      "C. iron from HTC dust is 90%.",
+      "D. sodium from AST dust is 75%."
+    ],
+    "correct_option": "C",
+    "explanation": "Choice C is the best answer because it most effectively completes the example regarding the ablation rate of iron. The table shows the ablation rates for three elements—iron, potassium, and sodium—found in cosmic dust that comes from one of four sources. The text says that the ablation rate for a given element in slower-moving SPC and AST dust was lower than the ablation rate for that same element in faster-moving HTC or OCC dust. The text then presents the first part of an example of this pattern, describing an ablation rate of 28% for iron in AST dust. The information that iron from HTC dust had an ablation rate of 90% is therefore the most effective way to complete this example—the comparison of a relatively low ablation rate for iron in slower-moving AST dust with a relatively high ablation rate for iron in faster-moving HTC dust illustrates the tendency of ablation rates for a given element to be lower in slower-moving dust than in faster-moving dust.\n\nChoice A is incorrect because the text indicates that SPC dust, like AST dust, moves relatively slowly; a comparison of the ablation rates of iron from two slower-moving dust sources could not be an example of the difference between ablation rates in slower-moving dust and faster-moving dust, which is the pattern that the example is supposed to illustrate. Choice B is incorrect because the example in the text is supposed to illustrate the difference in the ablation rates of the same element from slower-moving dust and faster-moving dust, and the first part of the example provides data about the ablation rate of iron, which means the second part of the example must also be about the ablation rate of iron, not the ablation rate of sodium. Choice D is incorrect because the example in the text is supposed to illustrate the difference in the ablation rates of the same element from slower-moving dust and faster-moving dust, and the first part of the example provides data about the ablation rate of iron, which means the second part of the example must also be about the ablation rate of iron, not the ablation rate of sodium. Additionally, any ablation rate from AST dust would be ineffective in this example since AST dust is referenced in the first part of the example and thus additional data focused on AST dust would not illustrate a variation across dust types."
+  },
+  {
+    "question_id": "702eb7e3",
+    "assessment": "SAT",
+    "test": "Reading and Writing",
+    "domain": "Information and Ideas",
+    "skill": "Command of Evidence",
+    "difficulty": "Hard",
+    "question_text": "### Economic Policy Uncertainty in the United Kingdom, 2005–2010\n\n- **Year**\n  - tax and public spending policy\n  - trade policy\n  - general economic policy\n\nHigh levels of public uncertainty about which economic policies a country will adopt can make planning difficult for businesses, but measures of such uncertainty have not tended to be very detailed. Recently, however, economist Sandile Hlatshwayo analyzed trends in news reports to derive measures not only for general economic policy uncertainty but also for uncertainty related to specific areas of economic policy, like tax or trade policy. One revelation of her work is that a general measure may not fully reflect uncertainty about specific areas of policy, as in the case of the United Kingdom, where general economic policy uncertainty ______.\n\nWhich choice most effectively uses data from the graph to illustrate the claim?",
+    "options": [
+      "A. aligned closely with uncertainty about tax and public spending policy in 2005 but differed from uncertainty about tax and public spending policy by a large amount in 2009.",
+      "B. was substantially lower than uncertainty about tax and public spending policy each year from 2005 to 2010.",
+      "C. reached its highest level between 2005 and 2010 in the same year that uncertainty about trade policy and tax and public spending policy reached their lowest levels.",
+      "D. was substantially lower than uncertainty about trade policy in 2005 and substantially higher than uncertainty about trade policy in 2010."
+    ],
+    "correct_option": "D",
+    "explanation": "Choice D is the best answer because it uses data from the graph to effectively illustrate the text’s claim about general economic policy uncertainty in the United Kingdom. The graph presents values for economic policy uncertainty in tax and public spending policy, trade policy, and general economic policy in the UK from 2005 to 2010. The graph shows that in 2005, the value for general economic policy uncertainty (approximately 90) was substantially lower than the value for uncertainty about trade policy specifically (approximately 160). It also shows that in 2010, the value for general economic policy uncertainty (approximately 120) was substantially higher than the value for uncertainty about trade policy (approximately 70). The substantial differences between these values in 2005 and 2010 support the claim that a general measure may not fully reflect uncertainty about specific areas of policy.\n\nChoice A is incorrect because the graph shows that the level of general economic policy uncertainty was similar to the level of uncertainty about tax and public spending policy in both 2005 (with values of approximately 90 and 100, respectively) and 2009 (with values of approximately 80 and 75, respectively). Choice B is incorrect because the graph shows that general economic policy uncertainty was higher than uncertainty about tax and public spending policy in 2006, 2007, and 2009, not that it was lower each year from 2005 to 2010. Choice C is incorrect because the graph shows that general economic policy uncertainty reached its highest level in 2010, which was when uncertainty about tax and public spending policy also reached its highest level, not its lowest level."
+  },
+  {
+    "question_id": "014b3394",
+    "assessment": "SAT",
+    "test": "Reading and Writing",
+    "domain": "Information and Ideas",
+    "skill": "Command of Evidence",
+    "difficulty": "Hard",
+    "question_text": "Average Number and Duration of Torpor Bouts and Arousal Episodes for Alaska Marmots and Arctic Ground Squirrels, 2008–2011\n\n| Feature    | Alaska marmots | Arctic ground squirrels |\n|---|---|---|\n| torpor bouts    | 12    | 10.5    |\n| duration per bout   | 13.81 days    | 16.77 days    |\n| arousal episodes    | 11    | 9.5    |\n| duration per episode   | 21.2 hours    | 14.2 hours    |\n\nWhen hibernating, Alaska marmots and Arctic ground squirrels enter a state called torpor, which minimizes the energy their bodies need to function. Often a hibernating animal will temporarily come out of torpor (called an arousal episode) and its metabolic rate will rise, burning more of the precious energy the animal needs to survive the winter. Alaska marmots hibernate in groups and therefore burn less energy keeping warm during these episodes than they would if they were alone. A researcher hypothesized that because Arctic ground squirrels hibernate alone, they would likely exhibit longer bouts of torpor and shorter arousal episodes than Alaska marmots.\n\nWhich choice best describes data from the table that support the researcher’s hypothesis?",
+    "options": [
+      "A. The Alaska marmots’ arousal episodes lasted for days, while the Arctic ground squirrels’ arousal episodes lasted less than a day.",
+      "B. The Alaska marmots and the Arctic ground squirrels both maintained torpor for several consecutive days per bout, on average.",
+      "C. The Alaska marmots had shorter torpor bouts and longer arousal episodes than the Arctic ground squirrels did.",
+      "D. The Alaska marmots had more torpor bouts than arousal episodes, but their arousal episodes were much shorter than their torpor bouts."
+    ],
+    "correct_option": "C",
+    "explanation": "Choice C is the best answer because it describes data from the table that support the researcher’s hypothesis. According to the text, the researcher hypothesized that Arctic ground squirrels would exhibit longer torpor bouts and shorter arousal episodes than Alaska marmots do—or, put the other way, that the marmots would show shorter torpor bouts and longer arousal episodes than the ground squirrels do. The table shows data about torpor bouts and arousal episodes for the two species from 2008 to 2011. According to the table, the average duration of torpor bouts was 13.81 days for Alaska marmots, shorter than the average of 16.77 days for Arctic ground squirrels, and the average duration of arousal episodes was 21.2 hours for Alaska marmots, longer than the average of 14.2 hours for Arctic ground squirrels. Thus, the table supports the researcher’s hypothesis by showing that Alaska marmots had shorter bouts of torpor and longer arousal episodes than Arctic ground squirrels did.\n\nChoice A is incorrect because it inaccurately describes data from the table and doesn’t support the researcher’s hypothesis. The table shows that the average duration of arousal episodes was less than a day for both Alaska marmots (21.2 hours) and Arctic ground squirrels (14.2 hours). Additionally, information about arousal episodes for Alaska marmots and Arctic ground squirrels isn’t sufficient to support a hypothesis involving comparisons of both arousal episodes and torpor bouts for those animals. Choice B is incorrect because it doesn’t support the researcher’s hypothesis, which involves comparisons of arousal episodes as well as torpor bouts for Alaska marmots and Arctic ground squirrels. Noting that both animals had torpor bouts lasting several days, on average, doesn’t address arousal episodes at all, nor does it reveal how the animals’ torpor bouts compared. Choice D is incorrect because it doesn’t support the researcher’s hypothesis. Although the table does show that Alaska marmots had more torpor bouts (12) than arousal episodes (11) and that their arousal episodes were much shorter than their torpor bouts (21.2 hours and 13.81 days, respectively), comparing data across only Alaska marmot behaviors isn’t sufficient to support a hypothesis about torpor and arousal behaviors of both Alaska marmots and Arctic ground squirrels."
+  },
+  {
+    "question_id": "3fc06a91",
+    "assessment": "SAT",
+    "test": "Reading and Writing",
+    "domain": "Information and Ideas",
+    "skill": "Command of Evidence",
+    "difficulty": "Hard",
+    "question_text": "**Employment by Sector in France and the United States, 1800–2012 (% of total employment)**\n\n| Year | Agriculture in France | Manufacturing in France | Services in France | Agriculture in US | Manufacturing in US | Services in US |\n|---|---|---|---|---|---|---|\n| **1800**    | 64    | 22    | 14    | 68    | 18    | 13    |\n| **1900**    | 43    | 29    | 28    | 41    | 28    | 31    |\n| **1950**    | 32    | 33    | 35    | 14    | 33    | 53    |\n| **2012**    | 3    | 21    | 76    | 2    | 18    | 80    |\n\nRows in table may not add up to 100 due to rounding.  \nOver the past two hundred years, the percentage of the population employed in the agricultural sector has declined in both France and the United States, while employment in the service sector (which includes jobs in retail, consulting, real estate, etc.) has risen. However, this transition happened at very different rates in the two countries. This can be seen most clearly by comparing the employment by sector in both countries in ______.\n\nWhich choice most effectively uses data from the table to complete the statement?",
+    "options": [
+      "A. 1900 with the employment by sector in 1950.",
+      "B. 1800 with the employment by sector in 2012.",
+      "C. 1900 with the employment by sector in 2012.",
+      "D. 1800 with the employment by sector in 1900."
+    ],
+    "correct_option": "A",
+    "explanation": "Choice A is the best answer because it presents data from the table that most effectively complete the statement about the rates at which employment shifted in France and the United States. The text states that over the last two hundred years employment in the agricultural sector has declined while employment in the service sector has risen in both France and the US, and the data from the table reflect these trends. The text asserts, however, that the transition from agriculture to services “happened at very different rates in the two countries.” This assertion is best supported by a comparison of data from 1900 and 1950: the table shows that in those years, employment in agriculture went from 43% to 32% in France (a decline of 11 percentage points) and from 41% to 14% in the US (a decline of 27 percentage points), and that employment in services went from 28% to 35% in France (an increase of 7 percentage points) and from 31% to 53% in the US (an increase of 22 percentage points). In other words, the rate of change was greater in the US than in France for both sectors.\n\nChoice B is incorrect because comparing the data for 1800 and 2012 would suggest a similar rate of change in the two countries, not very different rates: employment in agriculture went from 64% in 1800 to 3% in 2012 in France, which is close to the change from 68% in 1800 to 2% in 2012 in the US, while employment in services went from 14% in 1800 to 76% in 2012 in France, which is close to the change from 13% in 1800 to 80% in 2012 in the US. Choice C is incorrect because comparing the data for 1900 and 2012 would suggest a similar rate of change in the two countries rather than very different rates: employment in agriculture went from 43% in 1900 to 3% in 2012 in France, which is close to the change from 41% in 1900 to 2% in 2012 in the US, while employment in services went from 28% in 1900 to 76% in 2012 in France, which is close to the change from 31% in 1900 to 80% in 2012 in the US. Choice D is incorrect because comparing the data for 1800 and 1900 would suggest a similar rate of change in the two countries, not very different rates: employment in agriculture went from 64% in 1800 to 43% in 1900 in France, which is fairly close to the change from 68% in 1800 to 41% in 1900 in the US, while employment in services went from 14% in 1800 to 28% in 1900 in France, which is close to the change from 13% in 1800 to 31% in 1900 in the US."
+  },
+  {
+    "question_id": "4a85fea6",
+    "assessment": "SAT",
+    "test": "Reading and Writing",
+    "domain": "Information and Ideas",
+    "skill": "Inferences",
+    "difficulty": "Medium",
+    "question_text": "_Euphorbia esula_ (leafy spurge) is a Eurasian plant that has become invasive in North America, where it displaces native vegetation and sickens cattle. \\( E. esula \\) can be controlled with chemical herbicides, but that approach can also kill harmless plants nearby. Recent research on introducing engineered DNA into plant species to inhibit their reproduction may offer a path toward exclusively targeting \\( E. esula \\), consequently ______.\n\nWhich choice most logically completes the text?",
+    "options": [
+      "A. making individual \\( E. esula \\) plants more susceptible to existing chemical herbicides.",
+      "B. enhancing the ecological benefits of \\( E. esula \\) in North America.",
+      "C. enabling cattle to consume \\( E. esula \\) without becoming sick.",
+      "D. reducing invasive \\( E. esula \\) numbers without harming other organisms."
+    ],
+    "correct_option": "D",
+    "explanation": "Choice D is the best answer because it presents the conclusion that most logically follows from the text’s discussion of leafy spurge and engineered DNA. The text establishes that using chemical herbicides to control leafy spurge in North America can also harm other plants nearby. The text then indicates that it might be possible to use engineered DNA to prevent plants from reproducing, which would be useful for “exclusively targeting” leafy spurge. If it’s possible to exclusively target leafy spurge with engineered DNA—meaning that only leafy spurge is affected by the engineered DNA—and prevent the plant from reproducing, then leafy spurge numbers could be reduced “without harming other organisms.”\n\nChoice A is incorrect because the text raises the possibility of using engineered DNA to prevent leafy spurge from reproducing, not to make individual leafy spurge plants more vulnerable to chemical herbicides that already exist. Choice B is incorrect because the text doesn’t describe any ecological benefits of leafy spurge in North America; instead, the text is focused on using engineered DNA to prevent leafy spurge from reproducing and thereby reduce its numbers. The only ecological effects of leafy spurge in North America that are described in the text are harmful. Choice C is incorrect because the text describes the possibility of using engineered DNA to prevent leafy spurge from reproducing; it doesn’t offer a way to enable cattle to eat leafy spurge without becoming sick."
+  },
+  {
+    "question_id": "cabe71d4",
+    "assessment": "SAT",
+    "test": "Reading and Writing",
+    "domain": "Standard English Conventions",
+    "skill": "Sentence Boundaries",
+    "difficulty": "Easy",
+    "question_text": "Both Sona Charajpotra, an Indian American, and Dhonielle Clayton, an African American, grew up frustrated by the lack of diverse characters in books for young people. In 2011, these two writers joined forces to found CAKE Literary, a book packaging ______ specializes in the creation and promotion of stories told from diverse perspectives for children and young adults.\n\nWhich choice completes the text so that it conforms to the conventions of Standard English?",
+    "options": [
+      "A. company,",
+      "B. company that",
+      "C. company",
+      "D. company, that"
+    ],
+    "correct_option": "B",
+    "explanation": "Choice B is the best answer. The convention being tested is the use and punctuation of an integrated relative clause. This choice correctly uses the relative pronoun “that” and no punctuation to create an integrated relative clause that provides essential information about the noun phrase (“a book packaging company”) that it modifies.\n\nChoice A is incorrect because it doesn’t use a relative pronoun to link the verb phrase beginning with “specializes” to the noun phrase that it modifies (“a book packaging company”). Choice C is incorrect because it doesn’t use a relative pronoun to link the verb phrase beginning with “specializes” to the noun phrase that it modifies (“a book packaging company”). Choice D is incorrect because no punctuation is needed between the integrated relative clause beginning with “that specializes” and the noun phrase that it modifies (“a book packaging company”)."
+  },
+  {
+    "question_id": "3595a991",
+    "assessment": "SAT",
+    "test": "Reading and Writing",
+    "domain": "Standard English Conventions",
+    "skill": "Form, Structure, and Sense",
+    "difficulty": "Medium",
+    "question_text": "In 1930, Japanese American artist Chiura Obata depicted the natural beauty of Yosemite National Park in two memorable woodcuts: *Evening at Carl Inn* and *Lake Basin in the High Sierra*. In 2019, ______ exhibited alongside 150 of Obata’s other works in a single-artist show at the Smithsonian American Art Museum.\n\nWhich choice completes the text so that it conforms to the conventions of Standard English?",
+    "options": [
+      "A. it was",
+      "B. they were",
+      "C. this was",
+      "D. some were"
+    ],
+    "correct_option": "B",
+    "explanation": "Choice B is the best answer. The convention being tested is pronoun-antecedent agreement. The plural pronoun “they” agrees in number with the plural antecedent “woodcuts” and clearly identifies what was exhibited at the Smithsonian American Art Museum.\n\nChoice A is incorrect because the singular pronoun “it” doesn’t agree in number with the plural antecedent “woodcuts.” Choice C is incorrect because the singular pronoun “this” doesn’t agree in number with the plural antecedent “woodcuts.” Choice D is incorrect because the plural pronoun “some” is illogical in this context (referring to “some” of two woodcuts)."
+  },
+  {
+    "question_id": "b15724fc",
+    "assessment": "SAT",
+    "test": "Reading and Writing",
+    "domain": "Standard English Conventions",
+    "skill": "Sentence Boundaries",
+    "difficulty": "Hard",
+    "question_text": "American writer Edwidge Danticat, who emigrated from Haiti in 1981, has won acclaim for her powerful short stories, novels, and ______ her lyrical yet unflinching depictions of her native country's turbulent history, writer Robert Antoni has compared Danticat to Nobel Prize–winning novelist Toni Morrison.\n\nWhich choice completes the text so that it conforms to the conventions of Standard English?",
+    "options": [
+      "A. essays, praising",
+      "B. essays and praising",
+      "C. essays praising",
+      "D. essays. Praising"
+    ],
+    "correct_option": "D",
+    "explanation": "Choice D is the best answer. The convention being tested is punctuation use between sentences. In this choice, the period after \"essays\" is used correctly to mark the boundary between one sentence (\"American... essays\") and another (\"praising...Morrison\"). The participial phrase beginning with \"Praising\" modifies the subject of the second sentence, \"writer Robert Antoni.\"\n\nChoice A is incorrect because it results in a comma splice. A comma can’t be used in this way to mark the boundary between sentences. Choice B is incorrect. Without a comma preceding it, the conjunction \"and\" can’t be used in this way to join sentences. Choice C is incorrect because it results in a run-on sentence. The sentences (\"American... essays\" and \"Praising...Morrison\") are fused without punctuation and/or a conjunction."
+  },
+  {
+    "question_id": "7f1df833",
+    "assessment": "SAT",
+    "test": "Reading and Writing",
+    "domain": "Standard English Conventions",
+    "skill": "Form, Structure, and Sense",
+    "difficulty": "Medium",
+    "question_text": "In 1966, Emmett Ashford became the first African American to umpire a Major League Baseball game. His energetic gestures announcing when a player had struck out and his habit of barreling after a hit ball to see if it would land out of ______ transform the traditionally solemn umpire role into a dynamic one.\n\nWhich choice completes the text so that it conforms to the conventions of Standard English?",
+    "options": [
+      "A. bounds helped",
+      "B. bounds, helping",
+      "C. bounds that helped",
+      "D. bounds to help"
+    ],
+    "correct_option": "A",
+    "explanation": "Choice A is the best answer. The convention being tested is finite verb use in a main clause. A main clause requires a finite verb to perform the action of the subject (in this case, Ashford’s “gestures” and “habit”), and this choice supplies the finite past tense verb “helped” to indicate what Ashford’s gestures and habit helped accomplish.\n\nChoice B is incorrect because the non-finite participle “helping” doesn’t supply the main clause with a finite verb. Choice C is incorrect because the relative clause “that helped” doesn’t supply the main clause with a finite verb. Choice D is incorrect because the non-finite to-infinitive “to help” doesn’t supply the main clause with a finite verb."
+  },
+  {
+    "question_id": "2fd05c15",
+    "assessment": "SAT",
+    "test": "Reading and Writing",
+    "domain": "Standard English Conventions",
+    "skill": "Sentence Boundaries",
+    "difficulty": "Hard",
+    "question_text": "In crafting her fantasy fiction, Nigerian-born British author Helen Oyeyemi has drawn inspiration from the classic nineteenth-century fairy tales of the Brothers Grimm. Her 2014 novel *Boy, Snow, Bird*, for instance, is a complex retelling of the story of Snow White, while her 2019 novel ______ offers a delicious twist on the classic tale of Hansel and Gretel.\n\nWhich choice completes the text so that it conforms to the conventions of Standard English?",
+    "options": [
+      "A. *Gingerbread*",
+      "B. *Gingerbread*",
+      "C. *Gingerbread*",
+      "D. *Gingerbread*"
+    ],
+    "correct_option": "C",
+    "explanation": "Choice C is the best answer. The convention being tested is punctuation between a subject and a verb. When, as in this case, a subject (“her 2019 novel *Gingerbread*”) is immediately followed by a verb (“offers”), no punctuation is needed.\n\nChoice A is incorrect because no punctuation is needed between the subject and the verb. Choice B is incorrect because no punctuation is needed between the subject and the verb. Choice D is incorrect because no punctuation is needed between the subject and the verb."
+  },
+  {
+    "question_id": "b85c19ed",
+    "assessment": "SAT",
+    "test": "Reading and Writing",
+    "domain": "Standard English Conventions",
+    "skill": "Form, Structure, and Sense",
+    "difficulty": "Medium",
+    "question_text": "The violins handmade in the seventeeth century by Italian craftsman Antonio Stradivari have been celebrated as some of the finest in the world. In close collaboration with musicians, Stradivari introduced changes to the shape of a traditional violin, flattening some of the instrument’s curves and making ______ lighter overall.\n\nWhich choice completes the text so that it conforms to the conventions of Standard English?",
+    "options": [
+      "A. those",
+      "B. one",
+      "C. them",
+      "D. it"
+    ],
+    "correct_option": "D",
+    "explanation": "Choice D is the best answer. The convention being tested is pronoun–antecedent agreement. The singular pronoun “it” agrees in number with the singular antecedent “violin” and thus indicates that the traditional violin (and not its curves) was made lighter.\n\nChoice A is incorrect because the plural pronoun “those” doesn’t agree in number with the singular antecedent “violin.” Choice B is incorrect because the singular pronoun “one” is ambiguous in this context; the resulting sentence leaves unclear what Stradivari made lighter. Choice C is incorrect because the plural pronoun “them” doesn’t agree in number with the singular antecedent “violin.”"
+  },
+  {
+    "question_id": "be37d4ae",
+    "assessment": "SAT",
+    "test": "Reading and Writing",
+    "domain": "Standard English Conventions",
+    "skill": "Sentence Boundaries",
+    "difficulty": "Hard",
+    "question_text": "During the English neoclassical period (1660–1789), many writers imitated the epic poetry and satires of ancient Greece and Rome. They were not the first in England to adopt the literary modes of classical ______ some of the most prominent figures of the earlier Renaissance period were also influenced by ancient Greek and Roman literature.\n\nWhich choice completes the text so that it conforms to the conventions of Standard English?",
+    "options": [
+      "A. antiquity, however",
+      "B. antiquity, however,",
+      "C. antiquity, however;",
+      "D. antiquity; however,"
+    ],
+    "correct_option": "C",
+    "explanation": "Choice C is the best answer. The convention being tested is the punctuation of a supplementary phrase following a clause. This choice uses a comma to separate the supplementary adverb phrase “however” from the independent clause it modifies (“They …antiquity”) and uses a semicolon to join the first independent clause (“They …antiquity”) and the second independent clause (“some…literature”). Further, placing the semicolon after “however” indicates that the information in the clause that this part of (that neoclassical writers were not the first to adopt classical literary modes) is contrary to what might be assumed from the information in the previous sentence (that the neoclassical writers were unique in imitating classical epic poetry and satires).\n\nChoice A is incorrect because it fails to mark the boundary after “however” between the two independent clauses with appropriate punctuation. Choice B is incorrect because the comma after “however” can’t be used in this way to mark the boundary between the two independent clauses. Choice D is incorrect because placing the semicolon after “antiquity” illogically indicates that the information in the clause that this part of (that prominent Renaissance figures were also influenced by classical literature) is contrary to the information in the previous clause (that neoclassical writers were not the first to adopt classical literary modes)."
+  },
+  {
+    "question_id": "4fde4454",
+    "assessment": "SAT",
+    "test": "Reading and Writing",
+    "domain": "Expression of Ideas",
+    "skill": "Transitions",
+    "difficulty": "Medium",
+    "question_text": "One poll taken after the first 1960 presidential debate suggested that John Kennedy lost badly: only 21 percent of those who listened on the radio rated him the winner. ______ the debate was ultimately considered a victory for the telegenic young senator, who rated higher than his opponent, Vice President Richard Nixon, among those watching on the new medium of television.\n\nWhich choice completes the text with the most logical transition?",
+    "options": [
+      "A. In other words,",
+      "B. Therefore,",
+      "C. Likewise,",
+      "D. Nevertheless,"
+    ],
+    "correct_option": "D",
+    "explanation": "Choice D is the best answer. \"Nevertheless\" logically signals that the claim in this sentence—that the telegenic Kennedy was ultimately considered the winner of the debate—is true despite the previous information about the poll of radio listeners.\n\nChoice A is incorrect because \"in other words\" illogically signals that the claim in this sentence is a paraphrase of the previous information about the poll of radio listeners. Instead, Kennedy was ultimately considered the winner despite what that poll suggested about his performance. Choice B is incorrect because \"therefore\" illogically signals that the claim in this sentence is a result of the previous information about the poll of radio listeners. Instead, Kennedy was ultimately considered the winner despite what that poll suggested about his performance. Choice C is incorrect because \"likewise\" illogically signals that the claim in this sentence is similar to the previous information about the poll of radio listeners. Instead, Kennedy was ultimately considered the winner despite what that poll suggested about his performance."
+  },
+  {
+    "question_id": "52b31d7b",
+    "assessment": "SAT",
+    "test": "Reading and Writing",
+    "domain": "Expression of Ideas",
+    "skill": "Transitions",
+    "difficulty": "Medium",
+    "question_text": "In November 1934, Amrita Sher-Gil was living in what must have seemed like the ideal city for a young artist: Paris. She was studying firsthand the color-saturated style of France’s modernist masters and beginning to make a name for herself as a painter. ______ Sher-Gil longed to return to her childhood home of India; only there, she believed, could her art truly flourish.\n\nWhich choice completes the text with the most logical transition?",
+    "options": [
+      "A. Still,",
+      "B. Therefore,",
+      "C. Indeed,",
+      "D. Furthermore,"
+    ],
+    "correct_option": "A",
+    "explanation": "Choice A is the best answer. “Still” logically signals that the information about Sher-Gil in this sentence—that she longed to leave Paris and return to India—contrasts with what one would expect after reading about Sher-Gil’s experiences in Paris in the previous sentences.\n\nChoice B is incorrect because “therefore” illogically signals that the information about Sher-Gil in this sentence is a result or consequence of the descriptions in the previous sentences. Instead, this information contrasts with what one would expect after reading about Sher-Gil’s experiences in Paris. Choice C is incorrect because “indeed” illogically signals that the information about Sher-Gil in this sentence offers additional emphasis in support of the descriptions in the previous sentences. Instead, this information contrasts with what one would expect after reading about Sher-Gil’s experiences in Paris. Choice D is incorrect because “furthermore” illogically signals that the information about Sher-Gil in this sentence offers additional support for or confirmation of the descriptions in the previous sentences. Instead, this information contrasts with what one would expect after reading about Sher-Gil’s experiences in Paris."
+  },
+  {
+    "question_id": "08be6347",
+    "assessment": "SAT",
+    "test": "Reading and Writing",
+    "domain": "Expression of Ideas",
+    "skill": "Transitions",
+    "difficulty": "Medium",
+    "question_text": "In his 1925 book *The Morphology of Landscape*, US geographer Carl Sauer challenged prevailing views about how natural landscapes influence human cultures. ______ Sauer argued that instead of being shaped entirely by their natural surroundings, cultures play an active role in their own development by virtue of their interactions with the environment.\n\nWhich choice completes the text with the most logical transition?",
+    "options": [
+      "A. Similarly,",
+      "B. Finally,",
+      "C. Therefore,",
+      "D. Specifically,"
+    ],
+    "correct_option": "D",
+    "explanation": "Choice D is the best answer. “Specifically” logically signals that the information in this sentence about Sauer’s argument—that, according to Sauer, cultures play a role in their own development, as opposed to being shaped solely by natural surroundings—provides specific, precise details elaborating on the more general information in the previous sentence about how Sauer challenged prevailing views about how natural landscapes influence human cultures.\n\nChoice A is incorrect because “similarly” illogically signals that the information in this sentence about Sauer’s argument is similar to, but separate from, the more general information in the previous sentence. Instead, it provides specific, precise details elaborating on that information. Choice B is incorrect because “finally” illogically signals that the information in this sentence about Sauer’s argument indicates a last step in a process or a concluding summary. Instead, it provides specific, precise details elaborating on the general information in the previous sentence. Choice C is incorrect because “therefore” illogically signals that the information in this sentence about Sauer’s argument is a result of the more general information in the previous sentence. Instead, it provides specific, precise details elaborating on that information."
+  },
+  {
+    "question_id": "9e34720b",
+    "assessment": "SAT",
+    "test": "Reading and Writing",
+    "domain": "Expression of Ideas",
+    "skill": "Transitions",
+    "difficulty": "Medium",
+    "question_text": "Although those who migrated to California in 1849 dreamed of finding gold nuggets in streambeds, the state’s richest deposits were buried deeply in rock, beyond the reach of individual prospectors. ______ by 1852, many had given up their fortune-hunting dreams and gone to work for one of the large companies capable of managing California’s complex mining operations.\n\nWhich choice completes the text with the most logical transition?",
+    "options": [
+      "A. Furthermore,",
+      "B. Still,",
+      "C. Consequently,",
+      "D. Next,"
+    ],
+    "correct_option": "C",
+    "explanation": "Choice C is the best answer. “Consequently” logically signals that the information in this sentence—that many individual gold prospectors gave up their fortune-hunting dreams and became employees of mining companies—is a result or consequence of the previous information about the inaccessibility of the state’s gold deposits.\n\nChoice A is incorrect because “furthermore” illogically signals that the information in this sentence merely adds to the previous information about the inaccessibility of the state’s gold deposits. Instead, it’s a result or consequence of that information. Choice B is incorrect because “still” illogically signals that the information in this sentence offers a contrast or exception to the previous information about the inaccessibility of the state’s gold deposits. Instead, it’s a result or consequence of that information. Choice D is incorrect because “next” illogically signals that the information in this sentence is the next step in a process. Instead, it’s a result or consequence of the previous information about the inaccessibility of the state’s gold deposits."
+  },
+  {
+    "question_id": "63a4fa29",
+    "assessment": "SAT",
+    "test": "Reading and Writing",
+    "domain": "Expression of Ideas",
+    "skill": "Rhetorical Synthesis",
+    "difficulty": "Medium",
+    "question_text": "While researching a topic, a student has taken the following notes:\n\n- In 2013, archaeologists studied cat bone fragments they had found in the ruins of Quanhucun, a Chinese farming village.\n- The fragments were estimated to be 5,300 years old.\n- A chemical analysis of the fragments revealed that the cats had consumed large amounts of grain.\n- The grain consumption is evidence that the Quanhucun cats may have been domesticated.\n\nThe student wants to present the Quanhucun study and its conclusions. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
+    "options": [
+      "A. As part of a 2013 study of cat domestication, a chemical analysis was conducted on cat bone fragments found in Quanhucun, China.",
+      "B. A 2013 analysis of cat bone fragments found in Quanhucun, China, suggests that cats there may have been domesticated 5,300 years ago.",
+      "C. In 2013, archaeologists studied what cats in Quanhucun, China, had eaten more than 5,000 years ago.",
+      "D. Cat bone fragments estimated to be 5,300 years old were found in Quanhucun, China, in 2013."
+    ],
+    "correct_option": "B",
+    "explanation": "Choice B is the best answer. The sentence presents the study, describing it as a 2013 analysis of Quanhucun cat bone fragments, and its conclusions, indicating what the analysis suggests about cat domestication in Quanhucun.\n\nChoice A is incorrect because the sentence focuses on the study’s methodology; it doesn’t present conclusions from the study. Choice C is incorrect. While the sentence provides a general overview of the study, it doesn’t present conclusions from the study. Choice D is incorrect. The sentence describes a finding from the study; it doesn’t present conclusions from the study."
+  },
+  {
+    "question_id": "5bb7dc03",
+    "assessment": "SAT",
+    "test": "Reading and Writing",
+    "domain": "Expression of Ideas",
+    "skill": "Rhetorical Synthesis",
+    "difficulty": "Medium",
+    "question_text": "While researching a topic, a student has taken the following notes:\n\n- Started in 1925, the Scripps National Spelling Bee is a US-based spelling competition.\n- The words used in the competition have diverse linguistic origins.\n- In 2008, Sameer Mishra won by correctly spelling the word “guerdon.”\n- “Guerdon” derives from the Anglo-French word “guerdun.”\n- In 2009, Kavya Shivashankar won by correctly spelling the word “Laodicean.”\n- “Laodicean” derives from the ancient Greek word “Laodikeia.”\n\nThe student wants to emphasize a difference in the origins of the two words. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
+    "options": [
+      "A. “Guerdon,” the final word of the 2008 Scripps National Spelling Bee, is of Anglo-French origin, while the following year’s final word, “Laodicean,” derives from ancient Greek.",
+      "B. In 2008, Sameer Mishra won the Scripps National Spelling Bee by correctly spelling the word “guerdon”; however, the following year, Kavya Shivashankar won based on spelling the word “Laodicean.”",
+      "C. Kavya Shivashankar won the 2009 Scripps National Spelling Bee by correctly spelling “Laodicean,” which derives from the ancient Greek word “Laodikeia.”",
+      "D. The Scripps National Spelling Bee uses words from diverse linguistic origins, such as “guerdon” and “Laodicean.”"
+    ],
+    "correct_option": "A",
+    "explanation": "Choice A is the best answer. Noting that “guerdon” is of Anglo-French origin and “Laodicean” is of ancient Greek origin, the sentence uses “while” to emphasize a difference in the origins of the two words.\n\nChoice B is incorrect. While the sentence emphasizes two words used in the Scripps National Spelling Bee, it doesn’t emphasize (or mention) the words’ linguistic origins. Choice C is incorrect. While the sentence specifies the linguistic origin of one word used in the Scripps National Spelling Bee, it doesn’t mention the other word or emphasize a difference in the two words’ origins. Choice D is incorrect. While the sentence makes a generalization about words used in the Scripps National Spelling Bee, it doesn’t emphasize a difference in the words’ origins."
+  },
+  {
+    "question_id": "5207e508",
+    "assessment": "SAT",
+    "test": "Math",
+    "domain": "Geometry and Trigonometry",
+    "skill": "Lines and Angles",
+    "difficulty": "Easy",
+    "question_text": "Note: Figure not drawn to scale.\nIn the figure, line \\( m \\) is parallel to line \\( n \\). What is the value of \\( w \\)?\n\nA. **17**\nB. **30**\nC. **70**\nD. **170**",
+    "options": [
+      "A. 17",
+      "B. 30",
+      "C. 70",
+      "D. 170"
+    ],
+    "correct_option": "D",
+    "explanation": "Choice D is correct. It’s given that lines \\( m \\) and \\( n \\) are parallel. Since line \\( t \\) intersects both lines \\( m \\) and \\( n \\), it’s a transversal. The angles in the figure marked as \\( 170^\\circ \\) and \\( w^\\circ \\) are on the same side of the transversal, where one is an interior angle with line \\( m \\) as a side, and the other is an exterior angle with line \\( n \\) as a side. Thus, the marked angles are corresponding angles. When two parallel lines are intersected by a transversal, corresponding angles are congruent and, therefore, have equal measure. It follows that \\( w^\\circ = 170^\\circ \\). Therefore, the value of \\( w \\) is \\( 170 \\).\n\nChoice A is incorrect and may result from conceptual or calculation errors.\n\nChoice B is incorrect and may result from conceptual or calculation errors.\n\nChoice C is incorrect and may result from conceptual or calculation errors.",
+    "image": "5207e508.jpg"
+  }
+]
