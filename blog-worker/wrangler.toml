@@ -1,0 +1,7 @@
+name = "blog-api"
+main = "blog-api.js"
+compatibility_date = "2024-05-15"
+
+kv_namespaces = [
+    { binding = "BLOG_STORE", id = "b31e4d147988449eb5a6350d36a8b04e" }
+]
