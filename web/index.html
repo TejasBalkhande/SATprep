@@ -1,38 +1,86 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
-
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
-
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
-  <base href="$FLUTTER_BASE_HREF">
-
   <meta charset="UTF-8">
-  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SAT Prep Pro - Ace the SAT with Expert Mock Tests</title>
+  <meta name="description" content="Realistic SAT mock tests, personalized study plans, and proven strategies to boost your SAT score. Join thousands of successful students today.">
+  <meta name="keywords" content="SAT prep, SAT practice, SAT mock test, SAT online, college board, SAT score, SAT exam">
+  <meta name="author" content="SAT Prep Pro">
 
-  <!-- iOS meta tags & icons -->
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="cfdptest">
-  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yourdomain.com/">
+  <meta property="og:title" content="SAT Prep Pro - Ace the SAT with Expert Mock Tests">
+  <meta property="og:description" content="Realistic SAT mock tests, personalized study plans, and proven strategies to boost your SAT score.">
+  <meta property="og:image" content="https://yourdomain.com/og-image.jpg">
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://yourdomain.com/">
+  <meta property="twitter:title" content="SAT Prep Pro - Ace the SAT with Expert Mock Tests">
+  <meta property="twitter:description" content="Realistic SAT mock tests, personalized study plans, and proven strategies to boost your SAT score.">
+  <meta property="twitter:image" content="https://yourdomain.com/og-image.jpg">
 
-  <title>cfdptest</title>
-  <link rel="manifest" href="manifest.json">
+  <link rel="canonical" href="https://yourdomain.com/">
+
+  <script>
+    // SEO tag management functions
+    function setTitle(title) {
+      document.title = title + ' | SAT Prep Pro';
+    }
+
+    function setMetaTag(name, content) {
+      let tag = document.querySelector(`meta[name="${name}"]`);
+      if (!tag) {
+        tag = document.createElement('meta');
+        tag.setAttribute('name', name);
+        document.head.appendChild(tag);
+      }
+      tag.setAttribute('content', content);
+    }
+
+    function setOGTag(property, content) {
+      let tag = document.querySelector(`meta[property="${property}"]`);
+      if (!tag) {
+        tag = document.createElement('meta');
+        tag.setAttribute('property', property);
+        document.head.appendChild(tag);
+      }
+      tag.setAttribute('content', content);
+    }
+
+    function setCanonical(url) {
+      let tag = document.querySelector('link[rel="canonical"]');
+      if (!tag) {
+        tag = document.createElement('link');
+        tag.setAttribute('rel', 'canonical');
+        document.head.appendChild(tag);
+      }
+      tag.setAttribute('href', url);
+    }
+
+    function setJSONLD(data) {
+      let script = document.querySelector('script[type="application/ld+json"]');
+      if (!script) {
+        script = document.createElement('script');
+        script.setAttribute('type', 'application/ld+json');
+        document.head.appendChild(script);
+      }
+      script.textContent = data;
+    }
+  </script>
+
+  <!-- Localhost build error handling for Flutter -->
+  <script>
+    if (window.location.hostname === 'localhost') {
+      window.addEventListener('flutter-build-error', function(e) {
+        window.dispatchEvent(new Event('flutter-first-frame'));
+      });
+    }
+  </script>
 </head>
 <body>
-  <script src="flutter_bootstrap.js" async></script>
+<script src="main.dart.js" type="application/javascript"></script>
 </body>
 </html>

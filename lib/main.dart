@@ -5,6 +5,8 @@ import 'package:cfdptest/screens/login_screen.dart';
 import 'package:cfdptest/screens/signup_screen.dart';
 import 'package:cfdptest/screens/profile_screen.dart';
 import 'package:cfdptest/mock_practice.dart';
+import 'package:cfdptest/screens/blog_page.dart';
+import 'package:cfdptest/screens/create_blog_page.dart';
 
 void main() => runApp(const SATPrepApp());
 
@@ -27,6 +29,8 @@ class SATPrepApp extends StatelessWidget {
           return ProfileScreen(userData: userData);
         },
         '/mock-practice': (context) => const MockPracticeScreen(),
+
+        '/blogs': (context) => BlogPage(),
       },
     );
   }
@@ -168,7 +172,7 @@ class SATPrepHomePage extends StatelessWidget {
             child: Row(
               children: [
                 _buildNavButton(context, 'Mock Practice', Icons.assignment),
-                _buildNavButton(context, 'Practice', Icons.school),
+                _buildNavButton(context, 'Blogs', Icons.school),
                 _buildNavButton(context, 'Colleges', Icons.account_balance),
                 _buildNavButton(context, 'Doubts', Icons.help_outline),
                 _buildAccountButton(context, loggedIn, userData),

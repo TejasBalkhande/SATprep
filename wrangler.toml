@@ -3,5 +3,6 @@ main = "cloudflare-auth-worker.js"
 compatibility_date = "2024-05-15"
 
 kv_namespaces = [
-    { binding = "AUTH_STORE", id = "0990361f55384f3e8c422449b514f8a1" }
+    { binding = "AUTH_STORE", id = "0990361f55384f3e8c422449b514f8a1" },
+    { binding = "BLOG_STORE", id = "b31e4d147988449eb5a6350d36a8b04e" }
 ]
