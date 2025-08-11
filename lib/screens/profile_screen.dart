@@ -1,4 +1,3 @@
-// profile_screen.dart
 import 'package:flutter/material.dart';
 import 'package:cfdptest/screens/login_screen.dart';
 
@@ -18,15 +17,55 @@ class _ProfileScreenState extends State<ProfileScreen> {
   bool _isPremium = false;
   bool _isLoading = false;
 
-  // Mock data for dashboard
-  final Map<String, dynamic> _progressData = {
-    'testsTaken': 12,
-    'questionsSolved': 346,
-    'accuracy': 78.5,
-    'streak': 7,
-    'targetScore': 1500,
-    'currentScore': 1320,
-  };
+  // Color palette
+  static const Color primaryColor = Color(0xFF2B463C);
+  static const Color secondaryColor = Color(0xFF4A7C59);
+  static const Color accentColor = Color(0xFF8FCB9B);
+  static const Color surfaceColor = Color(0xFFF5F9F2);
+  static const Color backgroundColor = Color(0xFFF8F9F5);
+  static const Color textPrimary = Color(0xFF333333);
+  static const Color textSecondary = Color(0xFF444444);
+  static const Color prizeGold = Color(0xFFD4AF37);
+  static const Color lightGreen = Color(0xFFE6F4EA);
+  static const Color cardColor = Colors.white;
+
+  // Typography
+  static const String fontFamily = 'Inter';
+
+  TextStyle get headlineLarge => TextStyle(
+    fontFamily: fontFamily,
+    fontSize: 24,
+    fontWeight: FontWeight.w800,
+    color: primaryColor,
+  );
+
+  TextStyle get headlineMedium => TextStyle(
+    fontFamily: fontFamily,
+    fontSize: 20,
+    fontWeight: FontWeight.w700,
+    color: secondaryColor,
+  );
+
+  TextStyle get bodyLarge => TextStyle(
+    fontFamily: fontFamily,
+    fontSize: 16,
+    height: 1.5,
+    color: textSecondary,
+  );
+
+  TextStyle get titleMedium => TextStyle(
+    fontFamily: fontFamily,
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+    color: primaryColor,
+  );
+
+  TextStyle get labelLarge => TextStyle(
+    fontFamily: fontFamily,
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+    color: Colors.white,
+  );
 
   Future<void> _logout() async {
     setState(() => _isLoading = true);
@@ -39,62 +78,72 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   void _navigateToPremium() {
-    // In a real app, this would navigate to purchase screen
     setState(() => _isPremium = true);
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Premium features unlocked!')),
+      SnackBar(
+        content: const Text('Premium features unlocked!'),
+        backgroundColor: secondaryColor,
+      ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final isDarkMode = theme.brightness == Brightness.dark;
-    final cardColor = isDarkMode ? Colors.grey[850]! : Colors.white;
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isLargeScreen = screenWidth > 800;
 
     return Scaffold(
-      backgroundColor: theme.scaffoldBackgroundColor,
-      body: CustomScrollView(
-        slivers: [
-        // Enhanced App Bar
-        SliverAppBar(
-        expandedHeight: 220,
-        floating: false,
-        pinned: true,
-        backgroundColor: theme.colorScheme.primary,
-        flexibleSpace: FlexibleSpaceBar(
-          titlePadding: const EdgeInsets.only(bottom: 16, left: 16),
-          title: Text(
-            widget.userData['username'] ?? 'User Profile',
-            style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w600,
-                color: Colors.white
-            ),
-          ),
-          background: Container(
+      backgroundColor: backgroundColor,
+      body: Column(
+        children: [
+          // Custom Header - Adjusted layout
+          Container(
+            height: 130,
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
-                  theme.colorScheme.primary,
-                  theme.colorScheme.primary.withOpacity(0.7),
+                  primaryColor,
+                  const Color(0xFF3A5E4A),
                 ],
               ),
             ),
             child: SafeArea(
               child: Padding(
-                padding: const EdgeInsets.only(top: 60, left: 20, right: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
+                        IconButton(
+                          icon: const Icon(Icons.arrow_back, color: Colors.white),
+                          onPressed: () => Navigator.pop(context),
+                        ),
+                        Text(
+                          'Profile',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
+                            fontFamily: fontFamily,
+                          ),
+                        ),
+                        IconButton(
+                          icon: const Icon(Icons.settings, color: Colors.white),
+                          onPressed: () {},
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 5),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        // Profile icon
                         Container(
-                          width: 80,
-                          height: 80,
+                          width: 50,
+                          height: 50,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             color: Colors.white.withOpacity(0.2),
@@ -105,338 +154,228 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ),
                           child: const Icon(
                             Icons.person,
-                            size: 50,
+                            size: 40,
                             color: Colors.white,
                           ),
                         ),
-                        const SizedBox(width: 20),
+                        const SizedBox(width: 16),
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    widget.userData['username'] ?? 'User',
+                                    style: const TextStyle(
+                                      fontSize: 20,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  _buildAccountStatusBadge(),
+                                ],
+                              ),
+                              const SizedBox(height: 4),
                               Text(
                                 widget.userData['email'] ?? 'user@example.com',
                                 style: const TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w500,
+                                  fontSize: 14,
+                                  color: Colors.white70,
                                 ),
-                                overflow: TextOverflow.ellipsis,
                               ),
-                              const SizedBox(height: 10),
-                              _buildAccountStatusBadge(theme),
                             ],
                           ),
                         ),
                       ],
                     ),
-                    const Spacer(),
-                    Align(
-                      alignment: Alignment.bottomRight,
-                      child: Padding(
-                        padding: const EdgeInsets.only(bottom: 16, right: 8),
-                        child: ElevatedButton.icon(
-                          onPressed: _logout,
-                          icon: const Icon(Icons.logout, size: 18),
-                          label: const Text('Log Out'),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.white.withOpacity(0.2),
-                            foregroundColor: Colors.white,
-                            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20),
-                              side: BorderSide(color: Colors.white.withOpacity(0.5)),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
                   ],
                 ),
               ),
             ),
           ),
-        ),
+
+          // Main Content
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: isLargeScreen
+                  ? _buildDesktopLayout()
+                  : _buildMobileLayout(),
+            ),
+          ),
+        ],
       ),
+    );
+  }
 
-      // Main content
-      SliverToBoxAdapter(
-        child: Padding(
-            padding: const EdgeInsets.all(20),
+  Widget _buildDesktopLayout() {
+    return SingleChildScrollView(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Left Column - Account Card and Stats
+          Expanded(
+            flex: 5,
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-              // Dashboard Header
-              Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Study Dashboard',
-                  style: theme.textTheme.headlineMedium?.copyWith(
-                    fontSize: 22,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-                IconButton(
-                  icon: Icon(Icons.refresh, color: theme.colorScheme.primary),
-                  onPressed: () {},
-                ),
+                _buildAccountCard(),
+                const SizedBox(height: 16),
+                _buildStatsSection(),
               ],
             ),
-            const SizedBox(height: 16),
+          ),
 
-            // Progress Cards Grid
-            GridView.count(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              crossAxisCount: 2,
-              crossAxisSpacing: 16,
-              mainAxisSpacing: 16,
-              childAspectRatio: 1.5,
+          const SizedBox(width: 16),
+
+          // Right Column - Premium Section
+          Expanded(
+            flex: 5,
+            child: Column(
               children: [
-                _buildProgressCard(
-                  context,
-                  icon: Icons.assignment,
-                  label: 'Tests Taken',
-                  value: _progressData['testsTaken'].toString(),
-                  color: Colors.blue,
-                ),
-                _buildProgressCard(
-                  context,
-                  icon: Icons.check_circle,
-                  label: 'Questions Solved',
-                  value: _progressData['questionsSolved'].toString(),
-                  color: Colors.green,
-                ),
-                _buildProgressCard(
-                  context,
-                  icon: Icons.trending_up,
-                  label: 'Accuracy',
-                  value: '${_progressData['accuracy']}%',
-                  color: Colors.orange,
-                ),
-                _buildProgressCard(
-                  context,
-                  icon: Icons.local_fire_department,
-                  label: 'Current Streak',
-                  value: '${_progressData['streak']} days',
-                  color: Colors.red,
-                ),
+                if (!_isPremium) _buildPremiumCard(),
+                if (_isPremium) _buildPremiumStatus(),
               ],
             ),
+          ),
+        ],
+      ),
+    );
+  }
 
-            const SizedBox(height: 30),
+  Widget _buildMobileLayout() {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          _buildAccountCard(),
+          const SizedBox(height: 16),
+          _buildStatsSection(),
+          const SizedBox(height: 16),
+          if (!_isPremium) _buildPremiumCard(),
+          if (_isPremium) _buildPremiumStatus(),
+        ],
+      ),
+    );
+  }
 
-            // Score Progress Card
-            Card(
-              elevation: 4,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
+  Widget _buildAccountCard() {
+    return Container(
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: cardColor,
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 12,
+            offset: const Offset(0, 6),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Account Details',
+                style: headlineLarge.copyWith(fontSize: 22),
               ),
-              child: Padding(
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Score Progress',
-                          style: theme.textTheme.headlineMedium?.copyWith(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        Chip(
-                          backgroundColor: theme.colorScheme.primary.withOpacity(0.1),
-                          label: Text(
-                            '${_progressData['currentScore']}/${_progressData['targetScore']}',
-                            style: TextStyle(
-                              color: theme.colorScheme.primary,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 20),
-                    LinearProgressIndicator(
-                      value: _progressData['currentScore'] / _progressData['targetScore'],
-                      minHeight: 16,
-                      backgroundColor: Colors.grey[200],
-                      color: theme.colorScheme.secondary,
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    const SizedBox(height: 12),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Current Score',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.grey[600],
-                          ),
-                        ),
-                        Text(
-                          '${_progressData['currentScore']}',
-                          style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 8),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Target Score',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.grey[600],
-                          ),
-                        ),
-                        Text(
-                          '${_progressData['targetScore']}',
-                          style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      '${_progressData['targetScore'] - _progressData['currentScore']} points to reach your target',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: theme.colorScheme.primary,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-
-            const SizedBox(height: 30),
-
-            // Premium Section Header
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Premium Features',
-                  style: theme.textTheme.headlineMedium?.copyWith(
-                    fontSize: 22,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-                if (!_isPremium)
-                  TextButton(
-                    onPressed: _navigateToPremium,
-                    child: const Text('Upgrade Now'),
-                    style: TextButton.styleFrom(
-                      foregroundColor: theme.colorScheme.primary,
-                    ),
-                  ),
-              ],
-            ),
-            const SizedBox(height: 10),
-            Text(
-              'Unlock advanced features to boost your preparation',
-              style: theme.textTheme.bodyLarge?.copyWith(
-                color: Colors.grey[600],
-              ),
-            ),
-            const SizedBox(height: 20),
-
-            // Premium Features Grid
-            GridView.count(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              crossAxisCount: 2,
-              crossAxisSpacing: 16,
-              mainAxisSpacing: 16,
-              childAspectRatio: 3,
-              children: [
-                _buildFeatureChip(
-                  context,
-                  icon: Icons.analytics,
-                  title: 'Advanced Analytics',
-                  isLocked: !_isPremium,
-                ),
-                _buildFeatureChip(
-                  context,
-                  icon: Icons.timeline,
-                  title: 'Study Roadmap',
-                  isLocked: !_isPremium,
-                ),
-                _buildFeatureChip(
-                  context,
-                  icon: Icons.assignment,
-                  title: 'Weekly Tests',
-                  isLocked: !_isPremium,
-                ),
-                _buildFeatureChip(
-                  context,
-                  icon: Icons.library_books,
-                  title: 'Question Bank',
-                  isLocked: !_isPremium,
-                ),
-              ],
-            ),
-
-            const SizedBox(height: 30),
-
-            // Upgrade Card - Only show if not premium
-            if (!_isPremium)
-        GestureDetector(
-        onTap: _navigateToPremium,
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                theme.colorScheme.primary,
-                theme.colorScheme.primary.withOpacity(0.8),
-              ],
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: theme.colorScheme.primary.withOpacity(0.3),
-                blurRadius: 15,
-                offset: const Offset(0, 5),
+              IconButton(
+                icon: const Icon(Icons.edit, color: Colors.grey, size: 22),
+                onPressed: () {},
               ),
             ],
           ),
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          const SizedBox(height: 16),
+
+          // Account Status
+          _buildDetailItem(
+            title: 'Account Status',
+            value: _isPremium ? 'Premium' : 'Free',
+            icon: Icons.verified_user,
+            color: _isPremium ? prizeGold : secondaryColor,
+          ),
+
+          const Divider(height: 32, color: Color(0xFFEEEEEE)),
+
+          // Logout Button
+          SizedBox(
+            width: double.infinity,
+            height: 48,
+            child: ElevatedButton.icon(
+              onPressed: _logout,
+              icon: const Icon(Icons.logout, size: 18),
+              label: Text(
+                'Log Out',
+                style: labelLarge.copyWith(fontSize: 15),
+              ),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: secondaryColor,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                elevation: 2,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildPremiumCard() {
+    return Container(
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16),
+        gradient: const LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            Color(0xFF2B463C),
+            Color(0xFF3A5E4A),
+          ],
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: primaryColor.withOpacity(0.3),
+            blurRadius: 12,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
             children: [
-              const Text(
-                'Go Premium',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w800,
-                  color: Colors.white,
+              const Icon(Icons.stars, color: prizeGold, size: 28),
+              const SizedBox(width: 10),
+              Text(
+                'Unlock Premium',
+                style: headlineMedium.copyWith(
+                    fontSize: 18,
+                    color: Colors.white
                 ),
               ),
-              const SizedBox(height: 8),
-              const Text(
-                'Full access to all features',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.white70,
-                ),
-              ),
-              const SizedBox(height: 20),
-              Row(
+            ],
+          ),
+          const SizedBox(height: 12),
+          Text(
+            'Get full access to all features and resources',
+            style: bodyLarge.copyWith(
+                fontSize: 14,
+                color: Colors.white.withOpacity(0.9)
+            ),
+          ),
+          const SizedBox(height: 20),
+          Row(
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text.rich(
                     TextSpan(
@@ -444,7 +383,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         TextSpan(
                           text: '\$14.99',
                           style: const TextStyle(
-                            fontSize: 32,
+                            fontSize: 28,
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
                           ),
@@ -452,89 +391,96 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         TextSpan(
                           text: '/month',
                           style: TextStyle(
-                            fontSize: 16,
+                            fontSize: 14,
                             color: Colors.white.withOpacity(0.7),
                           ),
                         ),
                       ],
                     ),
                   ),
-                  const Spacer(),
+                  const SizedBox(height: 8),
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                     decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(20),
+                      color: prizeGold,
+                      borderRadius: BorderRadius.circular(16),
                     ),
                     child: Text(
                       'SAVE 25%',
                       style: TextStyle(
+                        fontSize: 12,
                         fontWeight: FontWeight.bold,
-                        color: theme.colorScheme.primary,
+                        color: primaryColor,
                       ),
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 25),
+              const Spacer(),
               SizedBox(
-                width: double.infinity,
-                height: 50,
+                height: 46,
                 child: ElevatedButton(
                   onPressed: _navigateToPremium,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white,
-                    foregroundColor: theme.colorScheme.primary,
+                    backgroundColor: prizeGold,
+                    foregroundColor: primaryColor,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(10),
                     ),
                     elevation: 2,
                   ),
-                  child: const Text(
-                    'Get Premium',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 14),
+                    child: Text(
+                      'Get Premium',
+                      style: labelLarge.copyWith(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w700,
+                        color: primaryColor,
+                      ),
                     ),
                   ),
                 ),
               ),
             ],
           ),
-        ),)
         ],
       ),
-    ),
-    ),
-    ],
-    ),
     );
   }
 
-  Widget _buildAccountStatusBadge(ThemeData theme) {
+  Widget _buildPremiumStatus() {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: _isPremium
-            ? Colors.amber[800]!.withOpacity(0.2)
-            : Colors.white.withOpacity(0.2),
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: _isPremium ? Colors.amber : Colors.white,
-        ),
+        color: lightGreen,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: accentColor),
       ),
       child: Row(
-        mainAxisSize: MainAxisSize.min,
         children: [
-          if (_isPremium)
-            Icon(Icons.star, size: 16, color: Colors.amber),
-          const SizedBox(width: 6),
-          Text(
-            _isPremium ? 'PREMIUM MEMBER' : 'FREE ACCOUNT',
-            style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
-              color: _isPremium ? Colors.amber : Colors.white,
+          Icon(Icons.verified, color: prizeGold, size: 36),
+          const SizedBox(width: 14),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Premium Member',
+                  style: headlineMedium.copyWith(
+                      fontSize: 18,
+                      color: primaryColor
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  'Full access to all premium features',
+                  style: bodyLarge.copyWith(
+                      fontSize: 14,
+                      color: textSecondary
+                  ),
+                ),
+              ],
             ),
           ),
         ],
@@ -542,84 +488,146 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  Widget _buildProgressCard(
-      BuildContext context, {
-        required IconData icon,
-        required String label,
-        required String value,
-        required Color color,
-      }) {
-    return Card(
-      elevation: 2,
-      shape: RoundedRectangleBorder(
+  Widget _buildStatsSection() {
+    return Container(
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: cardColor,
         borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 12,
+            offset: const Offset(0, 6),
+          ),
+        ],
       ),
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                  'Your Activity',
+                  style: headlineLarge.copyWith(fontSize: 22)
+              ),
+              Text(
+                'Last 30 days',
+                style: bodyLarge.copyWith(
+                    fontSize: 14,
+                    color: textSecondary
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              _buildStatItem('24', 'Courses', Icons.school),
+              _buildStatItem('87%', 'Progress', Icons.trending_up),
+              _buildStatItem('12', 'Achievements', Icons.emoji_events),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildStatItem(String value, String label, IconData icon) {
+    return Column(
+      children: [
+        Container(
+          width: 60,
+          height: 60,
+          decoration: BoxDecoration(
+            color: lightGreen.withOpacity(0.5),
+            shape: BoxShape.circle,
+          ),
+          child: Icon(icon, size: 26, color: secondaryColor),
+        ),
+        const SizedBox(height: 8),
+        Text(
+          value,
+          style: const TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: primaryColor,
+          ),
+        ),
+        const SizedBox(height: 2),
+        Text(
+          label,
+          style: TextStyle(
+            fontSize: 13,
+            color: textSecondary,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildDetailItem({
+    required String title,
+    required String value,
+    required IconData icon,
+    required Color color,
+  }) {
+    return Row(
+      children: [
+        Container(
+          padding: const EdgeInsets.all(6),
+          decoration: BoxDecoration(
+            color: color.withOpacity(0.1),
+            shape: BoxShape.circle,
+          ),
+          child: Icon(icon, size: 18, color: color),
+        ),
+        const SizedBox(width: 12),
+        Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Icon(icon, size: 28, color: color),
-            const SizedBox(height: 12),
             Text(
-              label,
+              title,
               style: TextStyle(
-                fontSize: 14,
-                color: Theme.of(context).textTheme.bodyLarge?.color?.withOpacity(0.7),
+                fontSize: 13,
+                color: textSecondary,
               ),
             ),
-            const SizedBox(height: 4),
+            const SizedBox(height: 2),
             Text(
               value,
               style: TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-                color: color,
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                color: primaryColor,
               ),
             ),
           ],
         ),
-      ),
+      ],
     );
   }
 
-  Widget _buildFeatureChip(
-      BuildContext context, {
-        required IconData icon,
-        required String title,
-        required bool isLocked,
-      }) {
+  Widget _buildAccountStatusBadge() {
     return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: BoxDecoration(
-        color: Theme.of(context).cardColor,
-        borderRadius: BorderRadius.circular(12),
+        color: _isPremium
+            ? prizeGold.withOpacity(0.15)
+            : Colors.white.withOpacity(0.2),
+        borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: Colors.grey.withOpacity(0.3),
+          color: _isPremium ? prizeGold : Colors.white,
         ),
       ),
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-      child: Row(
-        children: [
-          Icon(
-            icon,
-            size: 24,
-            color: isLocked ? Colors.grey : Theme.of(context).colorScheme.secondary,
-          ),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Text(
-              title,
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-                color: isLocked ? Colors.grey : null,
-              ),
-            ),
-          ),
-          if (isLocked)
-            Icon(Icons.lock_outline, size: 18, color: Colors.grey),
-        ],
+      child: Text(
+        _isPremium ? 'PREMIUM MEMBER' : 'FREE ACCOUNT',
+        style: TextStyle(
+          fontSize: 12,
+          fontWeight: FontWeight.bold,
+          color: _isPremium ? prizeGold : Colors.white,
+        ),
       ),
     );
   }

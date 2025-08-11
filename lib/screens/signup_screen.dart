@@ -18,17 +18,68 @@ class _SignupScreenState extends State<SignupScreen> {
   bool _obscureConfirm = true;
   final _formKey = GlobalKey<FormState>();
 
-  // Updated Light Mode Color Palette
-  static const Color primaryColor = Color(0xFF4CAF50); // Green 500
-  static const Color primaryLight = Color(0xFFC8E6C9); // Green 100
-  static const Color primaryDark = Color(0xFF388E3C); // Green 700
-  static const Color secondaryColor = Color(0xFF81C784); // Green 300
-  static const Color accentColor = Color(0xFF7CB342); // Light Green 600
-  static const Color backgroundColor = Color(0xFFF5F5F5); // Light gray
-  static const Color surfaceColor = Color(0xFFFFFFFF); // White
-  static const Color textPrimary = Color(0xFF212121); // Dark gray
-  static const Color textSecondary = Color(0xFF757575); // Medium gray
-  static const Color errorColor = Color(0xFFD32F2F); // Red 700
+  // Updated color palette from design spec
+  static const Color primaryColor = Color(0xFF2B463C);       // deep forest green
+  static const Color secondaryColor = Color(0xFF4A7C59);     // vibrant emerald green
+  static const Color accentColor = Color(0xFF8FCB9B);        // soft mint
+  static const Color surfaceColor = Color(0xFFF5F9F2);       // light green-tinted surface
+  static const Color backgroundColor = Color(0xFFF8F9F5);    // off-white with green undertone
+  static const Color errorColor = Color(0xFFE57373);         // soft red
+  static const Color textPrimary = Color(0xFF333333);        // dark grey primary text
+  static const Color textSecondary = Color(0xFF444444);      // secondary text
+  static const Color textTertiary = Color(0xFF777777);       // tertiary text
+  static const Color prizeGold = Color(0xFFD4AF37);          // gold for highlights
+  static const Color lightGreen = Color(0xFFE6F4EA);         // light green tint
+  static const Color lightYellow = Color(0xFFFFF8E1);        // yellowish tint
+
+  // Typography constants
+  static const String fontFamily = 'Inter';
+
+  TextStyle get headlineLarge => TextStyle(
+    fontFamily: fontFamily,
+    fontSize: 36,
+    fontWeight: FontWeight.w800,
+    color: primaryColor,
+    letterSpacing: -1.5,
+  );
+
+  TextStyle get headlineMedium => TextStyle(
+    fontFamily: fontFamily,
+    fontSize: 28,
+    fontWeight: FontWeight.w700,
+    color: secondaryColor,
+    letterSpacing: -0.8,
+  );
+
+  TextStyle get bodyLarge => TextStyle(
+    fontFamily: fontFamily,
+    fontSize: 18,
+    height: 1.6,
+    color: textSecondary,
+  );
+
+  TextStyle get titleMedium => TextStyle(
+    fontFamily: fontFamily,
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+    color: primaryColor,
+  );
+
+  TextStyle get labelLarge => TextStyle(
+    fontFamily: fontFamily,
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+    color: Colors.white,
+    letterSpacing: 0.5,
+  );
+
+  TextStyle get appBarTitle => TextStyle(
+    fontFamily: fontFamily,
+    fontSize: 20,
+    fontWeight: FontWeight.w700,
+    color: Colors.white,
+    letterSpacing: -0.5,
+  );
 
   Future<void> _signup() async {
     if (_isLoading) return;
@@ -48,14 +99,14 @@ class _SignupScreenState extends State<SignupScreen> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: const Text('Account created successfully!'),
-            backgroundColor: primaryColor,
+            backgroundColor: secondaryColor,
           ),
         );
         Navigator.pushReplacementNamed(context, '/login');
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Account creation failed'),
+          SnackBar(
+            content: const Text('Account creation failed'),
             backgroundColor: errorColor,
           ),
         );
@@ -117,11 +168,10 @@ class _SignupScreenState extends State<SignupScreen> {
                           const SizedBox(width: 10),
                           Text(
                             'SAT PREP PRO',
-                            style: TextStyle(
+                            style: headlineMedium.copyWith(
                               fontSize: 24,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.w700,
                               color: primaryColor,
-                              letterSpacing: 1.5,
                             ),
                           ),
                         ],
@@ -129,19 +179,15 @@ class _SignupScreenState extends State<SignupScreen> {
                       const SizedBox(height: 30),
                       Text(
                         'Create Your Account',
-                        style: TextStyle(
+                        style: headlineMedium.copyWith(
                           fontSize: 32,
-                          fontWeight: FontWeight.bold,
                           color: textPrimary,
                         ),
                       ),
                       const SizedBox(height: 10),
                       Text(
                         'Join the elite of SAT achievers',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: textSecondary,
-                        ),
+                        style: bodyLarge,
                       ),
                       const SizedBox(height: 40),
 
@@ -217,27 +263,23 @@ class _SignupScreenState extends State<SignupScreen> {
                         child: ElevatedButton(
                           onPressed: _isLoading ? null : _signup,
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: primaryColor,
+                            backgroundColor: secondaryColor,
                             foregroundColor: Colors.white,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12),
                             ),
                             padding: const EdgeInsets.symmetric(vertical: 16),
-                            elevation: 2,
+                            elevation: 4,
+                            shadowColor: secondaryColor.withOpacity(0.3),
                           ),
                           child: _isLoading
                               ? const CircularProgressIndicator(color: Colors.white)
-                              : const Text(
+                              : Text(
                             'Create Account',
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                            ),
+                            style: labelLarge,
                           ),
                         ),
                       ),
-
-                      // Social Login
 
                       const SizedBox(height: 30),
 
@@ -248,13 +290,16 @@ class _SignupScreenState extends State<SignupScreen> {
                           child: RichText(
                             text: TextSpan(
                               text: 'Already have an account? ',
-                              style: TextStyle(color: textSecondary),
+                              style: bodyLarge.copyWith(
+                                fontSize: 16,
+                                color: textTertiary,
+                              ),
                               children: [
                                 TextSpan(
                                   text: 'Login',
-                                  style: TextStyle(
-                                    color: primaryColor,
-                                    fontWeight: FontWeight.bold,
+                                  style: titleMedium.copyWith(
+                                    color: secondaryColor,
+                                    fontWeight: FontWeight.w700,
                                   ),
                                 ),
                               ],
@@ -274,8 +319,13 @@ class _SignupScreenState extends State<SignupScreen> {
           if (!isSmallScreen) Expanded(
             flex: 3,
             child: Container(
-              // CHANGED: Solid green background instead of gradient
-              color: primaryColor,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [primaryColor, const Color(0xFF3A5E4A)],
+                ),
+              ),
               padding: const EdgeInsets.all(50),
               child: SingleChildScrollView(
                 child: Column(
@@ -284,24 +334,23 @@ class _SignupScreenState extends State<SignupScreen> {
                   children: [
                     Text(
                       'Elevate Your SAT Score',
-                      style: TextStyle(
+                      style: headlineLarge.copyWith(
                         fontSize: 42,
-                        fontWeight: FontWeight.bold,
-                        color: surfaceColor, // Changed to white for better contrast
+                        color: Colors.white,
                         height: 1.2,
                       ),
                     ),
                     const SizedBox(height: 15),
                     Text(
                       'Join 50,000+ students who improved their scores by 200+ points',
-                      style: TextStyle(
+                      style: bodyLarge.copyWith(
                         fontSize: 20,
-                        color: surfaceColor.withOpacity(0.9), // Changed to white
+                        color: Colors.white.withOpacity(0.9),
                       ),
                     ),
                     const SizedBox(height: 60),
 
-                    // Features Grid - Background is now solid green
+                    // Features Grid
                     GridView.count(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
@@ -349,14 +398,12 @@ class _SignupScreenState extends State<SignupScreen> {
                       padding: const EdgeInsets.all(25),
                       decoration: BoxDecoration(
                         color: surfaceColor,
-                        borderRadius: BorderRadius.circular(16),
-                        border: Border.all(color: primaryLight),
+                        borderRadius: BorderRadius.circular(18),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.grey.withOpacity(0.2),
-                            spreadRadius: 2,
-                            blurRadius: 8,
-                            offset: const Offset(0, 4),
+                            color: Colors.black.withOpacity(0.05),
+                            blurRadius: 16,
+                            offset: const Offset(0, 10),
                           )
                         ],
                       ),
@@ -367,8 +414,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             '"This platform helped me improve my SAT score by 320 points! '
                                 'The practice tests are incredibly realistic and the analytics '
                                 'showed me exactly where to focus."',
-                            style: TextStyle(
-                              fontSize: 18,
+                            style: bodyLarge.copyWith(
                               fontStyle: FontStyle.italic,
                               color: textPrimary,
                               height: 1.5,
@@ -394,15 +440,14 @@ class _SignupScreenState extends State<SignupScreen> {
                                 children: [
                                   Text(
                                     'Emily Richardson',
-                                    style: TextStyle(
-                                      fontSize: 16,
+                                    style: titleMedium.copyWith(
                                       fontWeight: FontWeight.bold,
                                       color: textPrimary,
                                     ),
                                   ),
                                   Text(
                                     'Scored 1580 | Admitted to Stanford',
-                                    style: TextStyle(
+                                    style: bodyLarge.copyWith(
                                       fontSize: 14,
                                       color: textSecondary,
                                     ),
@@ -434,22 +479,22 @@ class _SignupScreenState extends State<SignupScreen> {
     return TextFormField(
       controller: controller,
       keyboardType: keyboardType,
-      style: TextStyle(color: textPrimary),
+      style: titleMedium.copyWith(color: textPrimary),
       decoration: InputDecoration(
         labelText: label,
-        labelStyle: TextStyle(color: textSecondary),
-        prefixIcon: Icon(icon, color: primaryColor),
+        labelStyle: titleMedium.copyWith(color: textTertiary),
+        prefixIcon: Icon(icon, color: secondaryColor),
         filled: true,
-        fillColor: surfaceColor,
+        fillColor: Colors.white,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: Colors.grey[300]!),
+          borderSide: BorderSide.none,
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: primaryColor, width: 2),
+          borderSide: const BorderSide(color: Color(0xFF4A7C59), width: 1.5),
         ),
-        contentPadding: const EdgeInsets.symmetric(vertical: 18, horizontal: 20),
+        contentPadding: const EdgeInsets.symmetric(vertical: 14, horizontal: 16),
         errorStyle: TextStyle(color: errorColor),
       ),
       validator: validator,
@@ -466,29 +511,29 @@ class _SignupScreenState extends State<SignupScreen> {
     return TextFormField(
       controller: controller,
       obscureText: obscure,
-      style: TextStyle(color: textPrimary),
+      style: titleMedium.copyWith(color: textPrimary),
       decoration: InputDecoration(
         labelText: label,
-        labelStyle: TextStyle(color: textSecondary),
-        prefixIcon: Icon(Icons.lock_outline, color: primaryColor),
+        labelStyle: titleMedium.copyWith(color: textTertiary),
+        prefixIcon: Icon(Icons.lock_outline, color: secondaryColor),
         suffixIcon: IconButton(
           icon: Icon(
             obscure ? Icons.visibility_off : Icons.visibility,
-            color: textSecondary,
+            color: textTertiary,
           ),
           onPressed: onToggle,
         ),
         filled: true,
-        fillColor: surfaceColor,
+        fillColor: Colors.white,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: Colors.grey[300]!),
+          borderSide: BorderSide.none,
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: primaryColor, width: 2),
+          borderSide: const BorderSide(color: Color(0xFF4A7C59), width: 1.5),
         ),
-        contentPadding: const EdgeInsets.symmetric(vertical: 18, horizontal: 20),
+        contentPadding: const EdgeInsets.symmetric(vertical: 14, horizontal: 16),
         errorStyle: TextStyle(color: errorColor),
       ),
       validator: validator,
@@ -502,15 +547,13 @@ class _SignupScreenState extends State<SignupScreen> {
   }) {
     return Container(
       decoration: BoxDecoration(
-        color: surfaceColor,
+        color: Colors.white,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: primaryLight),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.1),
-            spreadRadius: 1,
-            blurRadius: 5,
-            offset: const Offset(0, 2),
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 8,
+            offset: const Offset(0, 4),
           )
         ],
       ),
@@ -521,10 +564,10 @@ class _SignupScreenState extends State<SignupScreen> {
           Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: primaryColor.withOpacity(0.1),
+              color: lightGreen,
               borderRadius: BorderRadius.circular(12),
             ),
-            child: Icon(icon, size: 28, color: primaryColor),
+            child: Icon(icon, size: 28, color: secondaryColor),
           ),
           const SizedBox(width: 15),
           Expanded(
@@ -533,16 +576,16 @@ class _SignupScreenState extends State<SignupScreen> {
               children: [
                 Text(
                   title,
-                  style: TextStyle(
+                  style: titleMedium.copyWith(
                     fontSize: 18,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w700,
                     color: textPrimary,
                   ),
                 ),
                 const SizedBox(height: 8),
                 Text(
                   description,
-                  style: TextStyle(
+                  style: bodyLarge.copyWith(
                     fontSize: 14,
                     color: textSecondary,
                   ),
@@ -551,23 +594,6 @@ class _SignupScreenState extends State<SignupScreen> {
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _buildSocialButton({required IconData icon, required Color color}) {
-    return Container(
-      width: 60,
-      height: 60,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: surfaceColor,
-        border: Border.all(color: Colors.grey[300]!),
-      ),
-      child: Icon(
-        icon,
-        size: 30,
-        color: color,
       ),
     );
   }
