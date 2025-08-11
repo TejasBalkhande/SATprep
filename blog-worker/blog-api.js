@@ -5,7 +5,8 @@ addEventListener('fetch', event => {
 const API_KEY = 'QAZWSXEDCRFVTGB';
 const allowedOrigins = [
   'http://localhost:*',
-  'https://*.tejasbalkhande221.workers.dev'
+  'https://*.tejasbalkhande221.workers.dev',
+  'https://*.pages.dev' // ADDED CLOUDFLARE PAGES DOMAIN
 ];
 
 async function handleRequest(request) {
@@ -422,6 +423,7 @@ async function createTestPost() {
   } catch (err) {
     console.error('Failed to create test post:', err.message);
   }
+
 }
 
 createTestPost();

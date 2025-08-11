@@ -60,15 +60,61 @@
       tag.setAttribute('href', url);
     }
 
-    function setJSONLD(data) {
-      let script = document.querySelector('script[type="application/ld+json"]');
-      if (!script) {
-        script = document.createElement('script');
-        script.setAttribute('type', 'application/ld+json');
-        document.head.appendChild(script);
+    // Fixed SEO handler with correct route-based logic
+    function updateSEOTags() {
+      const path = window.location.hash;
+
+      // Handle blog post URLs: /#/blog/slug-here
+      if (path.startsWith('#/blog/')) {
+        const slug = path.split('#/blog/')[1];
+        fetch(`https://blog-api.tejasbalkhande221.workers.dev/api/blog/${slug}`)
+          .then(res => {
+            if (!res.ok) throw new Error('Blog post not found');
+            return res.json();
+          })
+          .then(post => {
+            setTitle(post.title);
+            setMetaTag('description', post.metaDescription);
+            setOGTag('og:title', post.title);
+            setOGTag('og:description', post.metaDescription);
+            setOGTag('og:image', post.coverImageUrl || 'https://yourdomain.com/default-og.jpg');
+            setOGTag('og:url', `https://yourdomain.com/#/blog/${slug}`);
+            setCanonical(`https://yourdomain.com/#/blog/${slug}`);
+          })
+          .catch(error => {
+            console.error('SEO fetch error:', error);
+            setDefaultTags();
+          });
       }
-      script.textContent = data;
+      // Handle blog listing page - fixed to exact match
+      else if (path === '#/blogs') {
+        setTitle('SAT Prep Blog');
+        setMetaTag('description', 'Expert SAT preparation tips and strategies');
+        setOGTag('og:title', 'SAT Prep Blog');
+        setOGTag('og:description', 'Expert SAT preparation tips and strategies');
+        setOGTag('og:image', 'https://yourdomain.com/blog-og.jpg');
+        setOGTag('og:url', 'https://yourdomain.com/#/blogs');
+        setCanonical('https://yourdomain.com/#/blogs');
+      }
+      // Default SEO tags for all other pages
+      else {
+        setDefaultTags();
+      }
     }
+
+    function setDefaultTags() {
+      setTitle('SAT Prep Pro - Ace the SAT with Expert Mock Tests');
+      setMetaTag('description', 'Realistic SAT mock tests and study plans');
+      setOGTag('og:title', 'SAT Prep Pro - Ace the SAT with Expert Mock Tests');
+      setOGTag('og:description', 'Realistic SAT mock tests and study plans');
+      setOGTag('og:image', 'https://yourdomain.com/og-image.jpg');
+      setOGTag('og:url', 'https://yourdomain.com/');
+      setCanonical('https://yourdomain.com/');
+    }
+
+    // Initialize SEO on first load and route changes
+    window.addEventListener('DOMContentLoaded', updateSEOTags);
+    window.addEventListener('hashchange', updateSEOTags);
   </script>
 
   <!-- Localhost build error handling for Flutter -->

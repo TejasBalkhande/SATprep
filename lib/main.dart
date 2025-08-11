@@ -7,6 +7,7 @@ import 'package:cfdptest/screens/profile_screen.dart';
 import 'package:cfdptest/mock_practice.dart';
 import 'package:cfdptest/screens/blog_page.dart';
 import 'package:cfdptest/screens/create_blog_page.dart';
+import 'package:cfdptest/screens/blog_post_page.dart';
 
 void main() => runApp(const SATPrepApp());
 
@@ -29,10 +30,26 @@ class SATPrepApp extends StatelessWidget {
           return ProfileScreen(userData: userData);
         },
         '/mock-practice': (context) => const MockPracticeScreen(),
-
-        '/blogs': (context) => BlogPage(),
+        BlogPage.routeName: (context) => BlogPage(),
+        CreateBlogPage.routeName: (context) => CreateBlogPage(),
+        BlogPostPage.routeName: (context) {
+          final slug = ModalRoute.of(context)!.settings.arguments as String;
+          return BlogPostPage(slug: slug);
+        },
+      },
+      onGenerateRoute: (settings) {
+        // Handle routes like /blog/slug-here (deep links or direct navigation)
+        if (settings.name != null && settings.name!.startsWith('/blog/')) {
+          final slug = settings.name!.split('/blog/')[1];
+          return MaterialPageRoute(
+            builder: (context) => BlogPostPage(slug: slug),
+            settings: settings,
+          );
+        }
+        return null;
       },
     );
+
   }
 
   ThemeData _buildLightTheme() {
