@@ -36,6 +36,8 @@ dependencies:
   flutter_animate: ^4.5.2
   intl: ^0.20.2
   flutter_html: ^3.0.0
+  shared_preferences: ^2.5.3
+  url_launcher: ^6.3.2
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -64,9 +66,12 @@ flutter:
   uses-material-design: true
   assets:
     - assets/questions.json
+    - assets/colleges.json
     - assets/mock1.json
     - assets/mock2.json
     - assets/mock3.json
+    - assets/LOG_SAT.png
+    - assets/LOGO_SAT.png
 
 
   # To add assets to your application, add an assets section, like this:

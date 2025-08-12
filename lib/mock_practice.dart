@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:intl/intl.dart';
 import 'package:cfdptest/practice_session_screen.dart';
-import 'package:cfdptest/practice_mock_test_screen.dart'; // Add this import
+import 'package:cfdptest/practice_mock_test_screen.dart';
 
 class MockPracticeScreen extends StatefulWidget {
   const MockPracticeScreen({super.key});
@@ -179,7 +179,7 @@ class _MockPracticeScreenState extends State<MockPracticeScreen> {
   final Map<String, Map<String, bool?>> _subdomainSelectionState = {};
   bool _isDropdownOpen = false;
   bool _showSelectTopicWarning = false;
-  int _currentIndex = 1; // Practice screen is active
+  int _currentIndex = 1;
 
   @override
   void initState() {
@@ -220,11 +220,7 @@ class _MockPracticeScreenState extends State<MockPracticeScreen> {
     setState(() {
       _selectedTopics[domain]![subdomain]![topic] =
       !_selectedTopics[domain]![subdomain]![topic]!;
-
-      // Update subdomain selection state
       _updateSubdomainSelectionState(domain, subdomain);
-
-      // Update domain selection state
       _updateDomainSelectionState(domain);
     });
   }
@@ -239,7 +235,7 @@ class _MockPracticeScreenState extends State<MockPracticeScreen> {
     } else if (selectedCount == totalCount) {
       _subdomainSelectionState[domain]![subdomain] = true;
     } else {
-      _subdomainSelectionState[domain]![subdomain] = null; // Indeterminate
+      _subdomainSelectionState[domain]![subdomain] = null;
     }
   }
 
@@ -261,7 +257,7 @@ class _MockPracticeScreenState extends State<MockPracticeScreen> {
     } else if (selectedTopics == totalTopics) {
       _domainSelectionState[domain] = true;
     } else {
-      _domainSelectionState[domain] = null; // Indeterminate
+      _domainSelectionState[domain] = null;
     }
   }
 
@@ -274,7 +270,6 @@ class _MockPracticeScreenState extends State<MockPracticeScreen> {
         for (final topic in _domainStructure[domain]![subdomain]!.keys) {
           _selectedTopics[domain]![subdomain]![topic] = newValue;
         }
-        // Update subdomain state
         _subdomainSelectionState[domain]![subdomain] = newValue;
       }
     });
@@ -289,7 +284,6 @@ class _MockPracticeScreenState extends State<MockPracticeScreen> {
         _selectedTopics[domain]![subdomain]![topic] = newValue;
       }
 
-      // Update domain state
       _updateDomainSelectionState(domain);
     });
   }
@@ -302,7 +296,6 @@ class _MockPracticeScreenState extends State<MockPracticeScreen> {
   }
 
   void _startPractice() {
-    // Check if any topic is selected
     bool anyTopicSelected = false;
 
     for (final domain in _selectedTopics.keys) {
@@ -323,7 +316,6 @@ class _MockPracticeScreenState extends State<MockPracticeScreen> {
         _showSelectTopicWarning = true;
       });
 
-      // Show warning message
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Please select at least one topic to practice'),
@@ -334,12 +326,10 @@ class _MockPracticeScreenState extends State<MockPracticeScreen> {
       return;
     }
 
-    // Reset warning
     setState(() {
       _showSelectTopicWarning = false;
     });
 
-    // Navigate to the practice session screen
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -351,18 +341,12 @@ class _MockPracticeScreenState extends State<MockPracticeScreen> {
   }
 
   void _handleMockTestSelected(String mockName, bool isPremium) {
-    // Check if it's a premium test and handle accordingly
-    if (isPremium) {
-      // Check login status (simplified for this example)
-      final userData = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
-      if (userData == null || !(userData['isPremium'] ?? false)) {
-        // User not logged in or not premium
-        Navigator.pushNamed(context, '/login');
-        return;
-      }
+    final userData = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
+    if (isPremium && (userData == null || !(userData['isPremium'] ?? false))) {
+      Navigator.pushNamed(context, '/login');
+      return;
     }
 
-    // Navigate to the mock test screen with the selected JSON file
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -711,169 +695,6 @@ class _MockPracticeScreenState extends State<MockPracticeScreen> {
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Domain Practice'),
-        centerTitle: false,
-        backgroundColor: const Color(0xFF4A7C59),
-        actions: [
-          InkWell(
-            onTap: () {
-              Navigator.pushNamed(context, '/practice');
-            },
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Icon(Icons.school, color: Colors.white, size: 18),
-                SizedBox(width: 4),
-                Text(
-                  'Practice',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 14,
-                    fontWeight: FontWeight.normal,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(width: 12),
-          InkWell(
-            onTap: () {
-              Navigator.pushNamed(context, '/mock');
-            },
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Icon(Icons.assignment, color: Colors.white, size: 18),
-                SizedBox(width: 4),
-                Text(
-                  'Mock',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 14,
-                    fontWeight: FontWeight.normal,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(width: 8),
-        ],
-      ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Targeted Practice',
-              style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                fontWeight: FontWeight.bold,
-                color: const Color(0xFF2E4E36),
-              ),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              'Select specific domains and topics to focus on your weak areas',
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                color: Colors.grey[700],
-              ),
-            ),
-            const SizedBox(height: 24),
-
-            // Side-by-side domains
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Math Domain
-                Expanded(
-                  child: _buildDomainCard('Math', Icons.calculate),
-                ),
-                const SizedBox(width: 16),
-
-                // Reading and Writing Domain
-                Expanded(
-                  child: _buildDomainCard(
-                      'Reading and Writing', Icons.menu_book),
-                ),
-              ],
-            ),
-
-            // Warning message if no topic selected
-            if (_showSelectTopicWarning)
-              Padding(
-                padding: const EdgeInsets.only(top: 16),
-                child: Center(
-                  child: Text(
-                    'Please select at least one topic to practice',
-                    style: TextStyle(
-                      color: Colors.red[700],
-                      fontWeight: FontWeight.w500,
-                      fontSize: 15,
-                    ),
-                  ),
-                ),
-              ),
-
-            const SizedBox(height: 32),
-            Center(
-              child: ElevatedButton(
-                onPressed: _startPractice,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF4A7C59),
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 32, vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  elevation: 3,
-                  shadowColor: const Color(0xFF4A7C59).withOpacity(0.4),
-                ),
-                child: const Text(
-                  'Start Practice Session',
-                  style: TextStyle(fontSize: 18, color: Colors.white),
-                ),
-              ),
-            ),
-            const SizedBox(height: 40),
-
-            // Full SAT Mock Tests Section with Countdown Timer
-            LayoutBuilder(
-              builder: (context, constraints) {
-                if (constraints.maxWidth < 800) {
-                  return Column(
-                    children: [
-                      _buildMockTestsSection(),
-                      const SizedBox(height: 16),
-                      const MockTestCountdownSection(),
-                    ],
-                  );
-                } else {
-                  return Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        child: _buildMockTestsSection(),
-                      ),
-                      const SizedBox(width: 16),
-                      const Expanded(
-                        child: MockTestCountdownSection(),
-                      ),
-                    ],
-                  );
-                }
-              },
-            ),
-            const SizedBox(height: 40),
-          ],
-        ),
-      ),
-    );
-  }
-
   Widget _buildMockTestsSection() {
     return Container(
       padding: const EdgeInsets.all(24),
@@ -912,7 +733,6 @@ class _MockPracticeScreenState extends State<MockPracticeScreen> {
           ),
           const SizedBox(height: 24),
 
-          // Mock Tests Container
           Container(
             padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
             decoration: BoxDecoration(
@@ -924,7 +744,6 @@ class _MockPracticeScreenState extends State<MockPracticeScreen> {
             ),
             child: Column(
               children: [
-                // Free Tests Label
                 Padding(
                   padding: const EdgeInsets.only(bottom: 16),
                   child: Row(
@@ -944,7 +763,6 @@ class _MockPracticeScreenState extends State<MockPracticeScreen> {
                   ),
                 ),
 
-                // Mock Buttons - Centered
                 Wrap(
                   alignment: WrapAlignment.center,
                   spacing: 16,
@@ -957,7 +775,6 @@ class _MockPracticeScreenState extends State<MockPracticeScreen> {
                 ),
                 const SizedBox(height: 24),
 
-                // More Button with Dropdown
                 Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
@@ -999,10 +816,8 @@ class _MockPracticeScreenState extends State<MockPracticeScreen> {
             ),
           ),
 
-          // Premium Tests (appears when dropdown is open)
           if (_isDropdownOpen) ...[
             const SizedBox(height: 32),
-            // Premium Label
             Padding(
               padding: const EdgeInsets.only(bottom: 16),
               child: Row(
@@ -1022,7 +837,6 @@ class _MockPracticeScreenState extends State<MockPracticeScreen> {
               ),
             ),
 
-            // Premium Mock Buttons
             Wrap(
               alignment: WrapAlignment.center,
               spacing: 16,
@@ -1033,7 +847,6 @@ class _MockPracticeScreenState extends State<MockPracticeScreen> {
               ],
             ),
 
-            // Premium Info Text
             Padding(
               padding: const EdgeInsets.only(top: 16),
               child: Text(
@@ -1047,6 +860,132 @@ class _MockPracticeScreenState extends State<MockPracticeScreen> {
             ),
           ],
         ],
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Mock Practice'),
+        centerTitle: false,
+        backgroundColor: const Color(0xFF2B463C),
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+                'Targeted Practice',
+                style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                  color: const Color(0xFF2E4E36),
+                ),
+        ),
+                const SizedBox(height: 8),
+                Text(
+                  'Select specific domains and topics to focus on your weak areas',
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    color: Colors.grey[700],
+                  ),
+                ),
+                const SizedBox(height: 24),
+
+                LayoutBuilder(
+                  builder: (context, constraints) {
+                    if (constraints.maxWidth < 800) {
+                      return Column(
+                        children: [
+                          _buildDomainCard('Math', Icons.calculate),
+                          const SizedBox(height: 16),
+                          _buildDomainCard('Reading and Writing', Icons.menu_book),
+                        ],
+                      );
+                    } else {
+                      return Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: _buildDomainCard('Math', Icons.calculate),
+                          ),
+                          const SizedBox(width: 16),
+                          Expanded(
+                            child: _buildDomainCard('Reading and Writing', Icons.menu_book),
+                          ),
+                        ],
+                      );
+                    }
+                  },
+                ),
+
+                if (_showSelectTopicWarning)
+            Padding(
+              padding: const EdgeInsets.only(top: 16),
+              child: Center(
+                child: Text(
+                  'Please select at least one topic to practice',
+                  style: TextStyle(
+                    color: Colors.red[700],
+                    fontWeight: FontWeight.w500,
+                    fontSize: 15,
+                  ),
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 32),
+            Center(
+              child: ElevatedButton(
+                onPressed: _startPractice,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFF4A7C59),
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 32, vertical: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  elevation: 3,
+                  shadowColor: const Color(0xFF4A7C59).withOpacity(0.4),
+                ),
+                child: const Text(
+                  'Start Practice Session',
+                  style: TextStyle(fontSize: 18, color: Colors.white),
+                ),
+              ),
+            ),
+            const SizedBox(height: 40),
+
+            LayoutBuilder(
+              builder: (context, constraints) {
+                if (constraints.maxWidth < 800) {
+                  return Column(
+                    children: [
+                      _buildMockTestsSection(),
+                      const SizedBox(height: 16),
+                      const MockTestCountdownSection(),
+                    ],
+                  );
+                } else {
+                  return Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: _buildMockTestsSection(),
+                      ),
+                      const SizedBox(width: 16),
+                      const Expanded(
+                        child: MockTestCountdownSection(),
+                      ),
+                    ],
+                  );
+                }
+              },
+            ),
+            const SizedBox(height: 40),
+          ],
+        ),
       ),
     );
   }
@@ -1086,16 +1025,15 @@ class _MockTestCountdownSectionState extends State<MockTestCountdownSection> {
 
   void _calculateNextEvent() {
     final now = DateTime.now();
-    // Next Saturday at 8:00 AM
     int daysUntilSaturday = (DateTime.saturday - now.weekday) % 7;
     if (daysUntilSaturday == 0) {
-      daysUntilSaturday = 7; // If today is Saturday, schedule for next week
+      daysUntilSaturday = 7;
     }
     _nextEvent = DateTime(
       now.year,
       now.month,
       now.day + daysUntilSaturday,
-      8, // 8 AM
+      8,
     );
     _remaining = _nextEvent.difference(now);
   }

@@ -237,7 +237,10 @@ class _BlogPageState extends State<BlogPage> {
         foregroundColor: Colors.white,
         actions: [
           IconButton(
-            icon: Icon(Icons.add),
+            icon: Icon(
+              Icons.add,
+              color: const Color(0xFF2B463C), // your custom green
+            ),
             onPressed: () {
               Navigator.push(
                 context,
@@ -246,6 +249,7 @@ class _BlogPageState extends State<BlogPage> {
             },
             tooltip: 'Create New Post',
           ),
+
           IconButton(
             icon: Icon(Icons.refresh),
             onPressed: _retry,

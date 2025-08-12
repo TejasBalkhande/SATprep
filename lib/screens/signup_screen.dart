@@ -161,16 +161,16 @@ class _SignupScreenState extends State<SignupScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Image.asset(
-                            'assets/sat_logo.png',
+                            'assets/LOGO_SAT.png',
                             height: 60,
                             color: primaryColor,
                           ),
                           const SizedBox(width: 10),
                           Text(
-                            'SAT PREP PRO',
+                            'Mock SAT Exam',
                             style: headlineMedium.copyWith(
-                              fontSize: 24,
-                              fontWeight: FontWeight.w700,
+                              fontSize: 30,
+                              fontWeight: FontWeight.w900,
                               color: primaryColor,
                             ),
                           ),

@@ -8,6 +8,7 @@ import 'package:cfdptest/mock_practice.dart';
 import 'package:cfdptest/screens/blog_page.dart';
 import 'package:cfdptest/screens/create_blog_page.dart';
 import 'package:cfdptest/screens/blog_post_page.dart';
+import 'package:cfdptest/colleges.dart';
 
 void main() => runApp(const SATPrepApp());
 
@@ -17,7 +18,7 @@ class SATPrepApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'SAT Prep Pro',
+      title: 'Mock SAT Exam',
       theme: _buildLightTheme(),
       themeMode: ThemeMode.light,
       initialRoute: '/',
@@ -36,6 +37,7 @@ class SATPrepApp extends StatelessWidget {
           final slug = ModalRoute.of(context)!.settings.arguments as String;
           return BlogPostPage(slug: slug);
         },
+        '/colleges': (context) => const CollegeScreen(), // Use CollegeScreen directly
       },
       onGenerateRoute: (settings) {
         // Handle routes like /blog/slug-here (deep links or direct navigation)
@@ -171,8 +173,16 @@ class SATPrepApp extends StatelessWidget {
   }
 }
 
-class SATPrepHomePage extends StatelessWidget {
+class SATPrepHomePage extends StatefulWidget {
   const SATPrepHomePage({super.key});
+
+  @override
+  State<SATPrepHomePage> createState() => _SATPrepHomePageState();
+}
+
+class _SATPrepHomePageState extends State<SATPrepHomePage> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  bool get isMobile => MediaQuery.of(context).size.width < 600;
 
   @override
   Widget build(BuildContext context) {
@@ -180,22 +190,39 @@ class SATPrepHomePage extends StatelessWidget {
     final loggedIn = userData != null;
 
     return Scaffold(
+      key: _scaffoldKey,
+      endDrawer: isMobile ? NavigationDrawer(loggedIn: loggedIn, userData: userData) : null,
       appBar: AppBar(
-        title: const Text('SAT Prep Pro', style: TextStyle(fontWeight: FontWeight.w700)),
+        title: Row(
+          children: [
+            Image.asset(
+              'assets/LOGO_SAT.png',
+              height: 40, // smaller so it fits well in AppBar
+              color: Colors.white,
+            ),
+            const Text(
+              'Mock SAT Exam',
+              style: TextStyle(
+                fontWeight: FontWeight.w900,
+                fontSize: 20, // AppBar-friendly size
+              ),
+            ),
+          ],
+        ),
         centerTitle: false,
         actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 16),
-            child: Row(
-              children: [
-                _buildNavButton(context, 'Mock Practice', Icons.assignment),
-                _buildNavButton(context, 'Blogs', Icons.school),
-                _buildNavButton(context, 'Colleges', Icons.account_balance),
-                _buildNavButton(context, 'Doubts', Icons.help_outline),
-                _buildAccountButton(context, loggedIn, userData),
-              ],
+          if (!isMobile) ...[
+            _buildNavButton(context, 'Mock Practice', Icons.assignment),
+            _buildNavButton(context, 'Blogs', Icons.school),
+            _buildNavButton(context, 'Colleges', Icons.account_balance),
+            _buildNavButton(context, 'Doubts', Icons.help_outline),
+            _buildAccountButton(context, loggedIn, userData),
+          ] else ...[
+            IconButton(
+              icon: const Icon(Icons.menu, color: Colors.white),
+              onPressed: () => _scaffoldKey.currentState?.openEndDrawer(),
             ),
-          ),
+          ],
         ],
       ),
       body: SingleChildScrollView(
@@ -250,13 +277,138 @@ class SATPrepHomePage extends StatelessWidget {
   }
 }
 
+class NavigationDrawer extends StatelessWidget {
+  final bool loggedIn;
+  final Map<String, dynamic>? userData;
+
+  const NavigationDrawer({super.key, required this.loggedIn, this.userData});
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      backgroundColor: const Color(0xFFF5F9F2),
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: [
+          DrawerHeader(
+            decoration: const BoxDecoration(
+              color: Color(0xFF2B463C),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                const Text(
+                  'SAT Prep Pro',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  loggedIn ? 'Welcome back!' : 'Get started',
+                  style: const TextStyle(
+                    color: Colors.white70,
+                    fontSize: 16,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          _buildDrawerItem(
+            context,
+            'Mock Practice',
+            Icons.assignment,
+            '/mock-practice',
+          ),
+          _buildDrawerItem(
+            context,
+            'Blogs',
+            Icons.school,
+            BlogPage.routeName,
+          ),
+          _buildDrawerItem(
+            context,
+            'Colleges',
+            Icons.account_balance,
+            '/colleges',
+          ),
+          _buildDrawerItem(
+            context,
+            'Doubts',
+            Icons.help_outline,
+            '/doubts',
+          ),
+          _buildDrawerItem(
+            context,
+            'Account',
+            loggedIn ? Icons.account_circle : Icons.login,
+            loggedIn ? '/profile' : '/login',
+            arguments: loggedIn ? userData : null,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildDrawerItem(
+      BuildContext context,
+      String title,
+      IconData icon,
+      String route, {
+        Object? arguments,
+      }) {
+    return ListTile(
+      leading: Icon(icon, color: Color(0xFF444444),), // Black icon
+      title: Text(
+        title,
+        style: const TextStyle(color: Color(0xFF444444),fontSize: 16, ), // Black text
+      ),
+      onTap: () {
+        Navigator.pop(context);
+        Navigator.pushNamed(context, route, arguments: arguments);
+      },
+    );
+  }
+}
+
+  Widget _buildNavButton(BuildContext context, String title, IconData icon) {
+    return TextButton.icon(
+      onPressed: () => Navigator.pushNamed(context, '/${title.toLowerCase().replaceAll(' ', '-')}'),
+      icon: Icon(icon, color: Colors.white),
+      label: Text(title, style: const TextStyle(fontSize: 16, color: Colors.white)),
+    );
+  }
+
+  Widget _buildAccountButton(BuildContext context, bool loggedIn, Map<String, dynamic>? userData) {
+    return IconButton(
+      icon: const Row(
+        children: [
+          Icon(Icons.account_circle, color: Colors.white),
+          SizedBox(width: 8),
+          Text('Account', style: TextStyle(fontSize: 16, color: Colors.white)),
+        ],
+      ),
+      onPressed: () => loggedIn
+          ? Navigator.pushNamed(
+        context,
+        '/profile',
+        arguments: userData,
+      )
+          : Navigator.pushNamed(context, '/login'),
+    );
+  }
+
+
 class HeroSection extends StatelessWidget {
   const HeroSection({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.7,
+      height: MediaQuery.of(context).size.height * 0.75,
       decoration: BoxDecoration(
         image: DecorationImage(
           image: const NetworkImage(

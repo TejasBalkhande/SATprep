@@ -1,0 +1,1538 @@
+[
+  {
+    "name": "Massachusetts Institute of Technology",
+    "location": "Cambridge, MA",
+    "logoUrl": "https://logo.clearbit.com/mit.edu",
+    "acceptanceRate": 4,
+    "satRange": "1520-1580",
+    "testPolicy": {
+      "type": "Test Required",
+      "lastUpdated": "2025-03-03"
+    },
+    "tuition": {
+      "inState": null,
+      "outState": 59800,
+      "avgNetPrice": 30600
+    },
+    "stats": {
+      "studentFacultyRatio": "3:1",
+      "graduationRate": 96,
+      "popularMajors": ["Computer Science", "Engineering", "Mathematics"],
+      "ranking": {
+        "niche": 1,
+        "wsj": 3
+      }
+    },
+    "outcomes": {
+      "avgStartingSalary": 115000,
+      "mobilityIndex": "High"
+    },
+    "links": {
+      "official": "https://www.mit.edu"
+    }
+  },
+  {
+    "name": "Georgetown University",
+    "location": "Washington, DC",
+    "logoUrl": "https://logo.clearbit.com/georgetown.edu",
+    "acceptanceRate": 12,
+    "satRange": "1380-1550",
+    "testPolicy": {
+      "type": "Test Required",
+      "lastUpdated": "2025-03-03"
+    },
+    "tuition": {
+      "inState": null,
+      "outState": 62700,
+      "avgNetPrice": 28900
+    },
+    "stats": {
+      "studentFacultyRatio": "11:1",
+      "graduationRate": 95,
+      "popularMajors": ["Political Science", "International Relations", "Business"],
+      "ranking": {
+        "niche": 12,
+        "wsj": 15
+      }
+    },
+    "outcomes": {
+      "avgStartingSalary": 89000,
+      "mobilityIndex": "High"
+    },
+    "links": {
+      "official": "https://www.georgetown.edu"
+    }
+  },
+  {
+    "name": "University of Florida",
+    "location": "Gainesville, FL",
+    "logoUrl": "https://logo.clearbit.com/ufl.edu",
+    "acceptanceRate": 23,
+    "satRange": "1320-1470",
+    "testPolicy": {
+      "type": "Test Required",
+      "lastUpdated": "2025-08-12"
+    },
+    "tuition": {
+      "inState": 6380,
+      "outState": 28660,
+      "avgNetPrice": 11800
+    },
+    "stats": {
+      "studentFacultyRatio": "17:1",
+      "graduationRate": 90,
+      "popularMajors": ["Biology", "Psychology", "Mechanical Engineering"],
+      "ranking": {
+        "niche": 28,
+        "wsj": 35
+      }
+    },
+    "outcomes": {
+      "avgStartingSalary": 65000,
+      "mobilityIndex": "High"
+    },
+    "links": {
+      "official": "https://www.ufl.edu"
+    }
+  },
+  {
+    "name": "Georgia Institute of Technology",
+    "location": "Atlanta, GA",
+    "logoUrl": "https://logo.clearbit.com/gatech.edu",
+    "acceptanceRate": 16,
+    "satRange": "1370-1530",
+    "testPolicy": {
+      "type": "Test Required",
+      "lastUpdated": "2025-08-12"
+    },
+    "tuition": {
+      "inState": 12080,
+      "outState": 33794,
+      "avgNetPrice": 16400
+    },
+    "stats": {
+      "studentFacultyRatio": "19:1",
+      "graduationRate": 90,
+      "popularMajors": ["Computer Science", "Mechanical Engineering", "Business"],
+      "ranking": {
+        "niche": 5,
+        "wsj": 8
+      }
+    },
+    "outcomes": {
+      "avgStartingSalary": 85000,
+      "mobilityIndex": "High"
+    },
+    "links": {
+      "official": "https://www.gatech.edu"
+    }
+  },
+  {
+    "name": "Purdue University",
+    "location": "West Lafayette, IN",
+    "logoUrl": "https://logo.clearbit.com/purdue.edu",
+    "acceptanceRate": 53,
+    "satRange": "1190-1430",
+    "testPolicy": {
+      "type": "Test Required",
+      "lastUpdated": "2025-03-03"
+    },
+    "tuition": {
+      "inState": 9992,
+      "outState": 28894,
+      "avgNetPrice": 14200
+    },
+    "stats": {
+      "studentFacultyRatio": "13:1",
+      "graduationRate": 83,
+      "popularMajors": ["Engineering", "Business", "Computer Science"],
+      "ranking": {
+        "niche": 54,
+        "wsj": 47
+      }
+    },
+    "outcomes": {
+      "avgStartingSalary": 72000,
+      "mobilityIndex": "High"
+    },
+    "links": {
+      "official": "https://www.purdue.edu"
+    }
+  },
+  {
+    "name": "University of Texas at Austin",
+    "location": "Austin, TX",
+    "logoUrl": "https://logo.clearbit.com/utexas.edu",
+    "acceptanceRate": 29,
+    "satRange": "1230-1480",
+    "testPolicy": {
+      "type": "Test Required",
+      "lastUpdated": "2025-03-03"
+    },
+    "tuition": {
+      "inState": 11448,
+      "outState": 40932,
+      "avgNetPrice": 15700
+    },
+    "stats": {
+      "studentFacultyRatio": "18:1",
+      "graduationRate": 88,
+      "popularMajors": ["Business", "Engineering", "Biology"],
+      "ranking": {
+        "niche": 48,
+        "wsj": 39
+      }
+    },
+    "outcomes": {
+      "avgStartingSalary": 71000,
+      "mobilityIndex": "High"
+    },
+    "links": {
+      "official": "https://www.utexas.edu"
+    }
+  },
+  {
+    "name": "Florida State University",
+    "location": "Tallahassee, FL",
+    "logoUrl": "https://logo.clearbit.com/fsu.edu",
+    "acceptanceRate": 32,
+    "satRange": "1220-1350",
+    "testPolicy": {
+      "type": "Test Required",
+      "lastUpdated": "2025-08-12"
+    },
+    "tuition": {
+      "inState": 5650,
+      "outState": 18650,
+      "avgNetPrice": 12400
+    },
+    "stats": {
+      "studentFacultyRatio": "21:1",
+      "graduationRate": 83,
+      "popularMajors": ["Psychology", "Finance", "Criminal Justice"],
+      "ranking": {
+        "niche": 67,
+        "wsj": 72
+      }
+    },
+    "outcomes": {
+      "avgStartingSalary": 54000,
+      "mobilityIndex": "Medium"
+    },
+    "links": {
+      "official": "https://www.fsu.edu"
+    }
+  },
+  {
+    "name": "University of Georgia",
+    "location": "Athens, GA",
+    "logoUrl": "https://logo.clearbit.com/uga.edu",
+    "acceptanceRate": 40,
+    "satRange": "1270-1450",
+    "testPolicy": {
+      "type": "Test Required",
+      "lastUpdated": "2025-08-12"
+    },
+    "tuition": {
+      "inState": 9050,
+      "outState": 28930,
+      "avgNetPrice": 15800
+    },
+    "stats": {
+      "studentFacultyRatio": "17:1",
+      "graduationRate": 88,
+      "popularMajors": ["Finance", "Biology", "Marketing"],
+      "ranking": {
+        "niche": 49,
+        "wsj": 53
+      }
+    },
+    "outcomes": {
+      "avgStartingSalary": 59000,
+      "mobilityIndex": "Medium"
+    },
+    "links": {
+      "official": "https://www.uga.edu"
+    }
+  },
+  {
+    "name": "Harvard University",
+    "location": "Cambridge, MA",
+    "logoUrl": "https://logo.clearbit.com/harvard.edu",
+    "acceptanceRate": 4,
+    "satRange": "1480-1580",
+    "testPolicy": {
+      "type": "Test Required",
+      "lastUpdated": "2025-03-03"
+    },
+    "tuition": {
+      "inState": null,
+      "outState": 56000,
+      "avgNetPrice": 17900
+    },
+    "stats": {
+      "studentFacultyRatio": "7:1",
+      "graduationRate": 98,
+      "popularMajors": ["Economics", "Computer Science", "Political Science"],
+      "ranking": {
+        "niche": 1,
+        "wsj": 2
+      }
+    },
+    "outcomes": {
+      "avgStartingSalary": 85000,
+      "mobilityIndex": "High"
+    },
+    "links": {
+      "official": "https://www.harvard.edu"
+    }
+  },
+  {
+    "name": "Brown University",
+    "location": "Providence, RI",
+    "logoUrl": "https://logo.clearbit.com/brown.edu",
+    "acceptanceRate": 5,
+    "satRange": "1460-1570",
+    "testPolicy": {
+      "type": "Test Required",
+      "lastUpdated": "2025-03-03"
+    },
+    "tuition": {
+      "inState": null,
+      "outState": 65000,
+      "avgNetPrice": 27100
+    },
+    "stats": {
+      "studentFacultyRatio": "6:1",
+      "graduationRate": 96,
+      "popularMajors": ["Computer Science", "Biology", "Economics"],
+      "ranking": {
+        "niche": 7,
+        "wsj": 6
+      }
+    },
+    "outcomes": {
+      "avgStartingSalary": 78000,
+      "mobilityIndex": "High"
+    },
+    "links": {
+      "official": "https://www.brown.edu"
+    }
+  },
+  {
+    "name": "Dartmouth College",
+    "location": "Hanover, NH",
+    "logoUrl": "https://logo.clearbit.com/dartmouth.edu",
+    "acceptanceRate": 6,
+    "satRange": "1440-1560",
+    "testPolicy": {
+      "type": "Test Required",
+      "lastUpdated": "2025-03-03"
+    },
+    "tuition": {
+      "inState": null,
+      "outState": 62000,
+      "avgNetPrice": 24500
+    },
+    "stats": {
+      "studentFacultyRatio": "7:1",
+      "graduationRate": 96,
+      "popularMajors": ["Economics", "Engineering", "Political Science"],
+      "ranking": {
+        "niche": 8,
+        "wsj": 7
+      }
+    },
+    "outcomes": {
+      "avgStartingSalary": 82000,
+      "mobilityIndex": "High"
+    },
+    "links": {
+      "official": "https://home.dartmouth.edu"
+    }
+  },
+  {
+    "name": "Yale University",
+    "location": "New Haven, CT",
+    "logoUrl": "https://logo.clearbit.com/yale.edu",
+    "acceptanceRate": 5,
+    "satRange": "1480-1580",
+    "testPolicy": {
+      "type": "Test-Flexible",
+      "lastUpdated": "2025-03-03"
+    },
+    "tuition": {
+      "inState": null,
+      "outState": 64000,
+      "avgNetPrice": 20900
+    },
+    "stats": {
+      "studentFacultyRatio": "6:1",
+      "graduationRate": 97,
+      "popularMajors": ["Economics", "Political Science", "History"],
+      "ranking": {
+        "niche": 3,
+        "wsj": 4
+      }
+    },
+    "outcomes": {
+      "avgStartingSalary": 83000,
+      "mobilityIndex": "High"
+    },
+    "links": {
+      "official": "https://www.yale.edu"
+    }
+  },
+  {
+    "name": "Cornell University",
+    "location": "Ithaca, NY",
+    "logoUrl": "https://logo.clearbit.com/cornell.edu",
+    "acceptanceRate": 9,
+    "satRange": "1420-1540",
+    "testPolicy": {
+      "type": "Test-Recommended",
+      "lastUpdated": "2025-03-03"
+    },
+    "tuition": {
+      "inState": null,
+      "outState": 63000,
+      "avgNetPrice": 29800
+    },
+    "stats": {
+      "studentFacultyRatio": "9:1",
+      "graduationRate": 95,
+      "popularMajors": ["Engineering", "Business", "Biology"],
+      "ranking": {
+        "niche": 14,
+        "wsj": 12
+      }
+    },
+    "outcomes": {
+      "avgStartingSalary": 81000,
+      "mobilityIndex": "High"
+    },
+    "links": {
+      "official": "https://www.cornell.edu"
+    }
+  },
+  {
+    "name": "California Institute of Technology",
+    "location": "Pasadena, CA",
+    "logoUrl": "https://logo.clearbit.com/caltech.edu",
+    "acceptanceRate": 4,
+    "satRange": "1530-1580",
+    "testPolicy": {
+      "type": "Test Required",
+      "lastUpdated": "2025-03-03"
+    },
+    "tuition": {
+      "inState": null,
+      "outState": 60000,
+      "avgNetPrice": 30500
+    },
+    "stats": {
+      "studentFacultyRatio": "3:1",
+      "graduationRate": 94,
+      "popularMajors": ["Physics", "Computer Science", "Electrical Engineering"],
+      "ranking": {
+        "niche": 4,
+        "wsj": 5
+      }
+    },
+    "outcomes": {
+      "avgStartingSalary": 105000,
+      "mobilityIndex": "High"
+    },
+    "links": {
+      "official": "https://www.caltech.edu"
+    }
+  },
+  {
+    "name": "University of Central Florida",
+    "location": "Orlando, FL",
+    "logoUrl": "https://logo.clearbit.com/ucf.edu",
+    "acceptanceRate": 41,
+    "satRange": "1170-1340",
+    "testPolicy": {
+      "type": "Test Required",
+      "lastUpdated": "2025-08-12"
+    },
+    "tuition": {
+      "inState": 4870,
+      "outState": 22000,
+      "avgNetPrice": 11200
+    },
+    "stats": {
+      "studentFacultyRatio": "30:1",
+      "graduationRate": 75,
+      "popularMajors": ["Psychology", "Health Sciences", "Hospitality Management"],
+      "ranking": {
+        "niche": 132,
+        "wsj": 145
+      }
+    },
+    "outcomes": {
+      "avgStartingSalary": 52000,
+      "mobilityIndex": "Medium"
+    },
+    "links": {
+      "official": "https://www.ucf.edu"
+    }
+  },
+  {
+    "name": "United States Naval Academy",
+    "location": "Annapolis, MD",
+    "logoUrl": "https://logo.clearbit.com/usna.edu",
+    "acceptanceRate": 8,
+    "satRange": "1210-1410",
+    "testPolicy": {
+      "type": "Test Required",
+      "lastUpdated": "2025-08-12"
+    },
+    "tuition": {
+      "inState": 0,
+      "outState": 0,
+      "avgNetPrice": 0
+    },
+    "stats": {
+      "studentFacultyRatio": "8:1",
+      "graduationRate": 91,
+      "popularMajors": ["Engineering", "Political Science", "Economics"],
+      "ranking": {
+        "niche": 1,
+        "wsj": 1
+      }
+    },
+    "outcomes": {
+      "avgStartingSalary": 85000,
+      "mobilityIndex": "High"
+    },
+    "links": {
+      "official": "https://www.usna.edu"
+    }
+  },
+  {
+    "name": "Florida International University",
+    "location": "Miami, FL",
+    "logoUrl": "https://logo.clearbit.com/fiu.edu",
+    "acceptanceRate": 58,
+    "satRange": "1110-1280",
+    "testPolicy": {
+      "type": "Test Required",
+      "lastUpdated": "2025-08-12"
+    },
+    "tuition": {
+      "inState": 4290,
+      "outState": 18900,
+      "avgNetPrice": 10700
+    },
+    "stats": {
+      "studentFacultyRatio": "26:1",
+      "graduationRate": 67,
+      "popularMajors": ["Hospitality Management", "Psychology", "International Business"],
+      "ranking": {
+        "niche": 245,
+        "wsj": 230
+      }
+    },
+    "outcomes": {
+      "avgStartingSalary": 51000,
+      "mobilityIndex": "Medium"
+    },
+    "links": {
+      "official": "https://www.fiu.edu"
+    }
+  },
+  {
+    "name": "University of South Florida",
+    "location": "Tampa, FL",
+    "logoUrl": "https://logo.clearbit.com/usf.edu",
+    "acceptanceRate": 44,
+    "satRange": "1180-1340",
+    "testPolicy": {
+      "type": "Test Required",
+      "lastUpdated": "2025-08-12"
+    },
+    "tuition": {
+      "inState": 4410,
+      "outState": 15350,
+      "avgNetPrice": 10800
+    },
+    "stats": {
+      "studentFacultyRatio": "22:1",
+      "graduationRate": 74,
+      "popularMajors": ["Biomedical Sciences", "Psychology", "Criminology"],
+      "ranking": {
+        "niche": 115,
+        "wsj": 130
+      }
+    },
+    "outcomes": {
+      "avgStartingSalary": 53000,
+      "mobilityIndex": "Medium"
+    },
+    "links": {
+      "official": "https://www.usf.edu"
+    }
+  },
+  {
+    "name": "Florida Atlantic University",
+    "location": "Boca Raton, FL",
+    "logoUrl": "https://logo.clearbit.com/fau.edu",
+    "acceptanceRate": 75,
+    "satRange": "1050-1220",
+    "testPolicy": {
+      "type": "Test Required",
+      "lastUpdated": "2025-08-12"
+    },
+    "tuition": {
+      "inState": 3740,
+      "outState": 17100,
+      "avgNetPrice": 9700
+    },
+    "stats": {
+      "studentFacultyRatio": "21:1",
+      "graduationRate": 58,
+      "popularMajors": ["Business", "Nursing", "Psychology"],
+      "ranking": {
+        "niche": 320,
+        "wsj": 305
+      }
+    },
+    "outcomes": {
+      "avgStartingSalary": 49000,
+      "mobilityIndex": "Medium"
+    },
+    "links": {
+      "official": "https://www.fau.edu"
+    }
+  },
+  {
+    "name": "Florida Gulf Coast University",
+    "location": "Fort Myers, FL",
+    "logoUrl": "https://logo.clearbit.com/fgcu.edu",
+    "acceptanceRate": 76,
+    "satRange": "1040-1200",
+    "testPolicy": {
+      "type": "Test Required",
+      "lastUpdated": "2025-08-12"
+    },
+    "tuition": {
+      "inState": 4130,
+      "outState": 25100,
+      "avgNetPrice": 10100
+    },
+    "stats": {
+      "studentFacultyRatio": "22:1",
+      "graduationRate": 57,
+      "popularMajors": ["Health Sciences", "Business", "Biology"],
+      "ranking": {
+        "niche": 335,
+        "wsj": 320
+      }
+    },
+    "outcomes": {
+      "avgStartingSalary": 47000,
+      "mobilityIndex": "Medium"
+    },
+    "links": {
+      "official": "https://www.fgcu.edu"
+    }
+  },
+  {
+    "name": "University of North Florida",
+    "location": "Jacksonville, FL",
+    "logoUrl": "https://logo.clearbit.com/unf.edu",
+    "acceptanceRate": 70,
+    "satRange": "1090-1260",
+    "testPolicy": {
+      "type": "Test Required",
+      "lastUpdated": "2025-08-12"
+    },
+    "tuition": {
+      "inState": 3910,
+      "outState": 20300,
+      "avgNetPrice": 9400
+    },
+    "stats": {
+      "studentFacultyRatio": "19:1",
+      "graduationRate": 64,
+      "popularMajors": ["Business", "Health Administration", "Psychology"],
+      "ranking": {
+        "niche": 280,
+        "wsj": 265
+      }
+    },
+    "outcomes": {
+      "avgStartingSalary": 48000,
+      "mobilityIndex": "Medium"
+    },
+    "links": {
+      "official": "https://www.unf.edu"
+    }
+  },
+  {
+    "name": "Florida Agricultural and Mechanical University",
+    "location": "Tallahassee, FL",
+    "logoUrl": "https://logo.clearbit.com/famu.edu",
+    "acceptanceRate": 33,
+    "satRange": "1020-1150",
+    "testPolicy": {
+      "type": "Test Required",
+      "lastUpdated": "2025-08-12"
+    },
+    "tuition": {
+      "inState": 5700,
+      "outState": 17800,
+      "avgNetPrice": 13200
+    },
+    "stats": {
+      "studentFacultyRatio": "15:1",
+      "graduationRate": 53,
+      "popularMajors": ["Health Sciences", "Business", "Criminal Justice"],
+      "ranking": {
+        "niche": 225,
+        "wsj": 210
+      }
+    },
+    "outcomes": {
+      "avgStartingSalary": 50000,
+      "mobilityIndex": "Medium"
+    },
+    "links": {
+      "official": "https://www.famu.edu"
+    }
+  },
+  {
+    "name": "University of West Florida",
+    "location": "Pensacola, FL",
+    "logoUrl": "https://logo.clearbit.com/uwf.edu",
+    "acceptanceRate": 41,
+    "satRange": "1060-1240",
+    "testPolicy": {
+      "type": "Test Required",
+      "lastUpdated": "2025-08-12"
+    },
+    "tuition": {
+      "inState": 3900,
+      "outState": 19200,
+      "avgNetPrice": 10300
+    },
+    "stats": {
+      "studentFacultyRatio": "21:1",
+      "graduationRate": 53,
+      "popularMajors": ["Nursing", "Business", "Education"],
+      "ranking": {
+        "niche": 310,
+        "wsj": 295
+      }
+    },
+    "outcomes": {
+      "avgStartingSalary": 48000,
+      "mobilityIndex": "Medium"
+    },
+    "links": {
+      "official": "https://uwf.edu"
+    }
+  },
+  {
+    "name": "Auburn University at Montgomery",
+    "location": "Montgomery, AL",
+    "logoUrl": "https://logo.clearbit.com/aum.edu",
+    "acceptanceRate": 85,
+    "satRange": "950-1180",
+    "testPolicy": {
+      "type": "Test Required",
+      "lastUpdated": "2025-08-12"
+    },
+    "tuition": {
+      "inState": 9000,
+      "outState": 19300,
+      "avgNetPrice": 12100
+    },
+    "stats": {
+      "studentFacultyRatio": "14:1",
+      "graduationRate": 38,
+      "popularMajors": ["Business", "Nursing", "Criminal Justice"],
+      "ranking": {
+        "niche": 380,
+        "wsj": 365
+      }
+    },
+    "outcomes": {
+      "avgStartingSalary": 45000,
+      "mobilityIndex": "Medium"
+    },
+    "links": {
+      "official": "https://www.aum.edu"
+    }
+  },
+  {
+    "name": "Louisiana Tech University",
+    "location": "Ruston, LA",
+    "logoUrl": "https://logo.clearbit.com/latech.edu",
+    "acceptanceRate": 64,
+    "satRange": "1080-1280",
+    "testPolicy": {
+      "type": "Test Required",
+      "lastUpdated": "2025-08-12"
+    },
+    "tuition": {
+      "inState": 9700,
+      "outState": 19100,
+      "avgNetPrice": 11200
+    },
+    "stats": {
+      "studentFacultyRatio": "23:1",
+      "graduationRate": 61,
+      "popularMajors": ["Engineering", "Business", "Biology"],
+      "ranking": {
+        "niche": 260,
+        "wsj": 245
+      }
+    },
+    "outcomes": {
+      "avgStartingSalary": 52000,
+      "mobilityIndex": "Medium"
+    },
+    "links": {
+      "official": "https://www.latech.edu"
+    }
+  },
+  {
+    "name": "Alcorn State University",
+    "location": "Lorman, MS",
+    "logoUrl": "https://logo.clearbit.com/alcorn.edu",
+    "acceptanceRate": 58,
+    "satRange": "910-1080",
+    "testPolicy": {
+      "type": "Test Required",
+      "lastUpdated": "2025-08-12"
+    },
+    "tuition": {
+      "inState": 7800,
+      "outState": 8200,
+      "avgNetPrice": 16500
+    },
+    "stats": {
+      "studentFacultyRatio": "14:1",
+      "graduationRate": 43,
+      "popularMajors": ["Nursing", "Business", "Biology"],
+      "ranking": {
+        "niche": 350,
+        "wsj": 335
+      }
+    },
+    "outcomes": {
+      "avgStartingSalary": 42000,
+      "mobilityIndex": "Medium"
+    },
+    "links": {
+      "official": "https://www.alcorn.edu"
+    }
+  },
+  {
+    "name": "Delta State University",
+    "location": "Cleveland, MS",
+    "logoUrl": "https://logo.clearbit.com/deltastate.edu",
+    "acceptanceRate": 98,
+    "satRange": "930-1130",
+    "testPolicy": {
+      "type": "Test Required",
+      "lastUpdated": "2025-08-12"
+    },
+    "tuition": {
+      "inState": 7800,
+      "outState": 7800,
+      "avgNetPrice": 12300
+    },
+    "stats": {
+      "studentFacultyRatio": "13:1",
+      "graduationRate": 48,
+      "popularMajors": ["Education", "Nursing", "Business"],
+      "ranking": {
+        "niche": 400,
+        "wsj": 385
+      }
+    },
+    "outcomes": {
+      "avgStartingSalary": 41000,
+      "mobilityIndex": "Medium"
+    },
+    "links": {
+      "official": "https://www.deltastate.edu"
+    }
+  },
+  {
+    "name": "Middle Tennessee State University",
+    "location": "Murfreesboro, TN",
+    "logoUrl": "https://logo.clearbit.com/mtsu.edu",
+    "acceptanceRate": 70,
+    "satRange": "1040-1240",
+    "testPolicy": {
+      "type": "Test Required",
+      "lastUpdated": "2025-08-12"
+    },
+    "tuition": {
+      "inState": 9400,
+      "outState": 28600,
+      "avgNetPrice": 12800
+    },
+    "stats": {
+      "studentFacultyRatio": "18:1",
+      "graduationRate": 52,
+      "popularMajors": ["Business", "Mass Communication", "Criminal Justice"],
+      "ranking": {
+        "niche": 290,
+        "wsj": 275
+      }
+    },
+    "outcomes": {
+      "avgStartingSalary": 46000,
+      "mobilityIndex": "Medium"
+    },
+    "links": {
+      "official": "https://www.mtsu.edu"
+    }
+  },
+  {
+    "name": "University of Memphis",
+    "location": "Memphis, TN",
+    "logoUrl": "https://logo.clearbit.com/memphis.edu",
+    "acceptanceRate": 85,
+    "satRange": "990-1210",
+    "testPolicy": {
+      "type": "Test Required",
+      "lastUpdated": "2025-08-12"
+    },
+    "tuition": {
+      "inState": 9800,
+      "outState": 13800,
+      "avgNetPrice": 13300
+    },
+    "stats": {
+      "studentFacultyRatio": "15:1",
+      "graduationRate": 54,
+      "popularMajors": ["Business", "Nursing", "Psychology"],
+      "ranking": {
+        "niche": 365,
+        "wsj": 350
+      }
+    },
+    "outcomes": {
+      "avgStartingSalary": 48000,
+      "mobilityIndex": "Medium"
+    },
+    "links": {
+      "official": "https://www.memphis.edu"
+    }
+  },
+  {
+    "name": "Tennessee State University",
+    "location": "Nashville, TN",
+    "logoUrl": "https://logo.clearbit.com/tnstate.edu",
+    "acceptanceRate": 100,
+    "satRange": "900-1080",
+    "testPolicy": {
+      "type": "Test Required",
+      "lastUpdated": "2025-08-12"
+    },
+    "tuition": {
+      "inState": 8700,
+      "outState": 21500,
+      "avgNetPrice": 12200
+    },
+    "stats": {
+      "studentFacultyRatio": "14:1",
+      "graduationRate": 44,
+      "popularMajors": ["Nursing", "Business", "Biology"],
+      "ranking": {
+        "niche": 390,
+        "wsj": 375
+      }
+    },
+    "outcomes": {
+      "avgStartingSalary": 43000,
+      "mobilityIndex": "Medium"
+    },
+    "links": {
+      "official": "https://www.tnstate.edu"
+    }
+  },
+  {
+    "name": "University of Tennessee at Chattanooga",
+    "location": "Chattanooga, TN",
+    "logoUrl": "https://logo.clearbit.com/utc.edu",
+    "acceptanceRate": 82,
+    "satRange": "1030-1220",
+    "testPolicy": {
+      "type": "Test Required",
+      "lastUpdated": "2025-08-12"
+    },
+    "tuition": {
+      "inState": 9900,
+      "outState": 25700,
+      "avgNetPrice": 14300
+    },
+    "stats": {
+      "studentFacultyRatio": "18:1",
+      "graduationRate": 50,
+      "popularMajors": ["Nursing", "Business", "Psychology"],
+      "ranking": {
+        "niche": 340,
+        "wsj": 325
+      }
+    },
+    "outcomes": {
+      "avgStartingSalary": 47000,
+      "mobilityIndex": "Medium"
+    },
+    "links": {
+      "official": "https://www.utc.edu"
+    }
+  },
+  {
+    "name": "Fairmont State University",
+    "location": "Fairmont, WV",
+    "logoUrl": "https://logo.clearbit.com/fairmontstate.edu",
+    "acceptanceRate": 86,
+    "satRange": "950-1140",
+    "testPolicy": {
+      "type": "Test Required",
+      "lastUpdated": "2025-08-12"
+    },
+    "tuition": {
+      "inState": 8000,
+      "outState": 16800,
+      "avgNetPrice": 10200
+    },
+    "stats": {
+      "studentFacultyRatio": "16:1",
+      "graduationRate": 45,
+      "popularMajors": ["Education", "Criminal Justice", "Nursing"],
+      "ranking": {
+        "niche": 375,
+        "wsj": 360
+      }
+    },
+    "outcomes": {
+      "avgStartingSalary": 44000,
+      "mobilityIndex": "Medium"
+    },
+    "links": {
+      "official": "https://www.fairmontstate.edu"
+    }
+  },
+  {
+    "name": "United States Air Force Academy",
+    "location": "USAF Academy, CO",
+    "logoUrl": "https://logo.clearbit.com/usafa.edu",
+    "acceptanceRate": 11,
+    "satRange": "1230-1410",
+    "testPolicy": {
+      "type": "Test Required",
+      "lastUpdated": "2025-08-12"
+    },
+    "tuition": {
+      "inState": 0,
+      "outState": 0,
+      "avgNetPrice": 0
+    },
+    "stats": {
+      "studentFacultyRatio": "8:1",
+      "graduationRate": 85,
+      "popularMajors": ["Engineering", "Management", "Aerospace Studies"],
+      "ranking": {
+        "niche": 1,
+        "wsj": 1
+      }
+    },
+    "outcomes": {
+      "avgStartingSalary": 82000,
+      "mobilityIndex": "High"
+    },
+    "links": {
+      "official": "https://www.usafa.edu"
+    }
+  },
+  {
+    "name": "United States Military Academy",
+    "location": "West Point, NY",
+    "logoUrl": "https://logo.clearbit.com/westpoint.edu",
+    "acceptanceRate": 10,
+    "satRange": "1210-1420",
+    "testPolicy": {
+      "type": "Test Required",
+      "lastUpdated": "2025-08-12"
+    },
+    "tuition": {
+      "inState": 0,
+      "outState": 0,
+      "avgNetPrice": 0
+    },
+    "stats": {
+      "studentFacultyRatio": "7:1",
+      "graduationRate": 87,
+      "popularMajors": ["Engineering", "Social Sciences", "Foreign Languages"],
+      "ranking": {
+        "niche": 1,
+        "wsj": 1
+      }
+    },
+    "outcomes": {
+      "avgStartingSalary": 84000,
+      "mobilityIndex": "High"
+    },
+    "links": {
+      "official": "https://www.westpoint.edu"
+    }
+  },
+  {
+    "name": "University of Miami",
+    "location": "Coral Gables, FL",
+    "logoUrl": "https://logo.clearbit.com/miami.edu",
+    "acceptanceRate": 19,
+    "satRange": "1310-1480",
+    "testPolicy": {
+      "type": "Test Required",
+      "lastUpdated": "2025-08-12"
+    },
+    "tuition": {
+      "inState": null,
+      "outState": 57000,
+      "avgNetPrice": 34400
+    },
+    "stats": {
+      "studentFacultyRatio": "12:1",
+      "graduationRate": 83,
+      "popularMajors": ["Business", "Biology", "Nursing"],
+      "ranking": {
+        "niche": 50,
+        "wsj": 55
+      }
+    },
+    "outcomes": {
+      "avgStartingSalary": 67000,
+      "mobilityIndex": "Medium"
+    },
+    "links": {
+      "official": "https://welcome.miami.edu"
+    }
+  },
+  {
+    "name": "Florida Institute of Technology",
+    "location": "Melbourne, FL",
+    "logoUrl": "https://logo.clearbit.com/floridatech.edu",
+    "acceptanceRate": 66,
+    "satRange": "1140-1330",
+    "testPolicy": {
+      "type": "Test Required",
+      "lastUpdated": "2025-08-12"
+    },
+    "tuition": {
+      "inState": null,
+      "outState": 45000,
+      "avgNetPrice": 29900
+    },
+    "stats": {
+      "studentFacultyRatio": "16:1",
+      "graduationRate": 64,
+      "popularMajors": ["Aerospace Engineering", "Mechanical Engineering", "Aviation"],
+      "ranking": {
+        "niche": 220,
+        "wsj": 205
+      }
+    },
+    "outcomes": {
+      "avgStartingSalary": 68000,
+      "mobilityIndex": "Medium"
+    },
+    "links": {
+      "official": "https://www.fit.edu"
+    }
+  },
+  {
+    "name": "Saint Augustine's University",
+    "location": "Raleigh, NC",
+    "logoUrl": "https://logo.clearbit.com/st-aug.edu",
+    "acceptanceRate": 65,
+    "satRange": "840-1010",
+    "testPolicy": {
+      "type": "Test Required",
+      "lastUpdated": "2025-08-12"
+    },
+    "tuition": {
+      "inState": 18700,
+      "outState": 18700,
+      "avgNetPrice": 21300
+    },
+    "stats": {
+      "studentFacultyRatio": "14:1",
+      "graduationRate": 35,
+      "popularMajors": ["Business", "Criminal Justice", "Sports Management"],
+      "ranking": {
+        "niche": 360,
+        "wsj": 345
+      }
+    },
+    "outcomes": {
+      "avgStartingSalary": 42000,
+      "mobilityIndex": "Medium"
+    },
+    "links": {
+      "official": "https://www.st-aug.edu"
+    }
+  },
+  {
+    "name": "Harding University",
+    "location": "Searcy, AR",
+    "logoUrl": "https://logo.clearbit.com/harding.edu",
+    "acceptanceRate": 55,
+    "satRange": "1080-1280",
+    "testPolicy": {
+      "type": "Test Required",
+      "lastUpdated": "2025-08-12"
+    },
+    "tuition": {
+      "inState": 23600,
+      "outState": 23600,
+      "avgNetPrice": 19100
+    },
+    "stats": {
+      "studentFacultyRatio": "14:1",
+      "graduationRate": 64,
+      "popularMajors": ["Nursing", "Business", "Education"],
+      "ranking": {
+        "niche": 250,
+        "wsj": 235
+      }
+    },
+    "outcomes": {
+      "avgStartingSalary": 50000,
+      "mobilityIndex": "Medium"
+    },
+    "links": {
+      "official": "https://www.harding.edu"
+    }
+  },
+  {
+    "name": "College of the Ozarks",
+    "location": "Point Lookout, MO",
+    "logoUrl": "https://logo.clearbit.com/cofo.edu",
+    "acceptanceRate": 9,
+    "satRange": "1030-1220",
+    "testPolicy": {
+      "type": "Test Required",
+      "lastUpdated": "2025-08-12"
+    },
+    "tuition": {
+      "inState": 0,
+      "outState": 0,
+      "avgNetPrice": 0
+    },
+    "stats": {
+      "studentFacultyRatio": "14:1",
+      "graduationRate": 69,
+      "popularMajors": ["Education", "Business", "Agriculture"],
+      "ranking": {
+        "niche": 180,
+        "wsj": 165
+      }
+    },
+    "outcomes": {
+      "avgStartingSalary": 45000,
+      "mobilityIndex": "Medium"
+    },
+    "links": {
+      "official": "https://www.cofo.edu"
+    }
+  },
+  {
+    "name": "William Carey University",
+    "location": "Hattiesburg, MS",
+    "logoUrl": "https://logo.clearbit.com/wmcarey.edu",
+    "acceptanceRate": 48,
+    "satRange": "990-1180",
+    "testPolicy": {
+      "type": "Test Required",
+      "lastUpdated": "2025-08-12"
+    },
+    "tuition": {
+      "inState": 14000,
+      "outState": 14000,
+      "avgNetPrice": 15800
+    },
+    "stats": {
+      "studentFacultyRatio": "14:1",
+      "graduationRate": 52,
+      "popularMajors": ["Nursing", "Education", "Business"],
+      "ranking": {
+        "niche": 330,
+        "wsj": 315
+      }
+    },
+    "outcomes": {
+      "avgStartingSalary": 47000,
+      "mobilityIndex": "Medium"
+    },
+    "links": {
+      "official": "https://www.wmcarey.edu"
+    }
+  },
+  {
+    "name": "Southwestern Assemblies of God University",
+    "location": "Waxahachie, TX",
+    "logoUrl": "https://logo.clearbit.com/sagu.edu",
+    "acceptanceRate": 24,
+    "satRange": "910-1100",
+    "testPolicy": {
+      "type": "Test Required",
+      "lastUpdated": "2025-08-12"
+    },
+    "tuition": {
+      "inState": 23800,
+      "outState": 23800,
+      "avgNetPrice": 22400
+    },
+    "stats": {
+      "studentFacultyRatio": "17:1",
+      "graduationRate": 41,
+      "popularMajors": ["Theology", "Education", "Psychology"],
+      "ranking": {
+        "niche": 370,
+        "wsj": 355
+      }
+    },
+    "outcomes": {
+      "avgStartingSalary": 43000,
+      "mobilityIndex": "Medium"
+    },
+    "links": {
+      "official": "https://www.sagu.edu"
+    }
+  },
+  {
+    "name": "University of Tennessee Southern",
+    "location": "Pulaski, TN",
+    "logoUrl": "https://logo.clearbit.com/utsouthern.edu",
+    "acceptanceRate": 67,
+    "satRange": "960-1150",
+    "testPolicy": {
+      "type": "Test Required",
+      "lastUpdated": "2025-08-12"
+    },
+    "tuition": {
+      "inState": 9000,
+      "outState": 22000,
+      "avgNetPrice": 17300
+    },
+    "stats": {
+      "studentFacultyRatio": "13:1",
+      "graduationRate": 46,
+      "popularMajors": ["Business", "Education", "Nursing"],
+      "ranking": {
+        "niche": 355,
+        "wsj": 340
+      }
+    },
+    "outcomes": {
+      "avgStartingSalary": 44000,
+      "mobilityIndex": "Medium"
+    },
+    "links": {
+      "official": "https://www.utsouthern.edu"
+    }
+  },
+  {
+    "name": "Gallaudet University",
+    "location": "Washington, DC",
+    "logoUrl": "https://logo.clearbit.com/gallaudet.edu",
+    "acceptanceRate": 63,
+    "satRange": "800-1050",
+    "testPolicy": {
+      "type": "Test Required",
+      "lastUpdated": "2025-08-12"
+    },
+    "tuition": {
+      "inState": 17900,
+      "outState": 17900,
+      "avgNetPrice": 17200
+    },
+    "stats": {
+      "studentFacultyRatio": "6:1",
+      "graduationRate": 48,
+      "popularMajors": ["Deaf Studies", "Psychology", "Communication Sciences"],
+      "ranking": {
+        "niche": 300,
+        "wsj": 285
+      }
+    },
+    "outcomes": {
+      "avgStartingSalary": 49000,
+      "mobilityIndex": "Medium"
+    },
+    "links": {
+      "official": "https://www.gallaudet.edu"
+    }
+  },
+  {
+    "name": "Thomas Aquinas College",
+    "location": "Santa Paula, CA",
+    "logoUrl": "https://logo.clearbit.com/thomasaquinas.edu",
+    "acceptanceRate": 78,
+    "satRange": "1180-1380",
+    "testPolicy": {
+      "type": "Test Required",
+      "lastUpdated": "2025-08-12"
+    },
+    "tuition": {
+      "inState": 27000,
+      "outState": 27000,
+      "avgNetPrice": 24200
+    },
+    "stats": {
+      "studentFacultyRatio": "11:1",
+      "graduationRate": 79,
+      "popularMajors": ["Liberal Arts", "Philosophy", "Theology"],
+      "ranking": {
+        "niche": 200,
+        "wsj": 185
+      }
+    },
+    "outcomes": {
+      "avgStartingSalary": 52000,
+      "mobilityIndex": "Medium"
+    },
+    "links": {
+      "official": "https://www.thomasaquinas.edu"
+    }
+  },
+  {
+    "name": "Vanderbilt University",
+    "location": "Nashville, TN",
+    "logoUrl": "https://logo.clearbit.com/vanderbilt.edu",
+    "acceptanceRate": 7,
+    "satRange": "1480-1570",
+    "testPolicy": {
+      "type": "Test Optional",
+      "lastUpdated": "2025-03-03"
+    },
+    "tuition": {
+      "inState": null,
+      "outState": 60000,
+      "avgNetPrice": 27100
+    },
+    "stats": {
+      "studentFacultyRatio": "7:1",
+      "graduationRate": 94,
+      "popularMajors": ["Economics", "Computer Science", "Political Science"],
+      "ranking": {
+        "niche": 10,
+        "wsj": 9
+      }
+    },
+    "outcomes": {
+      "avgStartingSalary": 82000,
+      "mobilityIndex": "High"
+    },
+    "links": {
+      "official": "https://www.vanderbilt.edu"
+    }
+  },
+  {
+    "name": "Stanford University",
+    "location": "Stanford, CA",
+    "logoUrl": "https://logo.clearbit.com/stanford.edu",
+    "acceptanceRate": 4,
+    "satRange": "1470-1570",
+    "testPolicy": {
+      "type": "Test Optional",
+      "lastUpdated": "2025-03-03"
+    },
+    "tuition": {
+      "inState": null,
+      "outState": 58000,
+      "avgNetPrice": 18500
+    },
+    "stats": {
+      "studentFacultyRatio": "5:1",
+      "graduationRate": 95,
+      "popularMajors": ["Computer Science", "Engineering", "Biology"],
+      "ranking": {
+        "niche": 2,
+        "wsj": 3
+      }
+    },
+    "outcomes": {
+      "avgStartingSalary": 94000,
+      "mobilityIndex": "High"
+    },
+    "links": {
+      "official": "https://www.stanford.edu"
+    }
+  },
+  {
+    "name": "Johns Hopkins University",
+    "location": "Baltimore, MD",
+    "logoUrl": "https://logo.clearbit.com/jhu.edu",
+    "acceptanceRate": 7,
+    "satRange": "1510-1570",
+    "testPolicy": {
+      "type": "Test Optional",
+      "lastUpdated": "2025-03-03"
+    },
+    "tuition": {
+      "inState": null,
+      "outState": 60000,
+      "avgNetPrice": 29200
+    },
+    "stats": {
+      "studentFacultyRatio": "6:1",
+      "graduationRate": 94,
+      "popularMajors": ["Public Health", "Neuroscience", "Bioengineering"],
+      "ranking": {
+        "niche": 9,
+        "wsj": 10
+      }
+    },
+    "outcomes": {
+      "avgStartingSalary": 88000,
+      "mobilityIndex": "High"
+    },
+    "links": {
+      "official": "https://www.jhu.edu"
+    }
+  },
+  {
+    "name": "University of Wisconsin-Madison",
+    "location": "Madison, WI",
+    "logoUrl": "https://logo.clearbit.com/wisc.edu",
+    "acceptanceRate": 49,
+    "satRange": "1330-1480",
+    "testPolicy": {
+      "type": "Test Optional",
+      "lastUpdated": "2025-03-03"
+    },
+    "tuition": {
+      "inState": 10800,
+      "outState": 39600,
+      "avgNetPrice": 15700
+    },
+    "stats": {
+      "studentFacultyRatio": "17:1",
+      "graduationRate": 89,
+      "popularMajors": ["Economics", "Psychology", "Biology"],
+      "ranking": {
+        "niche": 46,
+        "wsj": 42
+      }
+    },
+    "outcomes": {
+      "avgStartingSalary": 68000,
+      "mobilityIndex": "High"
+    },
+    "links": {
+      "official": "https://www.wisc.edu"
+    }
+  }
+]
