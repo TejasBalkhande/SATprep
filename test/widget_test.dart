@@ -120,7 +120,7 @@ class SATPrepApp extends StatelessWidget {
           ),
         ),
       ),
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         elevation: 3,
         margin: EdgeInsets.zero,
         shape: RoundedRectangleBorder(

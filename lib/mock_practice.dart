@@ -88,86 +88,147 @@ class _MockPracticeScreenState extends State<MockPracticeScreen> {
         ],
       },
     },
-    'Math': {
-      'Algebra': {
-        'Linear Equations': [
-          'Solving equations',
-          'Graphing lines',
-          'Slope-intercept form',
-          'Writing equations from graphs or context',
+    "Math": {  // CHANGED FROM "Maths" TO "Math"
+      "Geometry and Trigonometry": {
+        "Area and Volume": [
+          "Calculate area of polygons",
+          "Calculate surface area of 3D shapes",
+          "Calculate volume of prisms/pyramids",
+          "Apply area/volume formulas to real-world problems",
+          "Solve problems with composite shapes"
         ],
-        'Systems of Equations': [
-          'Substitution method',
-          'Elimination method',
-          'Graphical solution',
-          'Solving systems with linear and nonlinear equations',
+        "Circles": [
+          "Apply circle theorems",
+          "Calculate circumference/arc length",
+          "Calculate area of circles/sectors",
+          "Solve problems with tangent lines",
+          "Find equations of circles"
         ],
-        'Functions': [
-          'Linear functions',
-          'Quadratic functions',
-          'Exponential functions',
-          'Interpreting function notation',
-          'Domain and range',
+        "Lines, Angles, and Triangles": [
+          "Classify angle types",
+          "Apply angle relationships (vertical, adjacent)",
+          "Use triangle congruence theorems",
+          "Apply similarity principles",
+          "Use parallel/perpendicular line properties"
         ],
+        "Right Triangles and Trigonometry": [
+          "Apply Pythagorean theorem",
+          "Solve special right triangles (30-60-90, 45-45-90)",
+          "Use trigonometric ratios (SOHCAHTOA)",
+          "Solve trigonometric equations",
+          "Apply laws of sines/cosines"
+        ]
       },
-      'Advanced Math': {
-        'Polynomials': [
-          'Factoring',
-          'Polynomial operations (add, subtract, multiply)',
-          'Solving polynomial equations',
-          'Understanding roots and zeros',
+      "Advanced Math": {
+        "Equivalent Expressions": [
+          "Factor algebraic expressions",
+          "Simplify rational expressions",
+          "Rewrite expressions using exponent rules",
+          "Identify equivalent polynomial forms",
+          "Simplify radical expressions"
         ],
-        'Radical Expressions': [
-          'Simplifying radicals',
-          'Operations with radicals',
-          'Solving radical equations',
-          'Rationalizing denominators',
+        "Nonlinear Equations and Systems of Equations": [
+          "Solve quadratic equations",
+          "Solve exponential equations",
+          "Solve radical equations",
+          "Solve systems with nonlinear equations",
+          "Use substitution/elimination methods"
         ],
-        'Quadratic Functions': [
-          'Solving quadratic equations by factoring, completing the square, quadratic formula',
-          'Graphing parabolas',
-          'Vertex and axis of symmetry',
-        ],
+        "Nonlinear Functions": [
+          "Analyze quadratic functions",
+          "Graph exponential functions",
+          "Model with logarithmic functions",
+          "Interpret function transformations",
+          "Analyze polynomial end behavior"
+        ]
       },
-      'Problem Solving and Data Analysis': {
-        'Ratios, Rates, and Proportions': [
-          'Unit rates',
-          'Percentages',
-          'Proportional relationships',
-          'Scale factors',
+      "Algebra": {
+        "Linear Equations in One Variable": [
+          "Solve multi-step equations",
+          "Solve equations with variables on both sides",
+          "Solve literal equations",
+          "Identify equations with no/infinite solutions",
+          "Model real-world scenarios"
         ],
-        'Statistics and Probability': [
-          'Mean, median, mode',
-          'Interpreting data displays (tables, charts, scatterplots)',
-          'Probability calculations',
-          'Conditional probability',
+        "Linear Equations in Two Variables": [
+          "Graph linear equations",
+          "Calculate slope from points/graphs",
+          "Write equations in slope-intercept form",
+          "Convert between equation forms",
+          "Interpret slope and intercepts"
         ],
-        'Modeling with Math': [
-          'Interpreting and creating linear models',
-          'Using functions to model real-world situations',
+        "Linear Functions": [
+          "Evaluate linear functions",
+          "Determine domain and range",
+          "Identify function characteristics",
+          "Compare linear rates of change",
+          "Model with linear functions"
         ],
+        "Linear Inequalities": [
+          "Solve/graph one-variable inequalities",
+          "Solve compound inequalities",
+          "Graph two-variable inequalities",
+          "Solve systems of inequalities",
+          "Interpret inequality solutions"
+        ],
+        "Systems of Linear Equations": [
+          "Solve by graphing",
+          "Solve by substitution",
+          "Solve by elimination",
+          "Classify dependent/independent systems",
+          "Model real-world systems"
+        ]
       },
-      'Geometry and Trigonometry': {
-        'Lines and Angles': [
-          'Parallel and perpendicular lines',
-          'Angle relationships',
-          'Coordinate geometry of lines',
+      "Problem-Solving and Data Analysis": {
+        "Observational Studies and Experiments": [
+          "Distinguish study types",
+          "Identify sampling methods",
+          "Recognize bias in data collection",
+          "Design controlled experiments",
+          "Interpret study conclusions"
         ],
-        'Triangles': [
-          'Properties of triangles',
-          'Pythagorean theorem',
-          'Right triangle trigonometry (sine, cosine, tangent)',
-          'Triangle inequality theorem',
+        "One-Variable Data": [
+          "Calculate measures of center (mean, median)",
+          "Calculate measures of spread (range, IQR)",
+          "Interpret box plots/histograms",
+          "Identify distribution shapes",
+          "Analyze skewed distributions"
         ],
-        'Circles': [
-          'Circle properties',
-          'Arc length and sector area',
-          'Equations of circles',
+        "Percentages": [
+          "Calculate percent change",
+          "Solve markup/discount problems",
+          "Solve compound interest problems",
+          "Analyze proportional relationships",
+          "Interpret percentage points"
         ],
-        'Volume and Surface Area': [
-          'Volumes of prisms, cylinders, cones, spheres',
-          'Surface area calculations',
+        "Probability": [
+          "Calculate theoretical probabilities",
+          "Calculate experimental probabilities",
+          "Apply counting principles",
+          "Analyze compound events",
+          "Use conditional probability"
         ],
+        "Ratios, Rates, Proportions, and Units": [
+          "Convert measurement units",
+          "Calculate unit rates",
+          "Solve proportion problems",
+          "Analyze scale drawings/maps",
+          "Solve dimensional analysis problems"
+        ],
+        "Sample Statistics and Margin of Error": [
+          "Interpret confidence intervals",
+          "Calculate margin of error",
+          "Analyze sampling distributions",
+          "Determine required sample sizes",
+          "Interpret statistical significance"
+        ],
+        "Two-Variable Data": [
+          "Interpret scatterplots",
+          "Calculate correlation coefficients",
+          "Determine regression lines",
+          "Analyze residual plots",
+          "Distinguish correlation vs causation"
+        ]
       },
     },
   };
@@ -878,62 +939,62 @@ class _MockPracticeScreenState extends State<MockPracticeScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-                'Targeted Practice',
-                style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: const Color(0xFF2E4E36),
-                ),
-        ),
-                const SizedBox(height: 8),
-                Text(
-                  'Select specific domains and topics to focus on your weak areas',
-                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: Colors.grey[700],
-                  ),
-                ),
-                const SizedBox(height: 24),
+              'Targeted Practice',
+              style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                fontWeight: FontWeight.bold,
+                color: const Color(0xFF2E4E36),
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              'Select specific domains and topics to focus on your weak areas',
+              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                color: Colors.grey[700],
+              ),
+            ),
+            const SizedBox(height: 24),
 
-                LayoutBuilder(
-                  builder: (context, constraints) {
-                    if (constraints.maxWidth < 800) {
-                      return Column(
-                        children: [
-                          _buildDomainCard('Math', Icons.calculate),
-                          const SizedBox(height: 16),
-                          _buildDomainCard('Reading and Writing', Icons.menu_book),
-                        ],
-                      );
-                    } else {
-                      return Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            child: _buildDomainCard('Math', Icons.calculate),
-                          ),
-                          const SizedBox(width: 16),
-                          Expanded(
-                            child: _buildDomainCard('Reading and Writing', Icons.menu_book),
-                          ),
-                        ],
-                      );
-                    }
-                  },
-                ),
+            LayoutBuilder(
+              builder: (context, constraints) {
+                if (constraints.maxWidth < 800) {
+                  return Column(
+                    children: [
+                      _buildDomainCard('Math', Icons.calculate),  // MATCHES UPDATED KEY
+                      const SizedBox(height: 16),
+                      _buildDomainCard('Reading and Writing', Icons.menu_book),
+                    ],
+                  );
+                } else {
+                  return Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: _buildDomainCard('Math', Icons.calculate),  // MATCHES UPDATED KEY
+                      ),
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: _buildDomainCard('Reading and Writing', Icons.menu_book),
+                      ),
+                    ],
+                  );
+                }
+              },
+            ),
 
-                if (_showSelectTopicWarning)
-            Padding(
-              padding: const EdgeInsets.only(top: 16),
-              child: Center(
-                child: Text(
-                  'Please select at least one topic to practice',
-                  style: TextStyle(
-                    color: Colors.red[700],
-                    fontWeight: FontWeight.w500,
-                    fontSize: 15,
+            if (_showSelectTopicWarning)
+              Padding(
+                padding: const EdgeInsets.only(top: 16),
+                child: Center(
+                  child: Text(
+                    'Please select at least one topic to practice',
+                    style: TextStyle(
+                      color: Colors.red[700],
+                      fontWeight: FontWeight.w500,
+                      fontSize: 15,
+                    ),
                   ),
                 ),
               ),
-            ),
 
             const SizedBox(height: 32),
             Center(

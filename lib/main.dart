@@ -144,7 +144,7 @@ class SATPrepApp extends StatelessWidget {
           ),
         ),
       ),
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         elevation: 3,
         margin: EdgeInsets.zero,
         shape: RoundedRectangleBorder(
@@ -153,6 +153,7 @@ class SATPrepApp extends StatelessWidget {
         color: surfaceColor,
         shadowColor: Colors.black.withOpacity(0.1),
       ),
+
       useMaterial3: true,
       fontFamily: 'Inter',
       dividerTheme: const DividerThemeData(
