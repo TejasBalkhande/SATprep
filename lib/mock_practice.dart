@@ -6,7 +6,14 @@ import 'package:cfdptest/practice_session_screen.dart';
 import 'package:cfdptest/practice_mock_test_screen.dart';
 
 class MockPracticeScreen extends StatefulWidget {
-  const MockPracticeScreen({super.key});
+  final bool scrollToMockTests;
+  final String? section;
+
+  const MockPracticeScreen({
+    super.key,
+    this.scrollToMockTests = false,
+    this.section
+  });
 
   @override
   State<MockPracticeScreen> createState() => _MockPracticeScreenState();
@@ -88,7 +95,7 @@ class _MockPracticeScreenState extends State<MockPracticeScreen> {
         ],
       },
     },
-    "Math": {  // CHANGED FROM "Maths" TO "Math"
+    "Math": {
       "Geometry and Trigonometry": {
         "Area and Volume": [
           "Calculate area of polygons",
@@ -241,11 +248,64 @@ class _MockPracticeScreenState extends State<MockPracticeScreen> {
   bool _isDropdownOpen = false;
   bool _showSelectTopicWarning = false;
   int _currentIndex = 1;
+  final GlobalKey _mockTestsKey = GlobalKey();
+  final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
     super.initState();
     _initializeSelectionMaps();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (widget.scrollToMockTests) {
+        _scrollToMockTests();
+      }
+      if (widget.section != null) {
+        _selectSection(widget.section!);
+      }
+    });
+  }
+
+  void _selectSection(String section) {
+    setState(() {
+      // Reset all selections first
+      _resetAllSelections();
+
+      if (section == 'Math') {
+        // Select entire Math domain
+        _toggleDomainSelection('Math', true);
+      }
+      else if (section == 'Reading') {
+        // Select specific Reading subdomains
+        _toggleSubdomainSelection('Reading and Writing', 'Craft and Structure', true);
+        _toggleSubdomainSelection('Reading and Writing', 'Information and Ideas', true);
+      }
+      else if (section == 'Writing') {
+        // Select specific Writing subdomains
+        _toggleSubdomainSelection('Reading and Writing', 'Expression of Ideas', true);
+        _toggleSubdomainSelection('Reading and Writing', 'Standard English Conventions', true);
+      }
+    });
+  }
+
+  void _resetAllSelections() {
+    for (final domain in _selectedTopics.keys) {
+      for (final subdomain in _selectedTopics[domain]!.keys) {
+        for (final topic in _selectedTopics[domain]![subdomain]!.keys) {
+          _selectedTopics[domain]![subdomain]![topic] = false;
+        }
+      }
+    }
+  }
+
+  void _scrollToMockTests() {
+    if (_mockTestsKey.currentContext != null) {
+      Scrollable.ensureVisible(
+        _mockTestsKey.currentContext!,
+        duration: const Duration(seconds: 1),
+        curve: Curves.easeInOut,
+        alignment: 0.5, // Center the section in the viewport
+      );
+    }
   }
 
   void _initializeSelectionMaps() {
@@ -403,6 +463,7 @@ class _MockPracticeScreenState extends State<MockPracticeScreen> {
 
   void _handleMockTestSelected(String mockName, bool isPremium) {
     final userData = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
+
     if (isPremium && (userData == null || !(userData['isPremium'] ?? false))) {
       Navigator.pushNamed(context, '/login');
       return;
@@ -417,6 +478,7 @@ class _MockPracticeScreenState extends State<MockPracticeScreen> {
       ),
     );
   }
+
 
   Widget _buildMockTestButton(String label, bool isPremium) {
     return ElevatedButton(
@@ -758,6 +820,7 @@ class _MockPracticeScreenState extends State<MockPracticeScreen> {
 
   Widget _buildMockTestsSection() {
     return Container(
+      key: _mockTestsKey,
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -934,6 +997,7 @@ class _MockPracticeScreenState extends State<MockPracticeScreen> {
         backgroundColor: const Color(0xFF2B463C),
       ),
       body: SingleChildScrollView(
+        controller: _scrollController,
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -959,7 +1023,7 @@ class _MockPracticeScreenState extends State<MockPracticeScreen> {
                 if (constraints.maxWidth < 800) {
                   return Column(
                     children: [
-                      _buildDomainCard('Math', Icons.calculate),  // MATCHES UPDATED KEY
+                      _buildDomainCard('Math', Icons.calculate),
                       const SizedBox(height: 16),
                       _buildDomainCard('Reading and Writing', Icons.menu_book),
                     ],
@@ -969,7 +1033,7 @@ class _MockPracticeScreenState extends State<MockPracticeScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Expanded(
-                        child: _buildDomainCard('Math', Icons.calculate),  // MATCHES UPDATED KEY
+                        child: _buildDomainCard('Math', Icons.calculate),
                       ),
                       const SizedBox(width: 16),
                       Expanded(

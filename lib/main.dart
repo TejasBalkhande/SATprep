@@ -10,6 +10,7 @@ import 'package:cfdptest/screens/create_blog_page.dart';
 import 'package:cfdptest/screens/blog_post_page.dart';
 import 'package:cfdptest/colleges.dart';
 
+
 void main() => runApp(const SATPrepApp());
 
 class SATPrepApp extends StatelessWidget {
@@ -37,10 +38,9 @@ class SATPrepApp extends StatelessWidget {
           final slug = ModalRoute.of(context)!.settings.arguments as String;
           return BlogPostPage(slug: slug);
         },
-        '/colleges': (context) => const CollegeScreen(), // Use CollegeScreen directly
+        '/colleges': (context) => const CollegeScreen(),
       },
       onGenerateRoute: (settings) {
-        // Handle routes like /blog/slug-here (deep links or direct navigation)
         if (settings.name != null && settings.name!.startsWith('/blog/')) {
           final slug = settings.name!.split('/blog/')[1];
           return MaterialPageRoute(
@@ -51,16 +51,15 @@ class SATPrepApp extends StatelessWidget {
         return null;
       },
     );
-
   }
 
   ThemeData _buildLightTheme() {
-    const primaryColor = Color(0xFF2B463C); // Deep forest green
-    const secondaryColor = Color(0xFF4A7C59); // Vibrant emerald green
-    const accentColor = Color(0xFF8FCB9B);    // Soft mint green
-    const surfaceColor = Color(0xFFF5F9F2);  // Light green tinted surface
-    const backgroundColor = Color(0xFFF8F9F5); // Off-white with green undertone
-    const errorColor = Color(0xFFE57373);     // Soft red for errors
+    const primaryColor = Color(0xFF2B463C);
+    const secondaryColor = Color(0xFF4A7C59);
+    const accentColor = Color(0xFF8FCB9B);
+    const surfaceColor = Color(0xFFF5F9F2);
+    const backgroundColor = Color(0xFFF8F9F5);
+    const errorColor = Color(0xFFE57373);
 
     return ThemeData(
       brightness: Brightness.light,
@@ -116,20 +115,19 @@ class SATPrepApp extends StatelessWidget {
           letterSpacing: 0.5,
         ),
       ),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: secondaryColor,
-            foregroundColor: Colors.white,
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
-            ),
-            elevation: 4,
-            shadowColor: secondaryColor.withOpacity(0.3),
-            textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: secondaryColor,
+          foregroundColor: Colors.white,
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
           ),
+          elevation: 4,
+          shadowColor: secondaryColor.withOpacity(0.3),
+          textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
         ),
-
+      ),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
           foregroundColor: primaryColor,
@@ -148,11 +146,12 @@ class SATPrepApp extends StatelessWidget {
         elevation: 3,
         margin: EdgeInsets.zero,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(18),
+          borderRadius: BorderRadius.all(Radius.circular(18)),
         ),
         color: surfaceColor,
         shadowColor: Colors.black.withOpacity(0.1),
       ),
+
 
       useMaterial3: true,
       fontFamily: 'Inter',
@@ -198,14 +197,14 @@ class _SATPrepHomePageState extends State<SATPrepHomePage> {
           children: [
             Image.asset(
               'assets/LOGO_SAT.png',
-              height: 40, // smaller so it fits well in AppBar
+              height: 40,
               color: Colors.white,
             ),
             const Text(
               'Mock SAT Exam',
               style: TextStyle(
                 fontWeight: FontWeight.w900,
-                fontSize: 20, // AppBar-friendly size
+                fontSize: 20,
               ),
             ),
           ],
@@ -216,7 +215,6 @@ class _SATPrepHomePageState extends State<SATPrepHomePage> {
             _buildNavButton(context, 'Mock Practice', Icons.assignment),
             _buildNavButton(context, 'Blogs', Icons.school),
             _buildNavButton(context, 'Colleges', Icons.account_balance),
-            _buildNavButton(context, 'Doubts', Icons.help_outline),
             _buildAccountButton(context, loggedIn, userData),
           ] else ...[
             IconButton(
@@ -338,12 +336,6 @@ class NavigationDrawer extends StatelessWidget {
           ),
           _buildDrawerItem(
             context,
-            'Doubts',
-            Icons.help_outline,
-            '/doubts',
-          ),
-          _buildDrawerItem(
-            context,
             'Account',
             loggedIn ? Icons.account_circle : Icons.login,
             loggedIn ? '/profile' : '/login',
@@ -362,10 +354,10 @@ class NavigationDrawer extends StatelessWidget {
         Object? arguments,
       }) {
     return ListTile(
-      leading: Icon(icon, color: Color(0xFF444444),), // Black icon
+      leading: Icon(icon, color: Color(0xFF444444),),
       title: Text(
         title,
-        style: const TextStyle(color: Color(0xFF444444),fontSize: 16, ), // Black text
+        style: const TextStyle(color: Color(0xFF444444),fontSize: 16, ),
       ),
       onTap: () {
         Navigator.pop(context);
@@ -374,34 +366,6 @@ class NavigationDrawer extends StatelessWidget {
     );
   }
 }
-
-  Widget _buildNavButton(BuildContext context, String title, IconData icon) {
-    return TextButton.icon(
-      onPressed: () => Navigator.pushNamed(context, '/${title.toLowerCase().replaceAll(' ', '-')}'),
-      icon: Icon(icon, color: Colors.white),
-      label: Text(title, style: const TextStyle(fontSize: 16, color: Colors.white)),
-    );
-  }
-
-  Widget _buildAccountButton(BuildContext context, bool loggedIn, Map<String, dynamic>? userData) {
-    return IconButton(
-      icon: const Row(
-        children: [
-          Icon(Icons.account_circle, color: Colors.white),
-          SizedBox(width: 8),
-          Text('Account', style: TextStyle(fontSize: 16, color: Colors.white)),
-        ],
-      ),
-      onPressed: () => loggedIn
-          ? Navigator.pushNamed(
-        context,
-        '/profile',
-        arguments: userData,
-      )
-          : Navigator.pushNamed(context, '/login'),
-    );
-  }
-
 
 class HeroSection extends StatelessWidget {
   const HeroSection({super.key});
@@ -458,12 +422,15 @@ class HeroSection extends StatelessWidget {
                 alignment: WrapAlignment.center,
                 children: [
                   FilledButton(
-                    onPressed: () => Navigator.pushNamed(context, '/mock-test'),
+                    onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const MockPracticeScreen(scrollToMockTests: true),
+                      ),
+                    ),
                     style: FilledButton.styleFrom(
-                      backgroundColor:
-                      Theme.of(context).colorScheme.secondary,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 40, vertical: 20),
+                      backgroundColor: Theme.of(context).colorScheme.secondary,
+                      padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(14),
                       ),
@@ -471,13 +438,12 @@ class HeroSection extends StatelessWidget {
                     ),
                     child: const Text(
                       'Start a Mock Test',
-                      style:
-                      TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                     ),
                   ),
                   OutlinedButton(
                     onPressed: () =>
-                        Navigator.pushNamed(context, '/study-plans'),
+                        Navigator.pushNamed(context, '/mock-practice'),
                     style: OutlinedButton.styleFrom(
                       foregroundColor: Colors.white,
                       side:
@@ -723,7 +689,7 @@ class PracticeBySection extends StatelessWidget {
                         'Passport to Advanced Math',
                         'Additional Topics in Math'
                       ],
-                      buttonText: 'Start Math Mock Test',
+                      buttonText: 'Math Mock Practice',
                     ),
                     SizedBox(height: 20),
                     SectionCard(
@@ -736,7 +702,7 @@ class PracticeBySection extends StatelessWidget {
                         'Science Passages',
                         'Evidence-Based Reading Questions'
                       ],
-                      buttonText: 'Start Reading Mock Test',
+                      buttonText: 'Reading Mock Practice',
                     ),
                     SizedBox(height: 20),
                     SectionCard(
@@ -749,7 +715,7 @@ class PracticeBySection extends StatelessWidget {
                         'Style & Tone Improvement',
                         'Punctuation Rules'
                       ],
-                      buttonText: 'Start Writing Mock Test',
+                      buttonText: 'Writing Mock Practice',
                     ),
                   ],
                 );
@@ -887,7 +853,22 @@ class SectionCard extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  String sectionName = '';
+                  if (title == 'Math') {
+                    sectionName = 'Math';
+                  } else if (title == 'Reading') {
+                    sectionName = 'Reading';
+                  } else if (title == 'Writing & Language') {
+                    sectionName = 'Writing';
+                  }
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MockPracticeScreen(section: sectionName),
+                    ),
+                  );
+                },
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   shape: RoundedRectangleBorder(
@@ -908,6 +889,9 @@ class SectionCard extends StatelessWidget {
     );
   }
 }
+
+// ... REST OF THE CODE REMAINS UNCHANGED ...
+
 
 class RankingCountdownSection extends StatefulWidget {
   const RankingCountdownSection({super.key});
@@ -1325,7 +1309,8 @@ class _RankingCountdownSectionState extends State<RankingCountdownSection> {
   }
 
   Widget _buildCtaButton() {
-    return ElevatedButton(
+    return _eventLive
+        ? ElevatedButton(
       onPressed: () => Navigator.pushNamed(context, '/join-ranking'),
       style: ElevatedButton.styleFrom(
         backgroundColor: const Color(0xFF4A7C59),
@@ -1343,17 +1328,16 @@ class _RankingCountdownSectionState extends State<RankingCountdownSection> {
         shadowColor: const Color(0xFF4A7C59).withOpacity(0.4),
         padding: const EdgeInsets.symmetric(vertical: 14),
       ),
-      child: Row(
+      child: const Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(_eventLive
-              ? "Join Live Ranking Test"
-              : "Set Reminder"),
-          const SizedBox(width: 10),
-          const Icon(Icons.arrow_forward, size: 18),
+          Text("Join Live Ranking Test"),
+          SizedBox(width: 10),
+          Icon(Icons.arrow_forward, size: 18),
         ],
       ),
-    );
+    )
+        : const SizedBox.shrink();
   }
 
   Widget _buildLiveState(BuildContext context) {
@@ -1622,23 +1606,29 @@ class QuickNavigationSection extends StatelessWidget {
               NavigationTile(
                 icon: Icons.quiz,
                 label: 'Practice Questions',
-                onTap: () => Navigator.pushNamed(context, '/practice'),
+                onTap: () => Navigator.pushNamed(context, '/mock-practice'),
               ),
               NavigationTile(
                 icon: Icons.assignment_turned_in,
                 label: 'Mock Exams',
-                onTap: () => Navigator.pushNamed(context, '/exams'),
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const MockPracticeScreen(scrollToMockTests: true),
+                  ),
+                ),
               ),
               NavigationTile(
-                icon: Icons.bar_chart,
-                label: 'Score Reports',
-                onTap: () => Navigator.pushNamed(context, '/reports'),
+                icon: Icons.school,
+                label: 'Top Colleges',
+                onTap: () => Navigator.pushNamed(context, '/colleges'),
               ),
               NavigationTile(
                 icon: Icons.menu_book,
                 label: 'Prep Resources',
-                onTap: () => Navigator.pushNamed(context, '/resources'),
+                onTap: () => Navigator.pushNamed(context, BlogPage.routeName),
               ),
+
             ],
           ),
         ],

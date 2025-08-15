@@ -3,7 +3,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_math_fork/flutter_math.dart'; // Added for LaTeX
+import 'package:flutter_math_fork/flutter_math.dart';
 import 'package:intl/intl.dart';
 
 class Question {
@@ -78,6 +78,7 @@ class _PracticeMockTestScreenState extends State<PracticeMockTestScreen> {
   bool _testCompleted = false;
   bool _isLoading = true;
   bool _isSidebarOpen = false;
+  bool _testStarted = false;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   List<Question> get currentSectionQuestions =>
@@ -86,8 +87,8 @@ class _PracticeMockTestScreenState extends State<PracticeMockTestScreen> {
   List<AnswerState> get currentAnswerStates =>
       currentSectionIndex == 0 ? readingWritingAnswerStates : mathAnswerStates;
 
-  int get totalReadingWritingTime => 100 * 60;
-  int get totalMathTime => 80 * 60;
+  int get totalReadingWritingTime => 64 * 60; // Updated to 64 minutes
+  int get totalMathTime => 70 * 60; // Updated to 70 minutes
 
   @override
   void initState() {
@@ -97,30 +98,30 @@ class _PracticeMockTestScreenState extends State<PracticeMockTestScreen> {
 
   Future<void> _loadQuestions() async {
     try {
-      final String data = await rootBundle.loadString('assets/${widget.mockTestId}.json');
+      final String data =
+      await rootBundle.loadString('assets/${widget.mockTestId}.json');
       final List<dynamic> jsonList = json.decode(data);
 
-      final allQuestions = jsonList.map((json) => Question.fromJson(json)).toList();
+      final allQuestions =
+      jsonList.map((json) => Question.fromJson(json)).toList();
 
       setState(() {
-        readingWritingQuestions = allQuestions.where((q) => q.test == "Reading and Writing").toList();
-        mathQuestions = allQuestions.where((q) => q.test == "Math").toList();
+        readingWritingQuestions =
+            allQuestions.where((q) => q.test == "Reading and Writing").toList();
+        mathQuestions =
+            allQuestions.where((q) => q.test == "Math").toList();
 
         readingWritingAnswerStates = List.generate(
-            readingWritingQuestions.length,
-                (index) => AnswerState()
-        );
+            readingWritingQuestions.length, (index) => AnswerState());
 
         mathAnswerStates = List.generate(
-            mathQuestions.length,
-                (index) => AnswerState()
-        );
+            mathQuestions.length, (index) => AnswerState());
 
         _remainingSeconds = totalReadingWritingTime;
         _isLoading = false;
       });
 
-      _startTimer();
+      _showStartConfirmation();
     } catch (e) {
       setState(() {
         _isLoading = false;
@@ -131,6 +132,58 @@ class _PracticeMockTestScreenState extends State<PracticeMockTestScreen> {
     }
   }
 
+  void _showStartConfirmation() {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => AlertDialog(
+        title: const Text('Ready to Begin?'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text('You are about to start the mock test.'),
+            const SizedBox(height: 16),
+            _buildTimeInfo('Reading & Writing', totalReadingWritingTime),
+            _buildTimeInfo('Math', totalMathTime),
+            const SizedBox(height: 16),
+            const Text('The timer will start when you press "Begin Test".'),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pushNamed(context, '/mock-practice'),
+            child: const Text('Cancel'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pop(context);
+              setState(() => _testStarted = true);
+              _startTimer();
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: const Color(0xFF4A7C59),
+            ),
+            child: const Text('Begin Test', style: TextStyle(color: Colors.white)),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildTimeInfo(String section, int seconds) {
+    final minutes = seconds ~/ 60;
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4),
+      child: Row(
+        children: [
+          Text('$section: ', style: const TextStyle(fontWeight: FontWeight.bold)),
+          Text('$minutes minutes'),
+        ],
+      ),
+    );
+  }
+
   void _startTimer() {
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (!mounted) return;
@@ -138,14 +191,7 @@ class _PracticeMockTestScreenState extends State<PracticeMockTestScreen> {
       setState(() {
         _remainingSeconds--;
         if (_remainingSeconds <= 0) {
-          if (currentSectionIndex == 0) {
-            currentSectionIndex = 1;
-            currentQuestionIndex = 0;
-            _remainingSeconds = totalMathTime;
-          } else {
-            _timer?.cancel();
-            _submitTest();
-          }
+          _submitTest(); // Submit test when time expires
         }
       });
     });
@@ -177,7 +223,7 @@ class _PracticeMockTestScreenState extends State<PracticeMockTestScreen> {
     });
   }
 
-  void _finishTest() {
+  void _finishSection() {
     if (currentSectionIndex == 0) {
       setState(() {
         currentSectionIndex = 1;
@@ -189,18 +235,36 @@ class _PracticeMockTestScreenState extends State<PracticeMockTestScreen> {
     }
   }
 
+  void _showSubmitConfirmation() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Submit Test?'),
+        content: const Text('Are you sure you want to submit your test? You will not be able to make changes after submission.'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Cancel'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pop(context);
+              _submitTest();
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: const Color(0xFF4A7C59),
+            ),
+            child: const Text('Submit', style: TextStyle(color: Colors.white)),
+          ),
+        ],
+      ),
+    );
+  }
+
   String _formatTime(int seconds) {
-    int hours = seconds ~/ 3600;
     int minutes = (seconds % 3600) ~/ 60;
     int remainingSeconds = seconds % 60;
-
-    if (hours > 0) {
-      return '${hours.toString().padLeft(2, '0')}:'
-          '${minutes.toString().padLeft(2, '0')}:'
-          '${remainingSeconds.toString().padLeft(2, '0')}';
-    }
-    return '${minutes.toString().padLeft(2, '0')}:'
-        '${remainingSeconds.toString().padLeft(2, '0')}';
+    return '${minutes.toString().padLeft(2, '0')}:${remainingSeconds.toString().padLeft(2, '0')}';
   }
 
   Color _getOptionColor(Question question, String option, AnswerState state) {
@@ -358,6 +422,7 @@ class _PracticeMockTestScreenState extends State<PracticeMockTestScreen> {
             ),
           ),
           const SizedBox(height: 16),
+
           Expanded(
             child: GridView.builder(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -410,7 +475,7 @@ class _PracticeMockTestScreenState extends State<PracticeMockTestScreen> {
           if (!isDrawer) ...[
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: _finishTest,
+              onPressed: _finishSection,
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFF4A7C59),
                 padding: const EdgeInsets.symmetric(vertical: 16),
@@ -418,10 +483,10 @@ class _PracticeMockTestScreenState extends State<PracticeMockTestScreen> {
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
-              child: const Center(
+              child: Center(
                 child: Text(
-                  'Submit Test',
-                  style: TextStyle(color: Colors.white, fontSize: 16),
+                  currentSectionIndex == 0 ? 'Next Section' : 'Submit Test',
+                  style: const TextStyle(color: Colors.white, fontSize: 16),
                 ),
               ),
             ),
@@ -434,8 +499,19 @@ class _PracticeMockTestScreenState extends State<PracticeMockTestScreen> {
   @override
   Widget build(BuildContext context) {
     final isMobile = MediaQuery.of(context).size.width < 768;
+    const double buttonBarHeight = 80.0;
 
     if (_isLoading) {
+      return Scaffold(
+        appBar: AppBar(
+          title: const Text('SAT Mock Test'),
+          backgroundColor: const Color(0xFF4A7C59),
+        ),
+        body: const Center(child: CircularProgressIndicator()),
+      );
+    }
+
+    if (!_testStarted) {
       return Scaffold(
         appBar: AppBar(
           title: const Text('SAT Mock Test'),
@@ -504,122 +580,165 @@ class _PracticeMockTestScreenState extends State<PracticeMockTestScreen> {
         ],
       ),
       endDrawer: isMobile ? Drawer(child: _buildQuestionGrid(isDrawer: true)) : null,
-      body: Row(
+      body: Stack(
         children: [
-          Expanded(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  LinearProgressIndicator(
-                    value: (currentQuestionIndex + 1) / currentSectionQuestions.length,
-                    backgroundColor: Colors.grey[300],
-                    color: const Color(0xFF4A7C59),
-                    minHeight: 8,
-                    borderRadius: BorderRadius.circular(4),
+          Row(
+            children: [
+              Expanded(
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.only(
+                    left: 16,
+                    right: 16,
+                    top: 16,
+                    bottom: buttonBarHeight + 32,
                   ),
-                  const SizedBox(height: 16),
-
-                  Text(
-                    'Question ${currentQuestionIndex + 1}/${currentSectionQuestions.length}',
-                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 20),
-
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                    decoration: BoxDecoration(
-                      color: question.difficulty == 'Easy'
-                          ? Colors.green[100]
-                          : question.difficulty == 'Medium'
-                          ? Colors.amber[100]
-                          : Colors.red[100],
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Text(
-                      question.difficulty,
-                      style: TextStyle(
-                        color: question.difficulty == 'Easy'
-                            ? Colors.green[800]
-                            : question.difficulty == 'Medium'
-                            ? Colors.amber[800]
-                            : Colors.red[800],
-                        fontWeight: FontWeight.bold,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      LinearProgressIndicator(
+                        value: (currentQuestionIndex + 1) / currentSectionQuestions.length,
+                        backgroundColor: Colors.grey[300],
+                        color: const Color(0xFF4A7C59),
+                        minHeight: 8,
+                        borderRadius: BorderRadius.circular(4),
                       ),
-                    ),
-                  ),
-                  const SizedBox(height: 16),
+                      const SizedBox(height: 16),
 
-                  RichText(
-                    text: TextSpan(
-                      style: DefaultTextStyle.of(context).style,
-                      children: [
-                        TextSpan(
-                          text: '${question.domain} • ',
-                          style: const TextStyle(
+                      Text(
+                        'Question ${currentQuestionIndex + 1}/${currentSectionQuestions.length}',
+                        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(height: 20),
+
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                        decoration: BoxDecoration(
+                          color: question.difficulty == 'Easy'
+                              ? Colors.green[100]
+                              : question.difficulty == 'Medium'
+                              ? Colors.amber[100]
+                              : Colors.red[100],
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Text(
+                          question.difficulty,
+                          style: TextStyle(
+                            color: question.difficulty == 'Easy'
+                                ? Colors.green[800]
+                                : question.difficulty == 'Medium'
+                                ? Colors.amber[800]
+                                : Colors.red[800],
                             fontWeight: FontWeight.bold,
-                            color: Color(0xFF4A7C59),
-                            fontSize: 27,
                           ),
                         ),
-                        TextSpan(
-                          text: question.skill,
-                          style: const TextStyle(
-                            color: Colors.grey,
-                            fontSize: 27,
+                      ),
+                      const SizedBox(height: 16),
+
+                      RichText(
+                        text: TextSpan(
+                          style: DefaultTextStyle.of(context).style,
+                          children: [
+                            TextSpan(
+                              text: '${question.domain} • ',
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xFF4A7C59),
+                                fontSize: 27,
+                              ),
+                            ),
+                            TextSpan(
+                              text: question.skill,
+                              style: const TextStyle(
+                                color: Colors.grey,
+                                fontSize: 27,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+
+                      // Updated to use LaTeX rendering
+                      _buildTextWithLatex(
+                        question.questionText,
+                        fontSize: 18,
+                        textStyle: const TextStyle(height: 1.5),
+                      ),
+                      const SizedBox(height: 20),
+
+                      if (question.image != null && question.image!.isNotEmpty)
+                        Container(
+                          margin: const EdgeInsets.only(bottom: 20),
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.grey[300]!),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(12),
+                            child: Image.asset(
+                              question.image!,
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 20),
 
-                  // Updated to use LaTeX rendering
-                  _buildTextWithLatex(
-                    question.questionText,
-                    fontSize: 18,
-                    textStyle: const TextStyle(height: 1.5),
-                  ),
-                  const SizedBox(height: 20),
-
-                  if (question.image != null && question.image!.isNotEmpty)
-                    Container(
-                      margin: const EdgeInsets.only(bottom: 20),
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey[300]!),
-                        borderRadius: BorderRadius.circular(12),
+                      ListView.separated(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: question.options.length,
+                        separatorBuilder: (context, index) => const SizedBox(height: 12),
+                        itemBuilder: (context, index) {
+                          final option = question.options[index];
+                          return OptionCard(
+                            option: option,
+                            isSelected: answerState.selectedOption == option,
+                            backgroundColor: _getOptionColor(question, option, answerState),
+                            icon: _getOptionIcon(question, option, answerState),
+                            iconColor: _getOptionIconColor(question, option, answerState),
+                            onTap: () => _selectOption(option),
+                          );
+                        },
                       ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(12),
-                        child: Image.asset(
-                          question.image!,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-
-                  ListView.separated(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: question.options.length,
-                    separatorBuilder: (context, index) => const SizedBox(height: 12),
-                    itemBuilder: (context, index) {
-                      final option = question.options[index];
-                      return OptionCard(
-                        option: option,
-                        isSelected: answerState.selectedOption == option,
-                        backgroundColor: _getOptionColor(question, option, answerState),
-                        icon: _getOptionIcon(question, option, answerState),
-                        iconColor: _getOptionIconColor(question, option, answerState),
-                        onTap: () => _selectOption(option),
-                      );
-                    },
+                      const SizedBox(height: 30),
+                    ],
                   ),
-                  const SizedBox(height: 30),
+                ),
+              ),
 
+              if (!isMobile)
+                Container(
+                  width: 300,
+                  decoration: const BoxDecoration(
+                    border: Border(left: BorderSide(color: Colors.grey)),
+                  ),
+                  child: _buildQuestionGrid(isDrawer: false),
+                ),
+            ],
+          ),
+
+          // Fixed bottom button bar
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+              height: 70, // Increased height for better touch area
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                border: Border(top: BorderSide(color: Colors.grey.shade300)),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.3),
+                    blurRadius: 10,
+                    offset: const Offset(0, -2),
+                  ),
+                ],
+              ),
+              child: Row(
+                children: [
+                  // Left-aligned navigation buttons
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       ElevatedButton(
                         onPressed: currentQuestionIndex > 0
@@ -627,65 +746,95 @@ class _PracticeMockTestScreenState extends State<PracticeMockTestScreen> {
                             : null,
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(0xFF4A7C59),
-                          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                          minimumSize: const Size(100, 48), // Consistent button size
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
                           ),
                         ),
                         child: const Text('Previous', style: TextStyle(color: Colors.white)),
                       ),
-                      ElevatedButton(
-                        onPressed: _toggleMarkForReview,
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: answerState.marked
-                              ? Colors.amber[700]
-                              : const Color(0xFF4A7C59),
-                          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                        ),
-                        child: Text(
-                          answerState.marked ? 'Marked' : 'Mark for Review',
-                          style: const TextStyle(color: Colors.white),
-                        ),
-                      ),
+                      const SizedBox(width: 12),
                       ElevatedButton(
                         onPressed: () {
                           if (isLastQuestion) {
-                            _finishTest();
+                            _finishSection();
                           } else {
                             _goToQuestion(currentQuestionIndex + 1);
                           }
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(0xFF4A7C59),
-                          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                          minimumSize: const Size(100, 48),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
                           ),
                         ),
                         child: Text(
-                          isLastQuestion ? 'Finish Section' : 'Next',
+                          isLastQuestion ? 'Finish' : 'Next',
                           style: const TextStyle(color: Colors.white),
                         ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 20),
+
+                  // Spacer to push middle button to center
+                  Expanded(
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: ElevatedButton(
+                        onPressed: _toggleMarkForReview,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: answerState.marked
+                              ? Colors.amber[700]
+                              : const Color(0xFF4A7C59),
+                          minimumSize: const Size(120, 48),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                        child: Text(
+                          answerState.marked ? 'Marked' : 'Mark',
+                          style: const TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  // Right-aligned submit button
+                  if (currentSectionIndex == 0)
+                    ElevatedButton(
+                      onPressed: _finishSection,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFF4A7C59),
+                        minimumSize: const Size(120, 48),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                      child: const Text(
+                        'Start Math',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    )
+                  else
+                    ElevatedButton(
+                      onPressed: _showSubmitConfirmation,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color(0xFFFF9915),
+                        minimumSize: const Size(120, 48),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                      child: const Text(
+                        'Submit',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
                 ],
               ),
             ),
-          ),
-
-          if (!isMobile)
-            Container(
-              width: 300,
-              decoration: const BoxDecoration(
-                border: Border(left: BorderSide(color: Colors.grey)),
-              ),
-              child: _buildQuestionGrid(isDrawer: false),
-            ),
+          )
         ],
       ),
     );
@@ -1217,13 +1366,13 @@ class MockTestResultsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final readingWritingScore = _calculateScore(
-        readingWritingQuestions,
-        readingWritingAnswerStates
+      readingWritingQuestions,
+      readingWritingAnswerStates,
     );
 
     final mathScore = _calculateScore(
-        mathQuestions,
-        mathAnswerStates
+      mathQuestions,
+      mathAnswerStates,
     );
 
     final totalScore = readingWritingScore + mathScore;
@@ -1231,11 +1380,16 @@ class MockTestResultsScreen extends StatelessWidget {
     final maxMathScore = mathQuestions.length;
     final maxTotalScore = maxReadingWritingScore + maxMathScore;
 
-    final rwStats = _calculateSectionStats(readingWritingQuestions, readingWritingAnswerStates);
+    final rwStats =
+    _calculateSectionStats(readingWritingQuestions, readingWritingAnswerStates);
     final mathStats = _calculateSectionStats(mathQuestions, mathAnswerStates);
 
-    final rwSkillAccuracy = _calculateSkillAccuracy(readingWritingQuestions, readingWritingAnswerStates);
-    final mathSkillAccuracy = _calculateSkillAccuracy(mathQuestions, mathAnswerStates);
+    final rwSkillAccuracy =
+    _calculateSkillAccuracy(readingWritingQuestions, readingWritingAnswerStates);
+    final mathSkillAccuracy =
+    _calculateSkillAccuracy(mathQuestions, mathAnswerStates);
+
+    final isMobile = MediaQuery.of(context).size.width < 600;
 
     return DefaultTabController(
       length: 3,
@@ -1243,27 +1397,28 @@ class MockTestResultsScreen extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Test Results'),
           backgroundColor: const Color(0xFF4A7C59),
-          bottom: const TabBar(
+          bottom: TabBar(
             labelColor: Colors.white,
             unselectedLabelColor: Colors.white70,
             indicatorColor: Colors.white,
-            labelStyle: TextStyle(
+            labelStyle: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
             ),
-            unselectedLabelStyle: TextStyle(
+            unselectedLabelStyle: const TextStyle(
               fontSize: 16,
             ),
-            tabs: [
+            isScrollable: isMobile,
+            tabs: const [
               Tab(text: 'Summary'),
               Tab(text: 'Reading & Writing'),
               Tab(text: 'Math'),
             ],
           ),
         ),
-
         body: TabBarView(
           children: [
+            // SUMMARY TAB
             SingleChildScrollView(
               padding: const EdgeInsets.all(24),
               child: Column(
@@ -1271,74 +1426,126 @@ class MockTestResultsScreen extends StatelessWidget {
                 children: [
                   const Text(
                     'Test Summary',
-                    style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Color(0xFF2B463C)),
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF2B463C),
+                    ),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 30),
 
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      _buildScoreCard(
-                        'Reading & Writing',
-                        readingWritingScore,
-                        maxReadingWritingScore,
-                        Icons.menu_book,
-                        const Color(0xFF4A7C59),
-                      ),
-                      _buildScoreCard(
-                        'Math',
-                        mathScore,
-                        maxMathScore,
-                        Icons.calculate,
-                        const Color(0xFF2196F3),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 30),
-
-                  Row(
-                    children: [
-                      Expanded(
-                        child: _buildSectionStatsCard(
-                          rwStats,
+                  // Score Cards
+                  if (isMobile) ...[
+                    _buildScoreCard(
+                      'Reading & Writing',
+                      readingWritingScore,
+                      maxReadingWritingScore,
+                      Icons.menu_book,
+                      const Color(0xFF4A7C59),
+                    ),
+                    const SizedBox(height: 20),
+                    _buildScoreCard(
+                      'Math',
+                      mathScore,
+                      maxMathScore,
+                      Icons.calculate,
+                      const Color(0xFF2196F3),
+                    ),
+                  ] else
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        _buildScoreCard(
+                          'Reading & Writing',
+                          readingWritingScore,
+                          maxReadingWritingScore,
+                          Icons.menu_book,
                           const Color(0xFF4A7C59),
                         ),
-                      ),
-                      const SizedBox(width: 20),
-                      Expanded(
-                        child: _buildSectionStatsCard(
-                          mathStats,
+                        _buildScoreCard(
+                          'Math',
+                          mathScore,
+                          maxMathScore,
+                          Icons.calculate,
                           const Color(0xFF2196F3),
                         ),
-                      ),
-                    ],
-                  ),
+                      ],
+                    ),
                   const SizedBox(height: 30),
 
-                  Row(
-                    children: [
-                      Expanded(
-                        child: _buildSkillPerformance(
-                          'Reading & Writing Skills',
-                          rwSkillAccuracy,
-                          const Color(0xFF4A7C59),
+                  // Stats Cards
+                  if (isMobile) ...[
+                    _buildSectionStatsCard(
+                      rwStats,
+                      const Color(0xFF4A7C59),
+                    ),
+                    const SizedBox(height: 20),
+                    _buildSectionStatsCard(
+                      mathStats,
+                      const Color(0xFF2196F3),
+                    ),
+                  ] else
+                    Row(
+                      children: [
+                        Expanded(
+                          child: _buildSectionStatsCard(
+                            rwStats,
+                            const Color(0xFF4A7C59),
+                          ),
                         ),
-                      ),
-                      const SizedBox(width: 20),
-                      Expanded(
-                        child: _buildSkillPerformance(
-                          'Math Skills',
-                          mathSkillAccuracy,
-                          const Color(0xFF2196F3),
+                        const SizedBox(width: 20),
+                        Expanded(
+                          child: _buildSectionStatsCard(
+                            mathStats,
+                            const Color(0xFF2196F3),
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
+                      ],
+                    ),
                   const SizedBox(height: 30),
 
+                  // Skill Performance
+                  if (isMobile) ...[
+                    _buildSkillPerformance(
+                      'Reading & Writing Skills',
+                      rwSkillAccuracy,
+                      const Color(0xFF4A7C59),
+                    ),
+                    const SizedBox(height: 20),
+                    _buildSkillPerformance(
+                      'Math Skills',
+                      mathSkillAccuracy,
+                      const Color(0xFF2196F3),
+                    ),
+                  ] else
+                    Row(
+                      children: [
+                        Expanded(
+                          child: _buildSkillPerformance(
+                            'Reading & Writing Skills',
+                            rwSkillAccuracy,
+                            const Color(0xFF4A7C59),
+                          ),
+                        ),
+                        const SizedBox(width: 20),
+                        Expanded(
+                          child: _buildSkillPerformance(
+                            'Math Skills',
+                            mathSkillAccuracy,
+                            const Color(0xFF2196F3),
+                          ),
+                        ),
+                      ],
+                    ),
+                  const SizedBox(height: 30),
+
+                  // Total Score Card
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 30),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 40,
+                      vertical: 30,
+                    ),
                     decoration: BoxDecoration(
                       gradient: const LinearGradient(
                         colors: [Color(0xFFF5F9F2), Color(0xFFE8F5E9)],
@@ -1386,6 +1593,7 @@ class MockTestResultsScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 40),
 
+                  // Back Button
                   SizedBox(
                     width: 300,
                     child: ElevatedButton(
@@ -1399,7 +1607,8 @@ class MockTestResultsScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(12),
                         ),
                         elevation: 4,
-                        shadowColor: const Color(0xFF4A7C59).withOpacity(0.3),
+                        shadowColor:
+                        const Color(0xFF4A7C59).withOpacity(0.3),
                       ),
                       child: const Text(
                         'Back to Tests',
@@ -1411,18 +1620,26 @@ class MockTestResultsScreen extends StatelessWidget {
               ),
             ),
 
-            // Updated to use LaTeX rendering
-            _buildReviewTab(readingWritingQuestions, readingWritingAnswerStates),
+            // REVIEW TAB 1
+            _buildReviewTab(
+              readingWritingQuestions,
+              readingWritingAnswerStates,
+            ),
 
-            // Updated to use LaTeX rendering
-            _buildReviewTab(mathQuestions, mathAnswerStates),
+            // REVIEW TAB 2
+            _buildReviewTab(
+              mathQuestions,
+              mathAnswerStates,
+            ),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildReviewTab(List<Question> questions, List<AnswerState> answerStates) {
+
+  Widget _buildReviewTab(
+      List<Question> questions, List<AnswerState> answerStates) {
     return ListView.builder(
       itemCount: questions.length,
       padding: const EdgeInsets.all(16),
@@ -1434,7 +1651,9 @@ class MockTestResultsScreen extends StatelessWidget {
 
         return Card(
           elevation: 3,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(18),
+          ),
           margin: const EdgeInsets.only(bottom: 16),
           color: const Color(0xFFF5F9F2),
           child: Padding(
@@ -1442,18 +1661,22 @@ class MockTestResultsScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                // Question header row
                 Row(
                   children: [
                     Container(
                       width: 36,
                       height: 36,
                       decoration: BoxDecoration(
-                        color: isCorrect ? const Color(0xFF4A7C59).withOpacity(0.2) : Colors.red.withOpacity(0.2),
+                        color: isCorrect
+                            ? const Color(0xFF4A7C59).withOpacity(0.2)
+                            : Colors.red.withOpacity(0.2),
                         shape: BoxShape.circle,
                       ),
                       child: Icon(
                         isCorrect ? Icons.check : Icons.close,
-                        color: isCorrect ? const Color(0xFF4A7C59) : Colors.red,
+                        color:
+                        isCorrect ? const Color(0xFF4A7C59) : Colors.red,
                         size: 20,
                       ),
                     ),
@@ -1468,7 +1691,8 @@ class MockTestResultsScreen extends StatelessWidget {
                     ),
                     const Spacer(),
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 6),
                       decoration: BoxDecoration(
                         color: question.difficulty == 'Easy'
                             ? Colors.green[100]
@@ -1493,20 +1717,26 @@ class MockTestResultsScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
 
-                // Updated to use LaTeX rendering
+                // Question text (LaTeX support)
                 _buildTextWithLatex(
                   question.questionText,
                   fontSize: 16,
-                  textStyle: const TextStyle(height: 1.5, color: Color(0xFF2B463C)),
+                  textStyle: const TextStyle(
+                    height: 1.5,
+                    color: Color(0xFF2B463C),
+                  ),
                 ),
                 const SizedBox(height: 16),
 
+                // Optional image
                 if (question.image != null && question.image!.isNotEmpty)
                   Container(
                     margin: const EdgeInsets.only(bottom: 16),
                     child: Image.asset(question.image!),
                   ),
                 const SizedBox(height: 16),
+
+                // Answer details
                 Container(
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
@@ -1521,19 +1751,23 @@ class MockTestResultsScreen extends StatelessWidget {
                     children: [
                       RichText(
                         text: TextSpan(
-                          style: const TextStyle(fontSize: 16, color: Colors.black),
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                          ),
                           children: [
                             const TextSpan(
                               text: 'Your answer: ',
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
-                            // Updated to use LaTeX rendering
                             WidgetSpan(
                               child: _buildTextWithLatex(
                                 answerState.selectedOption ?? 'Not answered',
                                 fontSize: 16,
                                 textStyle: TextStyle(
-                                  color: isCorrect ? const Color(0xFF4A7C59) : Colors.red,
+                                  color: isCorrect
+                                      ? const Color(0xFF4A7C59)
+                                      : Colors.red,
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
@@ -1544,13 +1778,15 @@ class MockTestResultsScreen extends StatelessWidget {
                       const SizedBox(height: 8),
                       RichText(
                         text: TextSpan(
-                          style: const TextStyle(fontSize: 16, color: Colors.black),
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                          ),
                           children: [
                             const TextSpan(
                               text: 'Correct answer: ',
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
-                            // Updated to use LaTeX rendering
                             WidgetSpan(
                               child: _buildTextWithLatex(
                                 question.correctOption,
@@ -1568,17 +1804,24 @@ class MockTestResultsScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 20),
+
+                // Explanation
                 const Text(
                   'Explanation:',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Color(0xFF2B463C)),
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: Color(0xFF2B463C),
+                  ),
                 ),
                 const SizedBox(height: 8),
-
-                // Updated to use LaTeX rendering
                 _buildTextWithLatex(
                   question.explanation,
                   fontSize: 16,
-                  textStyle: const TextStyle(height: 1.5, color: Color(0xFF555555)),
+                  textStyle: const TextStyle(
+                    height: 1.5,
+                    color: Color(0xFF555555),
+                  ),
                 ),
               ],
             ),
@@ -1587,4 +1830,5 @@ class MockTestResultsScreen extends StatelessWidget {
       },
     );
   }
+
 }
