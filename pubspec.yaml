@@ -66,6 +66,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/colleges.json
+    - assets/practice_question.json
     - assets/mock1.json
     - assets/mock2.json
     - assets/mock3.json
@@ -98,6 +99,12 @@ flutter:
     - assets/img/e441da80.jpg
     - assets/img/f452410b.jpg
     - assets/img/faaf484f.jpg
+    - assets/img/mock/0b96fa93.jpg
+    - assets/img/mock/403fb4e4.jpg
+    - assets/img/mock/5cf5c0d3.jpg
+    - assets/img/mock/645fd11a.jpg
+    - assets/img/mock/8af28416.jpg
+    - assets/img/mock/df9c5a1d.jpg
 
 
 

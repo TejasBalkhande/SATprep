@@ -1,9 +1,10 @@
 // practice_mock_test_screen.dart
 import 'dart:async';
-import 'package:intl/intl.dart';
-import 'package:flutter/material.dart';
 import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_math_fork/flutter_math.dart'; // Added for LaTeX
+import 'package:intl/intl.dart';
 
 class Question {
   final String questionId;
@@ -235,6 +236,81 @@ class _PracticeMockTestScreenState extends State<PracticeMockTestScreen> {
     return Colors.grey;
   }
 
+  // LaTeX rendering functions
+  Widget _buildTextWithLatex(String text, {double fontSize = 16, TextStyle? textStyle}) {
+    final latexPattern = RegExp(r'\\\[.*?\\\]|\\\(.*?\\\)|\\(?:frac|sqrt|sum|int|lim|sin|cos|tan|log|ln)\b');
+
+    if (latexPattern.hasMatch(text)) {
+      return _buildMixedTextWithLatex(text, fontSize: fontSize, textStyle: textStyle);
+    } else {
+      return Text(
+        text,
+        style: textStyle ?? TextStyle(fontSize: fontSize, height: 1.5),
+      );
+    }
+  }
+
+  Widget _buildMixedTextWithLatex(String text, {double fontSize = 16, TextStyle? textStyle}) {
+    final latexPattern = RegExp(r'(\\\[.*?\\\]|\\\(.*?\\\)|\\(?:frac|sqrt|sum|int|lim|sin|cos|tan|log|ln|cdot|pm|leq|geq|neq|times|div)\{[^}]*\}(?:\{[^}]*\})*|\\(?:frac|sqrt|sum|int|lim|sin|cos|tan|log|ln|cdot|pm|leq|geq|neq|times|div)\s*[a-zA-Z0-9_]+)');
+
+    List<Widget> widgets = [];
+    int lastEnd = 0;
+
+    for (final match in latexPattern.allMatches(text)) {
+      if (match.start > lastEnd) {
+        String beforeText = text.substring(lastEnd, match.start);
+        if (beforeText.isNotEmpty) {
+          widgets.add(Text(
+            beforeText,
+            style: textStyle ?? TextStyle(fontSize: fontSize, height: 1.5),
+          ));
+        }
+      }
+
+      String latexText = match.group(0)!;
+      latexText = latexText.replaceAll(r'\[', '').replaceAll(r'\]', '');
+      latexText = latexText.replaceAll(r'\(', '').replaceAll(r'\)', '');
+
+      try {
+        widgets.add(
+          Math.tex(
+            latexText,
+            mathStyle: MathStyle.display,
+            textStyle: TextStyle(fontSize: fontSize),
+          ),
+        );
+      } catch (e) {
+        widgets.add(
+          Text(
+            match.group(0)!,
+            style: TextStyle(
+              fontSize: fontSize,
+              fontFamily: 'monospace',
+              backgroundColor: Colors.grey[200],
+            ),
+          ),
+        );
+      }
+
+      lastEnd = match.end;
+    }
+
+    if (lastEnd < text.length) {
+      String remainingText = text.substring(lastEnd);
+      if (remainingText.isNotEmpty) {
+        widgets.add(Text(
+          remainingText,
+          style: textStyle ?? TextStyle(fontSize: fontSize, height: 1.5),
+        ));
+      }
+    }
+
+    return Wrap(
+      crossAxisAlignment: WrapCrossAlignment.center,
+      children: widgets,
+    );
+  }
+
   @override
   void dispose() {
     _timer?.cancel();
@@ -436,7 +512,6 @@ class _PracticeMockTestScreenState extends State<PracticeMockTestScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Progress bar
                   LinearProgressIndicator(
                     value: (currentQuestionIndex + 1) / currentSectionQuestions.length,
                     backgroundColor: Colors.grey[300],
@@ -446,14 +521,12 @@ class _PracticeMockTestScreenState extends State<PracticeMockTestScreen> {
                   ),
                   const SizedBox(height: 16),
 
-                  // Question counter
                   Text(
                     'Question ${currentQuestionIndex + 1}/${currentSectionQuestions.length}',
                     style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 20),
 
-                  // Difficulty indicator
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                     decoration: BoxDecoration(
@@ -478,7 +551,6 @@ class _PracticeMockTestScreenState extends State<PracticeMockTestScreen> {
                   ),
                   const SizedBox(height: 16),
 
-                  // Domain and skill
                   RichText(
                     text: TextSpan(
                       style: DefaultTextStyle.of(context).style,
@@ -503,17 +575,14 @@ class _PracticeMockTestScreenState extends State<PracticeMockTestScreen> {
                   ),
                   const SizedBox(height: 20),
 
-                  // Question text
-                  Text(
+                  // Updated to use LaTeX rendering
+                  _buildTextWithLatex(
                     question.questionText,
-                    style: const TextStyle(
-                      fontSize: 18,
-                      height: 1.5,
-                    ),
+                    fontSize: 18,
+                    textStyle: const TextStyle(height: 1.5),
                   ),
                   const SizedBox(height: 20),
 
-                  // Image container
                   if (question.image != null && question.image!.isNotEmpty)
                     Container(
                       margin: const EdgeInsets.only(bottom: 20),
@@ -530,7 +599,6 @@ class _PracticeMockTestScreenState extends State<PracticeMockTestScreen> {
                       ),
                     ),
 
-                  // Options
                   ListView.separated(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
@@ -550,7 +618,6 @@ class _PracticeMockTestScreenState extends State<PracticeMockTestScreen> {
                   ),
                   const SizedBox(height: 30),
 
-                  // Navigation buttons
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -611,7 +678,6 @@ class _PracticeMockTestScreenState extends State<PracticeMockTestScreen> {
             ),
           ),
 
-          // Desktop sidebar
           if (!isMobile)
             Container(
               width: 300,
@@ -643,6 +709,85 @@ class OptionCard extends StatelessWidget {
     this.iconColor,
     required this.onTap,
   });
+
+  // LaTeX rendering for options
+  Widget _buildOptionTextWithLatex(String text) {
+    final latexPattern = RegExp(r'\\\[.*?\\\]|\\\(.*?\\\)|\\(?:frac|sqrt|sum|int|lim|sin|cos|tan|log|ln|cdot|pm|leq|geq|neq|times|div)\{[^}]*\}(?:\{[^}]*\})*|\\(?:frac|sqrt|sum|int|lim|sin|cos|tan|log|ln|cdot|pm|leq|geq|neq|times|div)\s*[a-zA-Z0-9_]+');
+
+    if (latexPattern.hasMatch(text)) {
+      List<Widget> widgets = [];
+      int lastEnd = 0;
+
+      for (final match in latexPattern.allMatches(text)) {
+        if (match.start > lastEnd) {
+          String beforeText = text.substring(lastEnd, match.start);
+          if (beforeText.isNotEmpty) {
+            widgets.add(Text(
+              beforeText,
+              style: TextStyle(
+                fontSize: 16,
+                color: isSelected ? const Color(0xFF2B463C) : Colors.black,
+                fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+              ),
+            ));
+          }
+        }
+
+        String latexText = match.group(0)!;
+        latexText = latexText.replaceAll(r'\[', '').replaceAll(r'\]', '');
+        latexText = latexText.replaceAll(r'\(', '').replaceAll(r'\)', '');
+
+        try {
+          widgets.add(Math.tex(
+            latexText,
+            mathStyle: MathStyle.text,
+            textStyle: const TextStyle(fontSize: 16),
+          ));
+        } catch (e) {
+          widgets.add(Text(
+            match.group(0)!,
+            style: TextStyle(
+              fontSize: 16,
+              fontFamily: 'monospace',
+              backgroundColor: Colors.grey[200],
+              color: isSelected ? const Color(0xFF2B463C) : Colors.black,
+              fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+            ),
+          ));
+        }
+
+        lastEnd = match.end;
+      }
+
+      if (lastEnd < text.length) {
+        String remainingText = text.substring(lastEnd);
+        if (remainingText.isNotEmpty) {
+          widgets.add(Text(
+            remainingText,
+            style: TextStyle(
+              fontSize: 16,
+              color: isSelected ? const Color(0xFF2B463C) : Colors.black,
+              fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+            ),
+          ));
+        }
+      }
+
+      return Wrap(
+        crossAxisAlignment: WrapCrossAlignment.center,
+        children: widgets,
+      );
+    } else {
+      return Text(
+        text,
+        style: TextStyle(
+          fontSize: 16,
+          color: isSelected ? const Color(0xFF2B463C) : Colors.black,
+          fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -691,16 +836,7 @@ class OptionCard extends StatelessWidget {
               ),
             const SizedBox(width: 16),
             Expanded(
-              child: Text(
-                option,
-                style: TextStyle(
-                  fontSize: 16,
-                  color: isSelected
-                      ? const Color(0xFF2B463C)
-                      : Colors.black,
-                  fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
-                ),
-              ),
+              child: _buildOptionTextWithLatex(option),
             ),
           ],
         ),
@@ -722,6 +858,81 @@ class MockTestResultsScreen extends StatelessWidget {
     required this.readingWritingAnswerStates,
     required this.mathAnswerStates,
   });
+
+  // LaTeX rendering functions
+  Widget _buildTextWithLatex(String text, {double fontSize = 16, TextStyle? textStyle}) {
+    final latexPattern = RegExp(r'\\\[.*?\\\]|\\\(.*?\\\)|\\(?:frac|sqrt|sum|int|lim|sin|cos|tan|log|ln)\b');
+
+    if (latexPattern.hasMatch(text)) {
+      return _buildMixedTextWithLatex(text, fontSize: fontSize, textStyle: textStyle);
+    } else {
+      return Text(
+        text,
+        style: textStyle ?? TextStyle(fontSize: fontSize, height: 1.5),
+      );
+    }
+  }
+
+  Widget _buildMixedTextWithLatex(String text, {double fontSize = 16, TextStyle? textStyle}) {
+    final latexPattern = RegExp(r'(\\\[.*?\\\]|\\\(.*?\\\)|\\(?:frac|sqrt|sum|int|lim|sin|cos|tan|log|ln|cdot|pm|leq|geq|neq|times|div)\{[^}]*\}(?:\{[^}]*\})*|\\(?:frac|sqrt|sum|int|lim|sin|cos|tan|log|ln|cdot|pm|leq|geq|neq|times|div)\s*[a-zA-Z0-9_]+)');
+
+    List<Widget> widgets = [];
+    int lastEnd = 0;
+
+    for (final match in latexPattern.allMatches(text)) {
+      if (match.start > lastEnd) {
+        String beforeText = text.substring(lastEnd, match.start);
+        if (beforeText.isNotEmpty) {
+          widgets.add(Text(
+            beforeText,
+            style: textStyle ?? TextStyle(fontSize: fontSize, height: 1.5),
+          ));
+        }
+      }
+
+      String latexText = match.group(0)!;
+      latexText = latexText.replaceAll(r'\[', '').replaceAll(r'\]', '');
+      latexText = latexText.replaceAll(r'\(', '').replaceAll(r'\)', '');
+
+      try {
+        widgets.add(
+          Math.tex(
+            latexText,
+            mathStyle: MathStyle.display,
+            textStyle: TextStyle(fontSize: fontSize),
+          ),
+        );
+      } catch (e) {
+        widgets.add(
+          Text(
+            match.group(0)!,
+            style: TextStyle(
+              fontSize: fontSize,
+              fontFamily: 'monospace',
+              backgroundColor: Colors.grey[200],
+            ),
+          ),
+        );
+      }
+
+      lastEnd = match.end;
+    }
+
+    if (lastEnd < text.length) {
+      String remainingText = text.substring(lastEnd);
+      if (remainingText.isNotEmpty) {
+        widgets.add(Text(
+          remainingText,
+          style: textStyle ?? TextStyle(fontSize: fontSize, height: 1.5),
+        ));
+      }
+    }
+
+    return Wrap(
+      crossAxisAlignment: WrapCrossAlignment.center,
+      children: widgets,
+    );
+  }
 
   int _calculateScore(List<Question> questions, List<AnswerState> answerStates) {
     int score = 0;
@@ -907,14 +1118,10 @@ class MockTestResultsScreen extends StatelessWidget {
   }
 
   Widget _buildSkillPerformance(String title, Map<String, double> skillAccuracy, Color color) {
-    // Sort skills by accuracy (lowest first)
     final sortedSkills = skillAccuracy.entries.toList()
       ..sort((a, b) => a.value.compareTo(b.value));
 
-    // Get weakest skills (lowest 3 accuracy)
     final weakestSkills = sortedSkills.take(3).toList();
-
-    // Get strongest skills (highest 3 accuracy)
     final strongestSkills = sortedSkills.reversed.take(3).toList();
 
     return Card(
@@ -950,7 +1157,6 @@ class MockTestResultsScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
 
-            // Weakest skills
             const Text(
               'Areas to Improve',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.red),
@@ -965,7 +1171,6 @@ class MockTestResultsScreen extends StatelessWidget {
 
             const SizedBox(height: 20),
 
-            // Strongest skills
             const Text(
               'Strongest Areas',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.green),
@@ -1026,11 +1231,9 @@ class MockTestResultsScreen extends StatelessWidget {
     final maxMathScore = mathQuestions.length;
     final maxTotalScore = maxReadingWritingScore + maxMathScore;
 
-    // Calculate section stats
     final rwStats = _calculateSectionStats(readingWritingQuestions, readingWritingAnswerStates);
     final mathStats = _calculateSectionStats(mathQuestions, mathAnswerStates);
 
-    // Calculate skill accuracy
     final rwSkillAccuracy = _calculateSkillAccuracy(readingWritingQuestions, readingWritingAnswerStates);
     final mathSkillAccuracy = _calculateSkillAccuracy(mathQuestions, mathAnswerStates);
 
@@ -1045,11 +1248,11 @@ class MockTestResultsScreen extends StatelessWidget {
             unselectedLabelColor: Colors.white70,
             indicatorColor: Colors.white,
             labelStyle: TextStyle(
-              fontSize: 16, // Selected tab font size
+              fontSize: 16,
               fontWeight: FontWeight.bold,
             ),
             unselectedLabelStyle: TextStyle(
-              fontSize: 16, // Unselected tab font size
+              fontSize: 16,
             ),
             tabs: [
               Tab(text: 'Summary'),
@@ -1059,10 +1262,8 @@ class MockTestResultsScreen extends StatelessWidget {
           ),
         ),
 
-
         body: TabBarView(
           children: [
-            // Enhanced Summary Tab
             SingleChildScrollView(
               padding: const EdgeInsets.all(24),
               child: Column(
@@ -1075,7 +1276,6 @@ class MockTestResultsScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 30),
 
-                  // Section scores
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -1097,7 +1297,6 @@ class MockTestResultsScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 30),
 
-                  // Section performance breakdown
                   Row(
                     children: [
                       Expanded(
@@ -1117,7 +1316,6 @@ class MockTestResultsScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 30),
 
-                  // Skill performance
                   Row(
                     children: [
                       Expanded(
@@ -1139,7 +1337,6 @@ class MockTestResultsScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 30),
 
-                  // Total score
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 30),
                     decoration: BoxDecoration(
@@ -1189,7 +1386,6 @@ class MockTestResultsScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 40),
 
-                  // Action button
                   SizedBox(
                     width: 300,
                     child: ElevatedButton(
@@ -1215,10 +1411,10 @@ class MockTestResultsScreen extends StatelessWidget {
               ),
             ),
 
-            // Reading & Writing Review
+            // Updated to use LaTeX rendering
             _buildReviewTab(readingWritingQuestions, readingWritingAnswerStates),
 
-            // Math Review
+            // Updated to use LaTeX rendering
             _buildReviewTab(mathQuestions, mathAnswerStates),
           ],
         ),
@@ -1296,11 +1492,15 @@ class MockTestResultsScreen extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 16),
-                Text(
+
+                // Updated to use LaTeX rendering
+                _buildTextWithLatex(
                   question.questionText,
-                  style: const TextStyle(fontSize: 16, height: 1.5, color: Color(0xFF2B463C)),
+                  fontSize: 16,
+                  textStyle: const TextStyle(height: 1.5, color: Color(0xFF2B463C)),
                 ),
                 const SizedBox(height: 16),
+
                 if (question.image != null && question.image!.isNotEmpty)
                   Container(
                     margin: const EdgeInsets.only(bottom: 16),
@@ -1327,11 +1527,15 @@ class MockTestResultsScreen extends StatelessWidget {
                               text: 'Your answer: ',
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
-                            TextSpan(
-                              text: answerState.selectedOption ?? 'Not answered',
-                              style: TextStyle(
-                                color: isCorrect ? const Color(0xFF4A7C59) : Colors.red,
-                                fontWeight: FontWeight.w600,
+                            // Updated to use LaTeX rendering
+                            WidgetSpan(
+                              child: _buildTextWithLatex(
+                                answerState.selectedOption ?? 'Not answered',
+                                fontSize: 16,
+                                textStyle: TextStyle(
+                                  color: isCorrect ? const Color(0xFF4A7C59) : Colors.red,
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
                             ),
                           ],
@@ -1346,11 +1550,15 @@ class MockTestResultsScreen extends StatelessWidget {
                               text: 'Correct answer: ',
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
-                            TextSpan(
-                              text: question.correctOption,
-                              style: const TextStyle(
-                                color: Color(0xFF4A7C59),
-                                fontWeight: FontWeight.w600,
+                            // Updated to use LaTeX rendering
+                            WidgetSpan(
+                              child: _buildTextWithLatex(
+                                question.correctOption,
+                                fontSize: 16,
+                                textStyle: const TextStyle(
+                                  color: Color(0xFF4A7C59),
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
                             ),
                           ],
@@ -1365,9 +1573,12 @@ class MockTestResultsScreen extends StatelessWidget {
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Color(0xFF2B463C)),
                 ),
                 const SizedBox(height: 8),
-                Text(
+
+                // Updated to use LaTeX rendering
+                _buildTextWithLatex(
                   question.explanation,
-                  style: const TextStyle(fontSize: 16, height: 1.5, color: Color(0xFF555555)),
+                  fontSize: 16,
+                  textStyle: const TextStyle(height: 1.5, color: Color(0xFF555555)),
                 ),
               ],
             ),

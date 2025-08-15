@@ -168,7 +168,7 @@ class _CollegeScreenState extends State<CollegeScreen> {
                         maxCrossAxisExtent: 400,
                         crossAxisSpacing: 16,
                         mainAxisSpacing: 16,
-                        childAspectRatio: 0.85,
+                        childAspectRatio: 0.7,
                       ),
                       itemCount: filteredColleges.length,
                       itemBuilder: (context, index) {
@@ -179,17 +179,16 @@ class _CollegeScreenState extends State<CollegeScreen> {
                   ),
                   const SizedBox(width: 24),
 
-                  // Sidebar - Desktop only
+                  // Sidebar - Desktop only (FIXED)
                   Expanded(
                     flex: 3,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    child: ListView(
                       children: [
-                        // Top Colleges Section
-                        _buildTopCollegesSection(),
-                        const SizedBox(height: 24),
-                        // Start Mock Section
+                        // Start Mock Section - Now first
                         _buildStartMockSection(),
+                        const SizedBox(height: 24),
+                        // Top Colleges Section - Now second
+                        _buildTopCollegesSection(),
                       ],
                     ),
                   ),
@@ -324,7 +323,7 @@ class _CollegeScreenState extends State<CollegeScreen> {
             ),
             const SizedBox(height: 12),
             SizedBox(
-              height: 260,
+              height: 200,
               child: ListView(
                 shrinkWrap: true,
                 children: topColleges.map((college) => Padding(
@@ -370,32 +369,32 @@ class _CollegeScreenState extends State<CollegeScreen> {
               'Practice with our simulated college entrance exams',
               style: TextStyle(color: Colors.grey),
             ),
-            const SizedBox(height: 16),
-        SizedBox(
-          width: double.infinity,
-          child: ElevatedButton(
-            onPressed: () {
-              Navigator.pushNamed(context, '/mock-practice');
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Theme.of(context).primaryColor,
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
+            const SizedBox(height: 12),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/mock-practice');
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Theme.of(context).primaryColor,
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                child: const Text(
+                  'Start Test',
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
             ),
-            child: const Text(
-              'Start Test',
-              style: TextStyle(color: Colors.white), // Ensure text is visible
-            ),
-          ),
-        ),
-
-        ],
+          ],
         ),
       ),
     );
   }
+
 
   List<String> _getAllMajors() {
     final allMajors = <String>{};
@@ -406,7 +405,7 @@ class _CollegeScreenState extends State<CollegeScreen> {
   }
 }
 
-// College Model Classes
+// College Model Classes (remain unchanged)
 class College {
   final String name;
   final String location;

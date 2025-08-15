@@ -97,7 +97,7 @@ class _PracticeSessionScreenState extends State<PracticeSessionScreen> {
 
   Future<void> _loadQuestions() async {
     try {
-      final String data = await rootBundle.loadString('assets/mock1.json');
+      final String data = await rootBundle.loadString('assets/practice_question.json');
       final List<dynamic> jsonList = json.decode(data);
 
       final List<Question> validQuestions = [];
@@ -154,6 +154,16 @@ class _PracticeSessionScreenState extends State<PracticeSessionScreen> {
     setState(() {
       if (currentQuestionIndex < questions.length - 1) {
         currentQuestionIndex++;
+        selectedOption = null;
+        showExplanation = false;
+      }
+    });
+  }
+
+  void _previousQuestion() {
+    setState(() {
+      if (currentQuestionIndex > 0) {
+        currentQuestionIndex--;
         selectedOption = null;
         showExplanation = false;
       }
@@ -262,24 +272,24 @@ class _PracticeSessionScreenState extends State<PracticeSessionScreen> {
 
 
       lastEnd = match.end;
-      }
-
-      // Add remaining text
-      if (lastEnd < text.length) {
-        String remainingText = text.substring(lastEnd);
-        if (remainingText.isNotEmpty) {
-          widgets.add(Text(
-            remainingText,
-            style: textStyle ?? TextStyle(fontSize: fontSize, height: 1.5),
-          ));
-        }
-      }
-
-      return Wrap(
-        crossAxisAlignment: WrapCrossAlignment.center,
-        children: widgets,
-      );
     }
+
+    // Add remaining text
+    if (lastEnd < text.length) {
+      String remainingText = text.substring(lastEnd);
+      if (remainingText.isNotEmpty) {
+        widgets.add(Text(
+          remainingText,
+          style: textStyle ?? TextStyle(fontSize: fontSize, height: 1.5),
+        ));
+      }
+    }
+
+    return Wrap(
+      crossAxisAlignment: WrapCrossAlignment.center,
+      children: widgets,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -328,6 +338,7 @@ class _PracticeSessionScreenState extends State<PracticeSessionScreen> {
 
     final question = questions[currentQuestionIndex];
     final isLastQuestion = currentQuestionIndex == questions.length - 1;
+    final isFirstQuestion = currentQuestionIndex == 0;
 
     return Scaffold(
       appBar: AppBar(
@@ -345,176 +356,213 @@ class _PracticeSessionScreenState extends State<PracticeSessionScreen> {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Progress bar
-            LinearProgressIndicator(
-              value: (currentQuestionIndex + 1) / questions.length,
-              backgroundColor: Colors.grey[300],
-              color: const Color(0xFF4A7C59),
-              minHeight: 8,
-              borderRadius: BorderRadius.circular(4),
-            ),
-            const SizedBox(height: 20),
-
-            // Difficulty indicator
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-              decoration: BoxDecoration(
-                color: question.difficulty == 'Easy'
-                    ? Colors.green[100]
-                    : question.difficulty == 'Medium'
-                    ? Colors.amber[100]
-                    : Colors.red[100],
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Text(
-                question.difficulty,
-                style: TextStyle(
-                  color: question.difficulty == 'Easy'
-                      ? Colors.green[800]
-                      : question.difficulty == 'Medium'
-                      ? Colors.amber[800]
-                      : Colors.red[800],
-                  fontWeight: FontWeight.bold,
+      body: Stack(
+        children: [
+          SingleChildScrollView(
+            padding: const EdgeInsets.fromLTRB(16, 16, 16, 100), // Extra bottom padding for buttons
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Progress bar
+                LinearProgressIndicator(
+                  value: (currentQuestionIndex + 1) / questions.length,
+                  backgroundColor: Colors.grey[300],
+                  color: const Color(0xFF4A7C59),
+                  minHeight: 8,
+                  borderRadius: BorderRadius.circular(4),
                 ),
-              ),
-            ),
-            const SizedBox(height: 16),
+                const SizedBox(height: 20),
 
-            // Domain and skill
-            RichText(
-              text: TextSpan(
-                style: DefaultTextStyle.of(context).style,
-                children: [
-                  TextSpan(
-                    text: '${question.domain} • ',
-                    style: const TextStyle(
+                // Difficulty indicator
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  decoration: BoxDecoration(
+                    color: question.difficulty == 'Easy'
+                        ? Colors.green[100]
+                        : question.difficulty == 'Medium'
+                        ? Colors.amber[100]
+                        : Colors.red[100],
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Text(
+                    question.difficulty,
+                    style: TextStyle(
+                      color: question.difficulty == 'Easy'
+                          ? Colors.green[800]
+                          : question.difficulty == 'Medium'
+                          ? Colors.amber[800]
+                          : Colors.red[800],
                       fontWeight: FontWeight.bold,
-                      color: Color(0xFF4A7C59),
-                      fontSize: 18,
                     ),
                   ),
-                  TextSpan(
-                    text: question.skill,
-                    style: const TextStyle(
-                      color: Colors.grey,
-                      fontSize: 18,
+                ),
+                const SizedBox(height: 16),
+
+                // Domain and skill
+                RichText(
+                  text: TextSpan(
+                    style: DefaultTextStyle.of(context).style,
+                    children: [
+                      TextSpan(
+                        text: '${question.domain} • ',
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF4A7C59),
+                          fontSize: 18,
+                        ),
+                      ),
+                      TextSpan(
+                        text: question.skill,
+                        style: const TextStyle(
+                          color: Colors.grey,
+                          fontSize: 18,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 30),
+
+                // Question text with LaTeX support
+                _buildTextWithLatex(
+                  question.questionText,
+                  fontSize: 18,
+                  textStyle: const TextStyle(fontSize: 18, height: 1.5),
+                ),
+                const SizedBox(height: 20),
+
+                // Image container with fixed height and aspect ratio
+                if (question.imagePath != null && question.imagePath!.isNotEmpty)
+                  Container(
+                    height: 270, // Fixed height
+                    margin: const EdgeInsets.only(bottom: 20),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey[300]!),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: Image.asset(
+                        question.imagePath!,
+                        fit: BoxFit.contain,
+                        errorBuilder: (context, error, stackTrace) {
+                          return Container(
+                            padding: const EdgeInsets.all(16),
+                            child: const Text('Image not found'),
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+
+                // Options
+                ListView.separated(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: question.options.length,
+                  separatorBuilder: (context, index) => const SizedBox(height: 12),
+                  itemBuilder: (context, index) {
+                    final option = question.options[index];
+                    return OptionCard(
+                      option: option,
+                      isSelected: selectedOption == option,
+                      backgroundColor: _getOptionColor(question, option),
+                      icon: _getOptionIcon(question, option),
+                      iconColor: _getOptionIconColor(question, option),
+                      onTap: () => _selectOption(option),
+                    );
+                  },
+                ),
+                const SizedBox(height: 24),
+
+                // Explanation with LaTeX support
+                if (showExplanation)
+                  Container(
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFF5F9F2),
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(color: const Color(0xFF4A7C59).withOpacity(0.3)),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'Explanation:',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF2B463C),
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        _buildTextWithLatex(
+                          question.explanation,
+                          fontSize: 15,
+                          textStyle: const TextStyle(height: 1.5),
+                        ),
+                      ],
+                    ),
+                  ),
+                const SizedBox(height: 30),
+              ],
+            ),
+          ),
+
+          // Fixed position navigation buttons
+          Positioned(
+            bottom: 16,
+            right: 16,
+              child: Row(
+                children: [
+                  // Previous button
+                  if (!isFirstQuestion)
+                    ElevatedButton(
+                      onPressed: _previousQuestion,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          side: const BorderSide(color: Color(0xFF4A7C59)), // Green border
+                        ),
+                      ),
+                      child: const Text(
+                        'Previous',
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Color(0xFF4A7C59), // Green text
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+
+                  if (!isFirstQuestion)
+                    const SizedBox(width: 12),
+
+                  // Next/Finish button
+                  ElevatedButton(
+                    onPressed: isLastQuestion ? _finishSession : _nextQuestion,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF4A7C59),
+                      padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                    child: Text(
+                      isLastQuestion ? 'Finish' : 'Next',
+                      style: const TextStyle(
+                        fontSize: 16,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ),
                 ],
               ),
-            ),
-            const SizedBox(height: 30),
 
-            // Question text with LaTeX support
-            _buildTextWithLatex(
-              question.questionText,
-              fontSize: 18,
-              textStyle: const TextStyle(fontSize: 18, height: 1.5),
-            ),
-            const SizedBox(height: 20),
-
-            // Image container (if available and not empty)
-            if (question.imagePath != null && question.imagePath!.isNotEmpty)
-              Container(
-                margin: const EdgeInsets.only(bottom: 20),
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey[300]!),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
-                  child: Image.asset(
-                    question.imagePath!,
-                    fit: BoxFit.cover,
-                    errorBuilder: (context, error, stackTrace) {
-                      return Container(
-                        padding: const EdgeInsets.all(16),
-                        child: const Text('Image not found'),
-                      );
-                    },
-                  ),
-                ),
-              ),
-
-            // Options
-            ListView.separated(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: question.options.length,
-              separatorBuilder: (context, index) => const SizedBox(height: 12),
-              itemBuilder: (context, index) {
-                final option = question.options[index];
-                return OptionCard(
-                  option: option,
-                  isSelected: selectedOption == option,
-                  backgroundColor: _getOptionColor(question, option),
-                  icon: _getOptionIcon(question, option),
-                  iconColor: _getOptionIconColor(question, option),
-                  onTap: () => _selectOption(option),
-                );
-              },
-            ),
-            const SizedBox(height: 24),
-
-            // Explanation with LaTeX support
-            if (showExplanation)
-              Container(
-                padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: const Color(0xFFF5F9F2),
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: const Color(0xFF4A7C59).withOpacity(0.3)),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      'Explanation:',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF2B463C),
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    _buildTextWithLatex(
-                      question.explanation,
-                      fontSize: 15,
-                      textStyle: const TextStyle(height: 1.5),
-                    ),
-                  ],
-                ),
-              ),
-            const SizedBox(height: 30),
-
-            // Next/Finish button - Always available
-            Center(
-              child: ElevatedButton(
-                onPressed: isLastQuestion ? _finishSession : _nextQuestion,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF4A7C59),
-                  padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                ),
-                child: Text(
-                  isLastQuestion ? 'Finish Session' : 'Next Question',
-                  style: const TextStyle(
-                    fontSize: 18,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 20),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
