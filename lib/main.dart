@@ -12,12 +12,14 @@ import 'package:cfdptest/screens/create_blog_page.dart';
 import 'package:cfdptest/screens/blog_post_page.dart';
 import 'package:cfdptest/colleges.dart';
 import 'package:cfdptest/info.dart';
+import 'package:web/web.dart' as web;
 
 
 void main() {
-  // Set path URL strategy for web
+  // IMPORTANT: Use hash URL strategy instead of path URL strategy
+  // This matches your HTML's hash-based routing system (#/mock-practice, #/colleges, etc.)
   if (kIsWeb) {
-    usePathUrlStrategy();
+    setUrlStrategy(const HashUrlStrategy());
   }
   runApp(const SATPrepApp());
 }
@@ -28,7 +30,7 @@ class SATPrepApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Mock SAT Exam',
+      title: 'MockSATexam - Ace the SAT with Expert Mock Tests', // Updated to match HTML title
       theme: _buildLightTheme(),
       themeMode: ThemeMode.light,
       initialRoute: '/',
@@ -41,6 +43,7 @@ class SATPrepApp extends StatelessWidget {
           return ProfileScreen(userData: userData ?? {});
         },
         '/mock-practice': (context) => const MockPracticeScreen(),
+        '/blogs': (context) => BlogPage(), // Updated route to match HTML
         BlogPage.routeName: (context) => BlogPage(),
         CreateBlogPage.routeName: (context) => CreateBlogPage(),
         BlogPostPage.routeName: (context) {
@@ -72,6 +75,8 @@ class SATPrepApp extends StatelessWidget {
         }
         return null;
       },
+      // Add route observer to trigger SEO updates
+      navigatorObservers: [SEORouteObserver()],
     );
   }
 
@@ -193,6 +198,39 @@ class SATPrepApp extends StatelessWidget {
   }
 }
 
+// FIXED: Improved SEO Route Observer
+class SEORouteObserver extends RouteObserver<PageRoute<dynamic>> {
+  @override
+  void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {
+    super.didPush(route, previousRoute);
+    _triggerSEOUpdate();
+  }
+
+  @override
+  void didPop(Route<dynamic> route, Route<dynamic>? previousRoute) {
+    super.didPop(route, previousRoute);
+    _triggerSEOUpdate();
+  }
+
+  @override
+  void didReplace({Route<dynamic>? newRoute, Route<dynamic>? oldRoute}) {
+    super.didReplace(newRoute: newRoute, oldRoute: oldRoute);
+    _triggerSEOUpdate();
+  }
+
+  void _triggerSEOUpdate() {
+    if (kIsWeb) {
+      Timer(const Duration(milliseconds: 50), () {
+        try {
+          // Replace html.window with:
+          web.window.dispatchEvent(web.HashChangeEvent('hashchange'));
+        } catch (e) {
+          print('SEO update error: $e');
+        }
+      });
+    }
+  }
+}
 class SATPrepHomePage extends StatefulWidget {
   const SATPrepHomePage({super.key});
 
@@ -221,7 +259,7 @@ class _SATPrepHomePageState extends State<SATPrepHomePage> {
               color: Colors.white,
             ),
             const Text(
-              'Mock SAT Exam',
+              'Mock SAT Exam', // Updated to match HTML branding
               style: TextStyle(
                 fontWeight: FontWeight.w900,
                 fontSize: 20,
@@ -346,7 +384,7 @@ class NavigationDrawer extends StatelessWidget {
             context,
             'Blogs',
             Icons.school,
-            BlogPage.routeName,
+            '/blogs', // Updated to match HTML route
           ),
           _buildDrawerItem(
             context,
@@ -449,7 +487,7 @@ class HeroSection extends StatelessWidget {
                   ),
                   SizedBox(height: isSmallScreen ? 16 : 24),
                   Text(
-                    'Expert-led lessons, realistic mock tests, and proven strategies to boost your score',
+                    'Realistic SAT mock tests, personalized study plans, and proven strategies to boost your score', // Updated to match HTML description
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                       color: Colors.white,
                       fontSize: isSmallScreen ? 16 : 20,
@@ -521,7 +559,6 @@ class HeroSection extends StatelessWidget {
     );
   }
 }
-
 class KeyFeaturesSection extends StatelessWidget {
   const KeyFeaturesSection({super.key});
 

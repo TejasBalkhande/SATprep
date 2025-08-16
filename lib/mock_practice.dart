@@ -1,9 +1,10 @@
-// mock_practice.dart
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:intl/intl.dart';
 import 'package:cfdptest/practice_session_screen.dart';
 import 'package:cfdptest/practice_mock_test_screen.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:web/web.dart' as web; // For SEO handling
 
 class MockPracticeScreen extends StatefulWidget {
   final bool scrollToMockTests;
@@ -262,7 +263,20 @@ class _MockPracticeScreenState extends State<MockPracticeScreen> {
       if (widget.section != null) {
         _selectSection(widget.section!);
       }
+
+      // SEO: Update route for web
+      _updateSEOTags();
     });
+  }
+
+  // SEO: Update tags for mock practice route
+  void _updateSEOTags() {
+    if (kIsWeb) {
+      // Set route to match HTML routing system
+      web.window.location.hash = '#/mock-practice';
+      // Trigger SEO update in JavaScript
+      web.window.dispatchEvent(web.HashChangeEvent('hashchange'));
+    }
   }
 
   void _selectSection(String section) {

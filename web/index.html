@@ -1,33 +1,64 @@
+<!-- index.html -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SAT Prep Pro - Ace the SAT with Expert Mock Tests</title>
-  <meta name="description" content="Realistic SAT mock tests, personalized study plans, and proven strategies to boost your SAT score. Join thousands of successful students today.">
-  <meta name="keywords" content="SAT prep, SAT practice, SAT mock test, SAT online, college board, SAT score, SAT exam">
-  <meta name="author" content="SAT Prep Pro">
+  <title>MockSATexam - Ace the SAT with Expert Mock Tests</title>
+  <meta name="description" content="Realistic SAT mock tests, personalized study plans, and proven strategies to boost your SAT score. Join thousands of successful American students today.">
+  <meta name="keywords" content="SAT prep USA, SAT practice tests, SAT mock exam, SAT online course, college board SAT, SAT score improvement, SAT exam strategies, American SAT test">
+  <meta name="author" content="MockSATexam">
+  <meta name="geo.region" content="US">
+  <meta name="geo.placename" content="United States">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://mocksatexam.online/">
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://yourdomain.com/">
-  <meta property="og:title" content="SAT Prep Pro - Ace the SAT with Expert Mock Tests">
-  <meta property="og:description" content="Realistic SAT mock tests, personalized study plans, and proven strategies to boost your SAT score.">
-  <meta property="og:image" content="https://yourdomain.com/og-image.jpg">
+  <meta property="og:url" content="https://mocksatexam.online/">
+  <meta property="og:title" content="MockSATexam - Ace the SAT with Expert Mock Tests">
+  <meta property="og:description" content="Realistic SAT mock tests and study plans for American students targeting top US colleges">
+  <meta property="og:image" content="https://mocksatexam.online/sat-og-image.jpg">
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:url" content="https://yourdomain.com/">
-  <meta property="twitter:title" content="SAT Prep Pro - Ace the SAT with Expert Mock Tests">
-  <meta property="twitter:description" content="Realistic SAT mock tests, personalized study plans, and proven strategies to boost your SAT score.">
-  <meta property="twitter:image" content="https://yourdomain.com/og-image.jpg">
+  <meta property="twitter:url" content="https://mocksatexam.online/">
+  <meta property="twitter:title" content="MockSATexam - Ace the SAT with Expert Mock Tests">
+  <meta property="twitter:description" content="Realistic SAT mock tests and study plans for American students">
+  <meta property="twitter:image" content="https://mocksatexam.online/sat-twitter-image.jpg">
 
-  <link rel="canonical" href="https://yourdomain.com/">
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalOrganization",
+      "name": "MockSATexam",
+      "description": "Premier SAT preparation platform offering realistic mock tests and college planning resources for American students",
+      "url": "https://mocksatexam.online/",
+      "logo": "https://mocksatexam.online/logo.png",
+      "sameAs": [
+        "https://facebook.com/satpreppro",
+        "https://twitter.com/satpreppro"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "Customer Support",
+        "email": "support@mocksatexam.online",
+        "areaServed": "US"
+      },
+      "offers": {
+        "@type": "Offer",
+        "name": "SAT Prep Course",
+        "category": "Educational"
+      }
+    }
+  </script>
 
+  <!-- Page-specific SEO handlers -->
   <script>
-    // SEO tag management functions
+    // Enhanced SEO tag management
     function setTitle(title) {
-      document.title = title + ' | SAT Prep Pro';
+      document.title = title + ' | MockSATexam - American SAT Exam Preparation';
     }
 
     function setMetaTag(name, content) {
@@ -60,70 +91,190 @@
       tag.setAttribute('href', url);
     }
 
-    // Fixed SEO handler with correct route-based logic
+    function setStructuredData(data) {
+      let script = document.querySelector('script[type="application/ld+json"]');
+      if (script) {
+        script.textContent = JSON.stringify(data);
+      }
+    }
+
+     // FIXED: Enhanced SEO handler with corrected routes
     function updateSEOTags() {
       const path = window.location.hash;
+      const baseUrl = 'https://mocksatexam.online';
 
-      // Handle blog post URLs: /#/blog/slug-here
+      // Mock Practice Page - FIXED: Corrected route match
+      if (path === '#/mock-practice') {
+        setTitle('SAT Mock Practice Tests for American Students');
+        setMetaTag('description', 'Realistic SAT practice tests with detailed analytics. Improve your SAT score with our American SAT exam simulator.');
+        setMetaTag('keywords', 'SAT practice test, SAT mock exam, SAT online test, SAT practice questions, SAT prep USA');
+        setOGTag('og:title', 'SAT Mock Practice Tests | MockSATexam');
+        setOGTag('og:description', 'Realistic SAT practice tests with detailed analytics. Improve your SAT score with our American SAT exam simulator.');
+        setOGTag('og:image', baseUrl + '/mock-practice-og.jpg');
+        setOGTag('og:url', baseUrl + '/#/mock-practice');
+        setCanonical(baseUrl + '/sat-practice-tests');
+
+        setStructuredData({
+          "@context": "https://schema.org",
+          "@type": "LearningResource",
+          "name": "SAT Mock Practice Tests",
+          "description": "Realistic SAT practice tests for American students",
+          "educationalLevel": "High school",
+          "learningResourceType": "Practice exam",
+          "about": "SAT (Scholastic Assessment Test)",
+          "educationalAlignment": {
+            "@type": "AlignmentObject",
+            "educationalFramework": "SAT",
+            "targetName": "College Board SAT"
+          },
+          "provider": {
+            "@type": "EducationalOrganization",
+            "name": "MockSATexam",
+            "url": baseUrl
+          }
+        });
+        return;
+      }
+
+      // Colleges Page - FIXED: Corrected route match
+      if (path === '#/colleges') {
+        setTitle('SAT Scores for US Colleges | College Admissions Guide');
+        setMetaTag('description', 'Find SAT score requirements for top US colleges. Compare acceptance rates, tuition, and rankings for American universities.');
+        setMetaTag('keywords', 'SAT scores for colleges, US college SAT requirements, American universities, SAT score ranges, college acceptance');
+        setOGTag('og:title', 'College Explorer - SAT Scores for US Colleges | MockSATexam');
+        setOGTag('og:description', 'Find SAT score requirements for top US colleges. Compare acceptance rates, tuition, and rankings for American universities.');
+        setOGTag('og:image', baseUrl + '/colleges-og.jpg');
+        setOGTag('og:url', baseUrl + '/#/colleges');
+        setCanonical(baseUrl + '/college-sat-scores');
+
+        setStructuredData({
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          "name": "SAT Scores for Top US Colleges",
+          "description": "List of top US colleges with their SAT score requirements",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "item": {
+                "@type": "CollegeOrUniversity",
+                "name": "Harvard University",
+                "description": "Harvard University SAT requirements and admission information"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "item": {
+                "@type": "CollegeOrUniversity",
+                "name": "Stanford University",
+                "description": "Stanford University SAT requirements and admission information"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "item": {
+                "@type": "CollegeOrUniversity",
+                "name": "MIT",
+                "description": "Massachusetts Institute of Technology SAT requirements"
+              }
+            }
+          ]
+        });
+        return;
+      }
+
+      // Blog Listing Page - NEW: Added proper handling
+      if (path === '#/blogs') {
+        setTitle('SAT Prep Blog | Tips, Strategies & Study Guides');
+        setMetaTag('description', 'Explore our SAT blog for expert tips, strategies, and study guides to help you ace the SAT exam.');
+        setMetaTag('keywords', 'SAT blog, SAT tips, SAT strategies, SAT study guide');
+        setOGTag('og:title', 'SAT Prep Blog | Tips, Strategies & Study Guides');
+        setOGTag('og:description', 'Explore our SAT blog for expert tips, strategies, and study guides to help you ace the SAT exam.');
+        setOGTag('og:image', baseUrl + '/blogs-og.jpg');
+        setOGTag('og:url', baseUrl + '/#/blogs');
+        setCanonical(baseUrl + '/blogs');
+
+        setStructuredData({
+          "@context": "https://schema.org",
+          "@type": "Blog",
+          "name": "MockSATexam Blog",
+          "description": "Expert SAT tips, strategies, and study guides",
+          "url": baseUrl + '/blogs',
+          "publisher": {
+            "@type": "Organization",
+            "name": "MockSATexam",
+            "logo": {
+              "@type": "ImageObject",
+              "url": baseUrl + '/logo.png'
+            }
+          }
+        });
+        return;
+      }
+
+      // Blog Post Pages - NEW: Added proper handling
       if (path.startsWith('#/blog/')) {
         const slug = path.split('#/blog/')[1];
-        fetch(`https://blog-api.tejasbalkhande221.workers.dev/api/blog/${slug}`)
-          .then(res => {
-            if (!res.ok) throw new Error('Blog post not found');
-            return res.json();
-          })
-          .then(post => {
-            setTitle(post.title);
-            setMetaTag('description', post.metaDescription);
-            setOGTag('og:title', post.title);
-            setOGTag('og:description', post.metaDescription);
-            setOGTag('og:image', post.coverImageUrl || 'https://yourdomain.com/default-og.jpg');
-            setOGTag('og:url', `https://yourdomain.com/#/blog/${slug}`);
-            setCanonical(`https://yourdomain.com/#/blog/${slug}`);
-          })
-          .catch(error => {
-            console.error('SEO fetch error:', error);
-            setDefaultTags();
-          });
+        setTitle('SAT Blog | ' + slug.replace(/-/g, ' '));
+        setMetaTag('description', 'Read our blog post about ' + slug.replace(/-/g, ' ') + ' on MockSATexam.');
+        setMetaTag('keywords', 'SAT blog, SAT tips, ' + slug.replace(/-/g, ', '));
+        setOGTag('og:title', 'SAT Blog | ' + slug.replace(/-/g, ' ') + ' | MockSATexam');
+        setOGTag('og:description', 'Read our blog post about ' + slug.replace(/-/g, ' ') + '.');
+        setOGTag('og:image', baseUrl + '/blog-og-image.jpg');
+        setOGTag('og:url', baseUrl + '/#/blog/' + slug);
+        setCanonical(baseUrl + '/blog/' + slug);
+
+        setStructuredData({
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          "headline": 'SAT Blog | ' + slug.replace(/-/g, ' '),
+          "description": 'Read our blog post about ' + slug.replace(/-/g, ' ') + '.',
+          "url": baseUrl + '/blog/' + slug,
+          "image": baseUrl + '/blog-og-image.jpg',
+          "author": {
+            "@type": "Organization",
+            "name": "MockSATexam"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "MockSATexam",
+            "logo": {
+              "@type": "ImageObject",
+              "url": baseUrl + '/logo.png'
+            }
+          },
+          "datePublished": "2023-01-01",
+          "dateModified": "2023-01-01"
+        });
+        return;
       }
-      // Handle blog listing page - fixed to exact match
-      else if (path === '#/blogs') {
-        setTitle('SAT Prep Blog');
-        setMetaTag('description', 'Expert SAT preparation tips and strategies');
-        setOGTag('og:title', 'SAT Prep Blog');
-        setOGTag('og:description', 'Expert SAT preparation tips and strategies');
-        setOGTag('og:image', 'https://yourdomain.com/blog-og.jpg');
-        setOGTag('og:url', 'https://yourdomain.com/#/blogs');
-        setCanonical('https://yourdomain.com/#/blogs');
-      }
-      // Default SEO tags for all other pages
-      else {
-        setDefaultTags();
+
+      // Default Home Page - FIXED: Added explicit home route handling
+      if (path === '' || path === '#' || path === '#/') {
+        setTitle('MockSATexam - American SAT Exam Preparation');
+        setMetaTag('description', 'Realistic SAT mock tests and study plans for American students targeting top US colleges');
+        setMetaTag('keywords', 'SAT prep, SAT practice, SAT mock test, SAT online, college board, SAT score, SAT exam, American SAT test');
+        setOGTag('og:title', 'MockSATexam - Ace the SAT with Expert Mock Tests');
+        setOGTag('og:description', 'Realistic SAT mock tests and study plans for American students');
+        setOGTag('og:image', baseUrl + '/og-image.jpg');
+        setOGTag('og:url', baseUrl + '/');
+        setCanonical(baseUrl + '/');
+
+        setStructuredData({
+          "@context": "https://schema.org",
+          "@type": "EducationalOrganization",
+          "name": "MockSATexam",
+          "description": "Premier SAT preparation for American students",
+          "url": baseUrl
+        });
       }
     }
 
-    function setDefaultTags() {
-      setTitle('SAT Prep Pro - Ace the SAT with Expert Mock Tests');
-      setMetaTag('description', 'Realistic SAT mock tests and study plans');
-      setOGTag('og:title', 'SAT Prep Pro - Ace the SAT with Expert Mock Tests');
-      setOGTag('og:description', 'Realistic SAT mock tests and study plans');
-      setOGTag('og:image', 'https://yourdomain.com/og-image.jpg');
-      setOGTag('og:url', 'https://yourdomain.com/');
-      setCanonical('https://yourdomain.com/');
-    }
-
-    // Initialize SEO on first load and route changes
+    // Initialize SEO
     window.addEventListener('DOMContentLoaded', updateSEOTags);
     window.addEventListener('hashchange', updateSEOTags);
-  </script>
-
-  <!-- Localhost build error handling for Flutter -->
-  <script>
-    if (window.location.hostname === 'localhost') {
-      window.addEventListener('flutter-build-error', function(e) {
-        window.dispatchEvent(new Event('flutter-first-frame'));
-      });
-    }
   </script>
 </head>
 <body>

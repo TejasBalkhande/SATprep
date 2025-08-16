@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'dart:convert';
-import 'package:cfdptest/main.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:web/web.dart' as web; // For SEO handling
 
 class CollegeScreen extends StatefulWidget {
   const CollegeScreen({super.key});
@@ -20,6 +21,13 @@ class _CollegeScreenState extends State<CollegeScreen> {
   void initState() {
     super.initState();
     _loadColleges();
+
+    // Trigger SEO update for this page
+    if (kIsWeb) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        web.window.dispatchEvent(web.Event('hashchange'));
+      });
+    }
   }
 
   Future<void> _loadColleges() async {
@@ -179,15 +187,15 @@ class _CollegeScreenState extends State<CollegeScreen> {
                   ),
                   const SizedBox(width: 24),
 
-                  // Sidebar - Desktop only (FIXED)
+                  // Sidebar - Desktop only
                   Expanded(
                     flex: 3,
                     child: ListView(
                       children: [
-                        // Start Mock Section - Now first
+                        // Start Mock Section
                         _buildStartMockSection(),
                         const SizedBox(height: 24),
-                        // Top Colleges Section - Now second
+                        // Top Colleges Section
                         _buildTopCollegesSection(),
                       ],
                     ),
@@ -405,7 +413,7 @@ class _CollegeScreenState extends State<CollegeScreen> {
   }
 }
 
-// College Model Classes (remain unchanged)
+// College Model Classes
 class College {
   final String name;
   final String location;
