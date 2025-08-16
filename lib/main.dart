@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'package:flutter/foundation.dart';
+import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:cfdptest/screens/login_screen.dart';
@@ -9,9 +11,16 @@ import 'package:cfdptest/screens/blog_page.dart';
 import 'package:cfdptest/screens/create_blog_page.dart';
 import 'package:cfdptest/screens/blog_post_page.dart';
 import 'package:cfdptest/colleges.dart';
+import 'package:cfdptest/info.dart';
 
 
-void main() => runApp(const SATPrepApp());
+void main() {
+  // Set path URL strategy for web
+  if (kIsWeb) {
+    usePathUrlStrategy();
+  }
+  runApp(const SATPrepApp());
+}
 
 class SATPrepApp extends StatelessWidget {
   const SATPrepApp({super.key});
@@ -28,8 +37,8 @@ class SATPrepApp extends StatelessWidget {
         '/login': (context) => const LoginScreen(),
         '/signup': (context) => const SignupScreen(),
         '/profile': (context) {
-          final userData = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
-          return ProfileScreen(userData: userData);
+          final userData = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
+          return ProfileScreen(userData: userData ?? {});
         },
         '/mock-practice': (context) => const MockPracticeScreen(),
         BlogPage.routeName: (context) => BlogPage(),
@@ -39,12 +48,25 @@ class SATPrepApp extends StatelessWidget {
           return BlogPostPage(slug: slug);
         },
         '/colleges': (context) => const CollegeScreen(),
+        '/info': (context) {
+          final item = ModalRoute.of(context)?.settings.arguments as String?;
+          return InfoPage(selectedItem: item);
+        },
       },
       onGenerateRoute: (settings) {
+        // Handle blog post routes
         if (settings.name != null && settings.name!.startsWith('/blog/')) {
           final slug = settings.name!.split('/blog/')[1];
           return MaterialPageRoute(
             builder: (context) => BlogPostPage(slug: slug),
+            settings: settings,
+          );
+        }
+
+        // Handle root route
+        if (settings.name == '/') {
+          return MaterialPageRoute(
+            builder: (context) => const SATPrepHomePage(),
             settings: settings,
           );
         }
@@ -151,8 +173,6 @@ class SATPrepApp extends StatelessWidget {
         color: surfaceColor,
         shadowColor: Colors.black.withOpacity(0.1),
       ),
-
-
       useMaterial3: true,
       fontFamily: 'Inter',
       dividerTheme: const DividerThemeData(
@@ -372,8 +392,15 @@ class HeroSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
+    final isSmallScreen = screenSize.width < 600;
+    final isVerySmallScreen = screenSize.height < 600;
+
     return Container(
-      height: MediaQuery.of(context).size.height * 0.75,
+      constraints: BoxConstraints(
+        minHeight: isVerySmallScreen ? 400 : screenSize.height * 0.75,
+        maxHeight: screenSize.height * 0.85,
+      ),
       decoration: BoxDecoration(
         image: DecorationImage(
           image: const NetworkImage(
@@ -386,83 +413,108 @@ class HeroSection extends StatelessWidget {
           ),
         ),
       ),
-      child: Center(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Ace the SAT – Your Path to Top Scores Starts Here',
-                style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                  color: Colors.white,
-                  shadows: [
-                    Shadow(
-                      color: Colors.black.withOpacity(0.3),
-                      blurRadius: 10,
-                      offset: const Offset(0, 2),
-                    ),
-                  ],
-                ),
-                textAlign: TextAlign.center,
+      child: SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.symmetric(
+            horizontal: 24,
+            vertical: isVerySmallScreen ? 20 : 0,
+          ),
+          constraints: BoxConstraints(
+            minHeight: isVerySmallScreen ? 400 : screenSize.height * 0.75,
+          ),
+          child: Center(
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: 24,
+                vertical: isVerySmallScreen ? 20 : 0,
               ),
-              const SizedBox(height: 24),
-              Text(
-                'Expert-led lessons, realistic mock tests, and proven strategies to boost your score',
-                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: Colors.white,
-                  fontSize: 20,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 48),
-              Wrap(
-                spacing: 20,
-                runSpacing: 20,
-                alignment: WrapAlignment.center,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  FilledButton(
-                    onPressed: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const MockPracticeScreen(scrollToMockTests: true),
-                      ),
+                  Text(
+                    'Ace the SAT – Your Path to Top Scores Starts Here',
+                    style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                      color: Colors.white,
+                      fontSize: isSmallScreen ? 28 : 36,
+                      shadows: [
+                        Shadow(
+                          color: Colors.black.withOpacity(0.3),
+                          blurRadius: 10,
+                          offset: const Offset(0, 2),
+                        ),
+                      ],
                     ),
-                    style: FilledButton.styleFrom(
-                      backgroundColor: Theme.of(context).colorScheme.secondary,
-                      padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(14),
-                      ),
-                      elevation: 4,
-                    ),
-                    child: const Text(
-                      'Start a Mock Test',
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-                    ),
+                    textAlign: TextAlign.center,
                   ),
-                  OutlinedButton(
-                    onPressed: () =>
-                        Navigator.pushNamed(context, '/mock-practice'),
-                    style: OutlinedButton.styleFrom(
-                      foregroundColor: Colors.white,
-                      side:
-                      const BorderSide(color: Colors.white, width: 2),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 40, vertical: 20),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(14),
-                      ),
+                  SizedBox(height: isSmallScreen ? 16 : 24),
+                  Text(
+                    'Expert-led lessons, realistic mock tests, and proven strategies to boost your score',
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      color: Colors.white,
+                      fontSize: isSmallScreen ? 16 : 20,
                     ),
-                    child: const Text(
-                      'View Study Plans',
-                      style:
-                      TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-                    ),
+                    textAlign: TextAlign.center,
                   ),
+                  SizedBox(height: isSmallScreen ? 24 : 48),
+                  Wrap(
+                    spacing: isSmallScreen ? 10 : 20,
+                    runSpacing: isSmallScreen ? 10 : 20,
+                    alignment: WrapAlignment.center,
+                    children: [
+                      FilledButton(
+                        onPressed: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const MockPracticeScreen(scrollToMockTests: true),
+                          ),
+                        ),
+                        style: FilledButton.styleFrom(
+                          backgroundColor: Theme.of(context).colorScheme.secondary,
+                          padding: EdgeInsets.symmetric(
+                            horizontal: isSmallScreen ? 30 : 40,
+                            vertical: isSmallScreen ? 14 : 20,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(14),
+                          ),
+                          elevation: 4,
+                        ),
+                        child: Text(
+                          'Start a Mock Test',
+                          style: TextStyle(
+                              fontSize: isSmallScreen ? 16 : 18,
+                              fontWeight: FontWeight.w600
+                          ),
+                        ),
+                      ),
+                      OutlinedButton(
+                        onPressed: () => Navigator.pushNamed(context, '/mock-practice'),
+                        style: OutlinedButton.styleFrom(
+                          foregroundColor: Colors.white,
+                          side: const BorderSide(color: Colors.white, width: 2),
+                          padding: EdgeInsets.symmetric(
+                            horizontal: isSmallScreen ? 30 : 40,
+                            vertical: isSmallScreen ? 14 : 20,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(14),
+                          ),
+                        ),
+                        child: Text(
+                          'View Study Plans',
+                          style: TextStyle(
+                              fontSize: isSmallScreen ? 16 : 18,
+                              fontWeight: FontWeight.w600
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  if (isVerySmallScreen) const SizedBox(height: 40),
                 ],
               ),
-            ],
+            ),
           ),
         ),
       ),
@@ -2012,7 +2064,7 @@ class FooterColumn extends StatelessWidget {
         ...items.map((item) => Padding(
           padding: const EdgeInsets.only(bottom: 8),
           child: InkWell(
-            onTap: () {},
+            onTap: () => _navigateToInfoPage(context, item),
             child: Text(
               item,
               style: TextStyle(
@@ -2023,6 +2075,14 @@ class FooterColumn extends StatelessWidget {
           ),
         )).toList(),
       ],
+    );
+  }
+
+  void _navigateToInfoPage(BuildContext context, String item) {
+    Navigator.pushNamed(
+      context,
+      '/info',
+      arguments: item, // Pass the selected item as an argument
     );
   }
 }

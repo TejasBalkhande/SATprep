@@ -174,10 +174,22 @@ class _PracticeSessionScreenState extends State<PracticeSessionScreen> {
     Navigator.pop(context);
   }
 
+  // Helper method to extract option letter from option string
+  String _getOptionLetter(String option) {
+    // Extract the letter (A, B, C, D) from options like "A. \\( 3\\sqrt{2} \\) cm"
+    final match = RegExp(r'^([A-Z])\.').firstMatch(option.trim());
+    return match?.group(1) ?? '';
+  }
+
+  // Helper method to check if an option is correct
+  bool _isCorrectOption(Question question, String option) {
+    return _getOptionLetter(option) == question.correctOption;
+  }
+
   Color _getOptionColor(Question question, String option) {
     if (!showExplanation) return Colors.transparent;
 
-    if (option == question.correctOption) {
+    if (_isCorrectOption(question, option)) {
       return const Color(0xFFE8F5E9).withOpacity(0.8); // Green for correct
     } else if (option == selectedOption) {
       return const Color(0xFFFFEBEE).withOpacity(0.8); // Red for incorrect
@@ -188,7 +200,7 @@ class _PracticeSessionScreenState extends State<PracticeSessionScreen> {
   IconData? _getOptionIcon(Question question, String option) {
     if (!showExplanation) return null;
 
-    if (option == question.correctOption) {
+    if (_isCorrectOption(question, option)) {
       return Icons.check_circle;
     } else if (option == selectedOption) {
       return Icons.cancel;
@@ -199,7 +211,7 @@ class _PracticeSessionScreenState extends State<PracticeSessionScreen> {
   Color _getOptionIconColor(Question question, String option) {
     if (!showExplanation) return Colors.grey;
 
-    if (option == question.correctOption) {
+    if (_isCorrectOption(question, option)) {
       return const Color(0xFF4A7C59); // Green
     } else if (option == selectedOption) {
       return Colors.red;
@@ -269,7 +281,6 @@ class _PracticeSessionScreenState extends State<PracticeSessionScreen> {
           ),
         );
       }
-
 
       lastEnd = match.end;
     }
@@ -470,6 +481,7 @@ class _PracticeSessionScreenState extends State<PracticeSessionScreen> {
                       icon: _getOptionIcon(question, option),
                       iconColor: _getOptionIconColor(question, option),
                       onTap: () => _selectOption(option),
+                      isCorrect: _isCorrectOption(question, option),
                     );
                   },
                 ),
@@ -512,55 +524,54 @@ class _PracticeSessionScreenState extends State<PracticeSessionScreen> {
           Positioned(
             bottom: 16,
             right: 16,
-              child: Row(
-                children: [
-                  // Previous button
-                  if (!isFirstQuestion)
-                    ElevatedButton(
-                      onPressed: _previousQuestion,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
-                        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          side: const BorderSide(color: Color(0xFF4A7C59)), // Green border
-                        ),
-                      ),
-                      child: const Text(
-                        'Previous',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Color(0xFF4A7C59), // Green text
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-
-                  if (!isFirstQuestion)
-                    const SizedBox(width: 12),
-
-                  // Next/Finish button
+            child: Row(
+              children: [
+                // Previous button
+                if (!isFirstQuestion)
                   ElevatedButton(
-                    onPressed: isLastQuestion ? _finishSession : _nextQuestion,
+                    onPressed: _previousQuestion,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF4A7C59),
-                      padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+                      backgroundColor: Colors.white,
+                      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
+                        side: const BorderSide(color: Color(0xFF4A7C59)), // Green border
                       ),
                     ),
-                    child: Text(
-                      isLastQuestion ? 'Finish' : 'Next',
-                      style: const TextStyle(
+                    child: const Text(
+                      'Previous',
+                      style: TextStyle(
                         fontSize: 16,
-                        color: Colors.white,
+                        color: Color(0xFF4A7C59), // Green text
                         fontWeight: FontWeight.w600,
                       ),
                     ),
                   ),
-                ],
-              ),
 
+                if (!isFirstQuestion)
+                  const SizedBox(width: 12),
+
+                // Next/Finish button
+                ElevatedButton(
+                  onPressed: isLastQuestion ? _finishSession : _nextQuestion,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF4A7C59),
+                    padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  child: Text(
+                    isLastQuestion ? 'Finish' : 'Next',
+                    style: const TextStyle(
+                      fontSize: 16,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),
@@ -575,6 +586,7 @@ class OptionCard extends StatelessWidget {
   final IconData? icon;
   final Color? iconColor;
   final VoidCallback onTap;
+  final bool isCorrect;
 
   const OptionCard({
     super.key,
@@ -584,6 +596,7 @@ class OptionCard extends StatelessWidget {
     this.icon,
     this.iconColor,
     required this.onTap,
+    required this.isCorrect,
   });
 
   // Function to detect and render LaTeX in options
