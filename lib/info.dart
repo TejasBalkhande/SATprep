@@ -81,7 +81,7 @@ class _InfoPageState extends State<InfoPage> {
             index: 1,
             child: _buildInfoCard(
               'About Us',
-              'Mock SAT Exam is a premier online SAT preparation platform founded in 2018 by a team of Ivy League graduates and education experts. We specialize in providing realistic practice tests, personalized study plans, and comprehensive resources to help students achieve their target SAT scores. Our mission is to make high-quality SAT prep accessible to all students, regardless of their background or location.',
+              'Mock SAT Exam is a premier online SAT preparation platform founded in 2025 by a team of Ivy League graduates and education experts. We specialize in providing realistic practice tests, personalized study plans, and comprehensive resources to help students achieve their target SAT scores. Our mission is to make high-quality SAT prep accessible to all students, regardless of their background or location.',
             ),
           ),
           AutoScrollTag(
@@ -99,7 +99,7 @@ class _InfoPageState extends State<InfoPage> {
             index: 3,
             child: _buildInfoCard(
               'Press',
-              'Mock SAT Exam has been featured in leading education publications:\n\n• "Revolutionizing Test Prep" - Education Today (2023)\n• "Top 10 EdTech Startups to Watch" - Tech & Learning (2022)\n• "Bridging the SAT Preparation Gap" - The Chronicle of Higher Education (2021)\n\nWe\'ve also been recognized for our innovative approach:\n• National Education Innovation Award (2022)\n• EdTech Excellence Finalist (2023)\n\nFor media inquiries, contact press@mocksatexam.com',
+              'Mock SAT Exam has been featured in leading education publications:\n\n• "Revolutionizing Test Prep" - Education Today (2025)\n• "Top 10 EdTech Startups to Watch" - Tech & Learning (2022)\n• "Bridging the SAT Preparation Gap" - The Chronicle of Higher Education (2021)\n\nWe\'ve also been recognized for our innovative approach:\n• National Education Innovation Award (2022)\n• EdTech Excellence Finalist (2023)\n\nFor media inquiries, contact press@mocksatexam.com',
             ),
           ),
 
@@ -151,7 +151,7 @@ class _InfoPageState extends State<InfoPage> {
             index: 9,
             child: _buildInfoCard(
               'Contact Us',
-              'Reach our support team through multiple channels:\n\n• Email: support@mocksatexam.com\n• Phone: 1-800-SAT-PREP (1-800-728-7737)\n• Live Chat: Available 9AM-9PM EST\n• In-App Support: Use the help button in your dashboard\n\nOur average response time is under 2 hours during business hours. For technical issues, include your device model and app version.',
+              'Reach our support team through multiple channels:\n\n• Email: mocksatexam@gmail.com\n• Phone: 1-800-SAT-PREP (1-800-728-7737)\n• Live Chat: Available 9AM-9PM EST\n• In-App Support: Use the help button in your dashboard\n\nOur average response time is under 2 hours during business hours. For technical issues, include your device model and app version.',
             ),
           ),
           AutoScrollTag(
